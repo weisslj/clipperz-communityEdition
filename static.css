@@ -1,0 +1,48 @@
+body {
+	padding: 20px;
+	font-family: Helvetica, Arial, Geneva, sans-serif;	
+	color: #666666;
+}
+
+h1 {
+	font-size: 40pt;
+	color: #333366;
+}
+
+h1 span.logo_z {
+	color: #ff9400;
+}
+
+div.block1 {
+	float: left;
+	margin-right: 40px;
+}
+
+div.block2 {
+	float: left;
+}
+
+div.languageBlock {
+	clear: both;
+	padding-top: 20px;
+}
+
+div.flags {
+	float: left;	
+}
+
+div.content {
+	float: left;	
+	margin-left: 20px;
+	width: 300px;
+}
+
+h3 {
+	margin: 0px;
+	padding-top: 10px;
+}
+
+p {
+	font-size: 10pt;
+	line-height: 20px;
+}
