@@ -1,6 +1,6 @@
 /*
 
-Copyright 2006-2008 Clipperz Srl
+Copyright 2008 Clipperz Srl
 
 This file is part of Clipperz Community Edition.
 Clipperz Community Edition is a web-based password manager and a
@@ -18,8 +18,8 @@ refer to http://www.clipperz.com
   warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
   See the GNU Affero General Public License for more details.
 
-* You should have received a copy of the GNU General Public License
-  along with Clipperz Community Edition.  If not, see
+* You should have received a copy of the GNU Affero General Public
+  License along with Clipperz Community Edition.  If not, see
   <http://www.gnu.org/licenses/>.
 
 
