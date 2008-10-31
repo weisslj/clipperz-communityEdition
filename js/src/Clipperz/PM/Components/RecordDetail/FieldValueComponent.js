@@ -92,7 +92,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldValueComponent, Clipperz.
 					var	urlLocation;
 					
 					urlLocation = Clipperz.Base.sanitizeString(this.value());
-					if (! (/(https?|ftp|svn):\/\//.test(urlLocation))) {
+					if (! (/^(https?|ftp|svn):\/\//.test(urlLocation))) {
 						urlLocation = 'http://' + urlLocation;
 					}
 					Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'a', href:urlLocation, html:this.value(), target:'_blank'});

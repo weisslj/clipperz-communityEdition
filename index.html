@@ -31005,7 +31005,7 @@ break;
 case "URL":
 var _772;
 _772=Clipperz.Base.sanitizeString(this.value());
-if(!(/(https?|ftp|svn):\/\//.test(_772))){
+if(!(/^(https?|ftp|svn):\/\//.test(_772))){
 _772="http://"+_772;
 }
 Clipperz.YUI.DomHelper.append(this.element().dom,{tag:"a",href:_772,html:this.value(),target:"_blank"});
@@ -35036,7 +35036,7 @@ return this._editableFields;
 if(this._hostname==null){
 var _a97;
 _a97=this.configuration()["form"]["attributes"]["action"];
-this._hostname=_a97.replace(/https?:\/\/([^\/]*)\/.*/,"$1");
+this._hostname=_a97.replace(/^https?:\/\/([^\/]*)\/.*/,"$1");
 }
 return this._hostname;
 },"favicon":function(){
@@ -36709,7 +36709,7 @@ if(this._favicon==null){
 var _bf2;
 var _bf3;
 _bf2=this.formData()["attributes"]["action"];
-_bf3=_bf2.replace(/https?:\/\/([^\/]*)\/.*/,"$1");
+_bf3=_bf2.replace(/^https?:\/\/([^\/]*)\/.*/,"$1");
 this._favicon="http://"+_bf3+"/favicon.ico";
 }
 return this._favicon;
@@ -36888,7 +36888,7 @@ MochiKit.DOM.withWindow(_c1d,MochiKit.Base.bind(function(){
 var _c1e;
 var url;
 url=this.bindings()["url"].field().value();
-if(/https?\:\/\//.test(url)==false){
+if(/^https?\:\/\//.test(url)==false){
 url="http://"+url;
 }
 if(Clipperz_IEisBroken===true){
@@ -36898,7 +36898,7 @@ var _c20;
 var _c21;
 _c20=this.bindings()["username"].field().value();
 _c21=this.bindings()["password"].field().value();
-/(https?\:\/\/)?(.*)/.test(url);
+/(^https?\:\/\/)?(.*)/.test(url);
 _c1e=RegExp.$1+_c20+":"+_c21+"@"+RegExp.$2;
 }
 MochiKit.DOM.currentWindow().location.href=_c1e;
@@ -36928,7 +36928,7 @@ _c25[0].click();
 },this));
 },"runDirectLogin":function(_c27){
 var _c28;
-if(/(https?|webdav|ftp)\:/.test(this.formData()["attributes"]["action"])==false){
+if(/^(https?|webdav|ftp)\:/.test(this.formData()["attributes"]["action"])==false){
 var _c29;
 if(typeof (_c27)!="undefined"){
 _c27.close();
@@ -38507,7 +38507,7 @@ MochiKit.DOM.addLoadEvent(Clipperz.PM.initPage);
 		<a href="http://www.clipperz.com/terms_of_service" target="black">Terms of service</a> -
 		<a href="http://www.clipperz.com/privacy_policy" target="black">Privacy policy</a>
 		&nbsp;-&nbsp;
-		Application version: community.edition (revision 5)
+		Application version: community.edition (revision 6)
 	</div>
 
 	<div id="recordDetailEditModeHeaderMask"></div>

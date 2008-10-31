@@ -117,7 +117,7 @@ Clipperz.PM.BookmarkletProcessor.prototype = MochiKit.Base.update(null, {
 			
 			actionUrl = this.configuration()['form']['attributes']['action'];
 //MochiKit.Logging.logDebug("+++ actionUrl: " + actionUrl);
-			this._hostname = actionUrl.replace(/https?:\/\/([^\/]*)\/.*/, '$1');
+			this._hostname = actionUrl.replace(/^https?:\/\/([^\/]*)\/.*/, '$1');
 		}
 		
 		return this._hostname;

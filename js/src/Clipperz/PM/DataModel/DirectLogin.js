@@ -80,7 +80,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 			var hostname;
 			
 			actionUrl = this.formData()['attributes']['action'];
-			hostname = actionUrl.replace(/https?:\/\/([^\/]*)\/.*/, '$1');
+			hostname = actionUrl.replace(/^https?:\/\/([^\/]*)\/.*/, '$1');
 			this._favicon = "http://" + hostname + "/favicon.ico";
 		}
 
@@ -382,7 +382,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 			
 			url = this.bindings()['url'].field().value();
 
-			if (/https?\:\/\//.test(url) == false) {
+			if (/^https?\:\/\//.test(url) == false) {
 				url = 'http://' + url;
 			}
 			
@@ -395,7 +395,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 				username = this.bindings()['username'].field().value();
 				password = this.bindings()['password'].field().value();
 
-				/(https?\:\/\/)?(.*)/.test(url);
+				/(^https?\:\/\/)?(.*)/.test(url);
 
 				completeUrl = RegExp.$1 + username + ':' + password + '@' + RegExp.$2;
 			}
@@ -464,7 +464,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 
 //console.log("formData.attributes", this.formData()['attributes']);
 //		if (/^javascript/.test(this.formData()['attributes']['action'])) {
-		if (/(https?|webdav|ftp)\:/.test(this.formData()['attributes']['action']) == false) {
+		if (/^(https?|webdav|ftp)\:/.test(this.formData()['attributes']['action']) == false) {
 			var messageBoxConfiguration;
 
 			if (typeof(aNewWindow) != 'undefined') {
