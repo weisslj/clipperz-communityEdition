@@ -1,3 +1,4 @@
+
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.YUI) == 'undefined') { Clipperz.YUI = {}; }
 

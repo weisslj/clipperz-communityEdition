@@ -1,3 +1,32 @@
+/*
+
+Copyright 2008 Clipperz Srl
+
+This file is part of Clipperz Community Edition.
+Clipperz Community Edition is a web-based password manager and a
+digital vault for confidential data.
+For further information about its features and functionalities please
+refer to http://www.clipperz.com
+
+* Clipperz Community Edition is free software: you can redistribute
+  it and/or modify it under the terms of the GNU Affero General Public
+  License as published by the Free Software Foundation, either version
+  3 of the License, or (at your option) any later version.
+
+* Clipperz Community Edition is distributed in the hope that it will
+  be useful, but WITHOUT ANY WARRANTY; without even the implied
+  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  See the GNU Affero General Public License for more details.
+
+* You should have received a copy of the GNU Affero General Public
+  License along with Clipperz Community Edition.  If not, see
+  <http://www.gnu.org/licenses/>.
+
+
+*/
+
+
+
 Clipperz.PM.Strings.Languages['ja-JP'.toLowerCase()] = MochiKit.Base.merge(Clipperz.PM.Strings.Languages['en-us'], {
 'clipperzServiceDescription':	"<h2>自分で管理しよう！</h2> <ul> <li> <h3>Clipperz は</h3> <ul> <li> <p>安全でシンプルなパスワードマネージャです</p> </li> <li> <p>シングルサインオンを提供します</p> </li> <li> <p>機密情報のデジタル格納庫です</p> </li> </ul> </li> <li> <h3>Clipperz でできること</h3> <ul> <li> <p>パスワードを保管して管理できます</p> </li> <li> <p>ユーザー名やパスワードを入力せずに登録したウェブサービスにログインできます</p> </li> <li> <p>暗証番号やクレジットカード番号などあらゆる機密情報を守ります</p> </li> <li> <p>家族や信用できる相手と機密情報を共有できます（提供予定）</p> </li> </ul> </li> <li> <h3>Clipperz のよいところ</h3> <ul> <li> <p>無料で匿名利用できます</p> </li> <li> <p>いつでもどのコンピュータからでもアクセスできます</p> </li> <li> <p>ソフトウェアのダウンロードやインストールは不要です</p> </li> <li> <p>PC や紙に機密情報を残す必要がありません</p> </li> </ul> </li> <li> <h3>Clipperz のセキュリティ</h3> <ul> <li> <p>データはブラウザで暗号化されてから Clipprez に送信されます</p> </li> <li> <p>暗号化のキーはあなただけが知っているパスフレーズです</p> </li> <li> <p>保管したデータは暗号化されていて、保管中には決して中身を見ることができません</p> </li> <li> <p>標準が確立された暗号化手順を採用しています</p> </li> <li> <p>ソースコードはいつでも参照できますが、暗号化について何も知らなくても使えます</p> </li> </ul> </li> <li><a href=\"http://www.clipperz.com\" target=\"_blank\">もっと見る</a> </li> </ul> ",
 'loginFormTitle':	"Clipperz のアカウントでログイン",

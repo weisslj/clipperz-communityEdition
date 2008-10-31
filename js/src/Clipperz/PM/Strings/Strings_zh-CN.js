@@ -1,3 +1,32 @@
+/*
+
+Copyright 2008 Clipperz Srl
+
+This file is part of Clipperz Community Edition.
+Clipperz Community Edition is a web-based password manager and a
+digital vault for confidential data.
+For further information about its features and functionalities please
+refer to http://www.clipperz.com
+
+* Clipperz Community Edition is free software: you can redistribute
+  it and/or modify it under the terms of the GNU Affero General Public
+  License as published by the Free Software Foundation, either version
+  3 of the License, or (at your option) any later version.
+
+* Clipperz Community Edition is distributed in the hope that it will
+  be useful, but WITHOUT ANY WARRANTY; without even the implied
+  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  See the GNU Affero General Public License for more details.
+
+* You should have received a copy of the GNU Affero General Public
+  License along with Clipperz Community Edition.  If not, see
+  <http://www.gnu.org/licenses/>.
+
+
+*/
+
+
+
 Clipperz.PM.Strings.Languages['zh-CN'.toLowerCase()] = MochiKit.Base.merge(Clipperz.PM.Strings.Languages['en-us'], {
 'clipperzServiceDescription':	"<h2>只有你知道</h2> <ul> <li> <h3>Clipperz 是:</h3> <ul> <li> <p>一个简单而又安全的密码管理员</p> </li> <li> <p>一个有效的单一登录解决方案</p> </li> <li> <p>一个您保密的资料数据库</p> </li> </ul> </li> <li> <h3> 使用 Clipperz 你能:</h3> <ul> <li> <p>储存和管理你的密码和网上证书</p> </li> <li> <p>无需输入密码自动帮助你登录网站服务</p> </li> <li> <p>保护你的敏感数据:通讯录,口令,信用卡号码, ...</p> </li> <li> <p>与家人和伙伴分享秘密(将要上线)</p> </li> </ul> </li> <li> <h3>Clipperz 的特点:</h3> <ul> <li> <p>免费，彻底匿名</p> </li> <li> <p>在任何时间 任何电脑都可以轻松获取你的密码</p> </li> <li> <p>无需下载和安装任何软件</p> </li> <li> <p>再也无需在电脑或者纸上记录密码了</p> </li> </ul> </li> <li> <h3>Clipperz 的安全性:</h3> <ul> <li> <p>密码将在本地浏览器加密，然后上传至 Clipperz</p> </li> <li> <p>加密密钥是一个只有你知道的密码短语</p> </li> <li> <p>Clipperz 服务会加密你的敏感数据，并不会出现数据的原始形式</p> </li> <li> <p>Clipperz 基于加密标准，没有任何的花哨</p> </li> <li> <p>只要你愿意，你随时都可以查看源代码，但是做为一个使用者来说完全没有去必要去了解那些繁琐的加密原理</p> </li> </ul> </li> <li> <a href=\"http://www.clipperz.com\" target=\"_blank\">更多</a> </li> </ul> ",
 'loginFormTitle':	"用你的 Clipperz 帐户登录",

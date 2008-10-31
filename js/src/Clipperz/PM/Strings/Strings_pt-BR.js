@@ -1,3 +1,32 @@
+/*
+
+Copyright 2008 Clipperz Srl
+
+This file is part of Clipperz Community Edition.
+Clipperz Community Edition is a web-based password manager and a
+digital vault for confidential data.
+For further information about its features and functionalities please
+refer to http://www.clipperz.com
+
+* Clipperz Community Edition is free software: you can redistribute
+  it and/or modify it under the terms of the GNU Affero General Public
+  License as published by the Free Software Foundation, either version
+  3 of the License, or (at your option) any later version.
+
+* Clipperz Community Edition is distributed in the hope that it will
+  be useful, but WITHOUT ANY WARRANTY; without even the implied
+  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+  See the GNU Affero General Public License for more details.
+
+* You should have received a copy of the GNU Affero General Public
+  License along with Clipperz Community Edition.  If not, see
+  <http://www.gnu.org/licenses/>.
+
+
+*/
+
+
+
 Clipperz.PM.Strings.Languages['pt-BR'.toLowerCase()] = MochiKit.Base.merge(Clipperz.PM.Strings.Languages['en-us'], {
 'clipperzServiceDescriptionConfig':	"<h2>Guarde com você!</h2> <ul> <li> <h3>Clipperz é:</h3> <ul> <li> <p>um simples e seguro gerenciador de senhas</p> </li> <li> <p>uma efetiva solução com uma única assinatura</p> </li> <li> <p>um cofre digital para suas informações confidenciais</p> </li> </ul> </li> <li> <h3>Com Clipperz você pode:</h3> <ul> <li> <p>guardar e gerenciar suas senhas e credenciais online</p> </li> <li> <p>logar em seus serviços web sem precisar entrar com nenhum nome de usuário ou senha</p> </li> <li> <p>proteger todos os seus dados sensíveis: códigos de alarme, PINs, números de cartão de crédito, &hellip;</p> </li> <li> <p>compartilhar segredos com membros da família e associados (em breve)</p> </li> </ul> </li> <li> <h3>Clipperz proporciona:</h3> <ul> <li> <p>anonimato completo e gratuito</p> </li> <li> <p>acesso a qualquer hora em qualquer computador</p> </li> <li> <p>sem software ou download e nada que instalar</p> </li> <li> <p>evite guardar seus segredos em seu PC ou papel</p> </li> </ul> </li> <li> <h3>Segurança Clipperz:</h3> <ul> <li> <p>seus segredos são codificados localmente por seu navegador antes de ser enviado para Clipperz</p> </li> <li> <p>a chave de codificação é uma senha que só você conhece</p> </li> <li> <p>Clipperz armazena apenas seus dados confidenciais codificados, nunca acessando os dados originais</p> </li> <li> <p>Clipperz é construído a partir de esquemas de codificação padrão, ou seja, nada é exclusivo ou caseiro</p> </li> <li> <p>você pode revisar o código a qualquer momento, mas você não precisa conhecer nada sobre criptograia para ser um usuário feliz!</p> </li> </ul> </li> <li> <a href=\"http://www.clipperz.com\" target=\"_blank\">Saiba mais</a> </li> </ul> ",
 'loginFormTitle':	"entre sua conta Clipperz",
