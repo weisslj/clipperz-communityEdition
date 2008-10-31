@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 
 Clipperz.PM.VERSION = "0.1";
@@ -100,7 +71,7 @@ MochiKit.Base.update(Clipperz.PM.Main.prototype, {
 		}
 		mainElement.update("");
 
-		YAHOO.ext.DomHelper.append(mainElement.dom, {tag:'ul', cls:'clipperzTabPanels', children:[
+		Clipperz.YUI.DomHelper.append(mainElement.dom, {tag:'ul', cls:'clipperzTabPanels', children:[
 			{tag:'li', id:'loginPanel'}
 		]})
 
@@ -165,23 +136,23 @@ MochiKit.Base.update(Clipperz.PM.Main.prototype, {
 		this.setLoginPanel(null);
 
 		logoutBlock = YAHOO.ext.Element.get('logoutLI');
-		YAHOO.ext.DomHelper.append(logoutBlock.dom, {tag:'a', href:"#", id:'logout', html:Clipperz.PM.Strings['logoutMenuLabel']});
+		Clipperz.YUI.DomHelper.append(logoutBlock.dom, {tag:'a', href:"#", id:'logout', htmlString:Clipperz.PM.Strings['logoutMenuLabel']});
 		MochiKit.Signal.connect('logout', 'onclick', this, 'doLogoutEventHandler');
 
 		lockBlock = YAHOO.ext.Element.get('lockLI');
-		YAHOO.ext.DomHelper.append(lockBlock.dom, {tag:'a', href:"#", id:'lock', html:Clipperz.PM.Strings['lockMenuLabel']});
+		Clipperz.YUI.DomHelper.append(lockBlock.dom, {tag:'a', href:"#", id:'lock', htmlString:Clipperz.PM.Strings['lockMenuLabel']});
 		MochiKit.Signal.connect('lock', 'onclick', this, 'doLockEventHandler');
 
 		menusTRElement = YAHOO.ext.Element.get('menusTR');
-		YAHOO.ext.DomHelper.append(menusTRElement.dom, {tag:'td', id:'recordsTab', children:[{tag:'div', children:[{tag:'a', id:'recordsTabAnchor', html:Clipperz.PM.Strings['recordMenuLabel']}]}]});
-		YAHOO.ext.DomHelper.append(menusTRElement.dom, {tag:'td', id:'accountTab', children:[{tag:'div', children:[{tag:'a', id:'accountTabAnchor', html:Clipperz.PM.Strings['accountMenuLabel']}]}]});
-		YAHOO.ext.DomHelper.append(menusTRElement.dom, {tag:'td', id:'dataTab', children:[{tag:'div', children:[{tag:'a', id:'dataTabAnchor', html:Clipperz.PM.Strings['dataMenuLabel']}]}]});
-//		YAHOO.ext.DomHelper.append(menusTRElement.dom, {tag:'td', id:'contactsTab', children:[{tag:'div', children:[{tag:'a', id:'contactsTabAnchor', html:Clipperz.PM.Strings['contactsMenuLabel']}]}]});
-		YAHOO.ext.DomHelper.append(menusTRElement.dom, {tag:'td', id:'toolsTab', children:[{tag:'div', children:[{tag:'a', id:'toolsTabAnchor', html:Clipperz.PM.Strings['toolsMenuLabel']}]}]});
+		Clipperz.YUI.DomHelper.append(menusTRElement.dom, {tag:'td', id:'recordsTab', children:[{tag:'div', children:[{tag:'a', id:'recordsTabAnchor', htmlString:Clipperz.PM.Strings['recordMenuLabel']}]}]});
+		Clipperz.YUI.DomHelper.append(menusTRElement.dom, {tag:'td', id:'accountTab', children:[{tag:'div', children:[{tag:'a', id:'accountTabAnchor', htmlString:Clipperz.PM.Strings['accountMenuLabel']}]}]});
+		Clipperz.YUI.DomHelper.append(menusTRElement.dom, {tag:'td', id:'dataTab', children:[{tag:'div', children:[{tag:'a', id:'dataTabAnchor', htmlString:Clipperz.PM.Strings['dataMenuLabel']}]}]});
+//		Clipperz.YUI.DomHelper.append(menusTRElement.dom, {tag:'td', id:'contactsTab', children:[{tag:'div', children:[{tag:'a', id:'contactsTabAnchor', htmlString:Clipperz.PM.Strings['contactsMenuLabel']}]}]});
+		Clipperz.YUI.DomHelper.append(menusTRElement.dom, {tag:'td', id:'toolsTab', children:[{tag:'div', children:[{tag:'a', id:'toolsTabAnchor', htmlString:Clipperz.PM.Strings['toolsMenuLabel']}]}]});
 
 		mainElement = YAHOO.ext.Element.get('main');
 		mainElement.update("");
-		YAHOO.ext.DomHelper.append(mainElement.dom, {tag:'ul', cls:'clipperzTabPanels', children:[
+		Clipperz.YUI.DomHelper.append(mainElement.dom, {tag:'ul', cls:'clipperzTabPanels', children:[
 			{tag:'li', id:'recordsPanel'},
 			{tag:'li', id:'accountPanel'},
 			{tag:'li', id:'dataPanel'},
@@ -262,11 +233,11 @@ MochiKit.Base.update(Clipperz.PM.Main.prototype, {
 
 		Clipperz.NotificationCenter.notify(this, 'accountLocked', null, true);
 		
-		lockDialogElement = YAHOO.ext.DomHelper.append(document.body, {tag:'div', id:'lockDialog', children:[
-			{tag:'div', cls:'ydlg-hd', html:Clipperz.PM.Strings['lockTitle']},
+		lockDialogElement = Clipperz.YUI.DomHelper.append(document.body, {tag:'div', id:'lockDialog', children:[
+			{tag:'div', cls:'ydlg-hd', htmlString:Clipperz.PM.Strings['lockTitle']},
 			{tag:'div', cls:'ydlg-bd', children:[
 				{tag:'div', cls:'alert-message', id:'lockMessage', children:[
-					{tag:'div', html:Clipperz.PM.Strings['lockDescription']},
+					{tag:'div', htmlString:Clipperz.PM.Strings['lockDescription']},
 					{tag:'form', id:'lockDialogForm', children:[
 						{tag:'input', type:'password', id:'lockPassphrase'}
 					]}
@@ -350,7 +321,7 @@ MochiKit.Base.update(Clipperz.PM.Main.prototype, {
 	//-----------------------------------------------------------------------------
 
 	'defaultErrorHandler': function(anErrorString, anException) {
-MochiKit.Logging.logDebug(">>> DEFAULT ERROR HANDLER: " + anErrorString + " (exception: " + MochiKit.Base.serializeJSON(anException) + ")");
+MochiKit.Logging.logDebug(">>> DEFAULT ERROR HANDLER: " + anErrorString + " (exception: " + Clipperz.Base.serializeJSON(anException) + ")");
 	},
 
 	//-----------------------------------------------------------------------------
@@ -449,7 +420,7 @@ MochiKit.Base.update(Clipperz.PM, {
 					YAHOO.ext.Element.get('donateHeaderIcon').remove();
 					logoParentNode = YAHOO.ext.Element.get('logo').dom.parentNode;
 					YAHOO.ext.Element.get('logo').remove();
-					YAHOO.ext.DomHelper.append(logoParentNode, {tag:'span', children:[
+					Clipperz.YUI.DomHelper.append(logoParentNode, {tag:'span', children:[
 						{tag:'span', cls:'clipperzLogoSpan', html:'clipper'},
 						{tag:'span', cls:'clipperzLogoZSpan', html:'z'}
 					]})
@@ -500,14 +471,14 @@ MochiKit.Base.update(Clipperz.PM, {
 		deferredResult = new MochiKit.Async.Deferred();
 
 //MochiKit.Logging.logDebug(">>> Main.showRegistrationSplashScreen");
-		donateElement = YAHOO.ext.DomHelper.append(document.body, {tag:'div', id:'donateSplash', children:[
-			{tag:'div', cls:'ydlg-hd', html:Clipperz.PM.Strings['donateSplashPanelTitle']},
+		donateElement = Clipperz.YUI.DomHelper.append(document.body, {tag:'div', id:'donateSplash', children:[
+			{tag:'div', cls:'ydlg-hd', htmlString:Clipperz.PM.Strings['donateSplashPanelTitle']},
 			{tag:'div', cls:'ydlg-bd', children:[
 				{tag:'div', cls:'alert-message', id:'donateMessage', children:[
 					{tag:'div', cls:'donateSplashPanelIcon', children:[
 						{tag:'img', src:Clipperz.PM.Strings['donateSplashPanelIconUrl']}
 					]},
-					{tag:'div', cls:'donateSplashPanelDescription', html:Clipperz.PM.Strings['donateSplashPanelDescription']}
+					{tag:'div', cls:'donateSplashPanelDescription', htmlString:Clipperz.PM.Strings['donateSplashPanelDescription']}
 				]}
 			]},
 			{tag:'div', cls:'ydlg-ft'}
@@ -565,7 +536,7 @@ MochiKit.Base.update(Clipperz.PM, {
 //		YAHOO.ext.Element.get('logoutLI').update("");
 //		YAHOO.ext.Element.get('lockLI').update("");
 //		YAHOO.ext.Element.get('main').update("");
-//		YAHOO.ext.DomHelper.append('main', {tag:'div', id:'exitBlock', children:Clipperz.PM.Strings['exitConfig']});
+//		Clipperz.YUI.DomHelper.append('main', {tag:'div', id:'exitBlock', children:Clipperz.PM.Strings['exitConfig']});
 		
 		MochiKit.Async.wait(0).addCallback(function() {
 //			window.location.href = "http://www.google.com/search?hl=" + Clipperz.PM.Strings.preferredLanguage + "&q=phishing&btnI=Google+Search";

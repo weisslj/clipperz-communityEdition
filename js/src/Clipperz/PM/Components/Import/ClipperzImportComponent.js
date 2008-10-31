@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -57,12 +28,12 @@ YAHOO.extendX(Clipperz.PM.Components.Import.ClipperzImportComponent, Clipperz.PM
 	'render': function() {
 //MochiKit.Logging.logDebug(">>> Import.ClipperzImportComponent.render");
 		this.domHelper().append(this.element(), {tag:'div', cls:'clipperzImportWizard', children:[
-			{tag:'h3', html:Clipperz.PM.Strings['Clipperz_ImportWizard_Title']},
+			{tag:'h3', htmlString:Clipperz.PM.Strings['Clipperz_ImportWizard_Title']},
 			{tag:'div', cls:'importSteps', id:this.getId('importSteps')},
 			{tag:'div', cls:'importStepBlocks', children:[
 				{tag:'div', cls:'step_0', id:this.getId('step_0'), children:[
 					{tag:'div', children:[
-						{tag:'div', cls:'importOptionsDescription', html:Clipperz.PM.Strings['importOptions_clipperz_description']},
+						{tag:'div', cls:'importOptionsDescription', htmlString:Clipperz.PM.Strings['importOptions_clipperz_description']},
 						{tag:'div', cls:'importOptionsParameters', children:[]},
 						this.textAreaConfig()
 					]}
@@ -160,7 +131,7 @@ YAHOO.extendX(Clipperz.PM.Components.Import.ClipperzImportComponent, Clipperz.PM
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Record.processClipperzValues - 1: " + res); return res;});
 		deferredResult.addCallback(Clipperz.NotificationCenter.deferredNotification, this, 'updatedProgressState', 'parseImportData');
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Record.processClipperzValues - 2: " + res); return res;});
-		deferredResult.addCallback(MochiKit.Base.evalJSON);
+		deferredResult.addCallback(Clipperz.Base.evalJSON);
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Record.processClipperzValues - 3: " + res); return res;});
 		deferredResult.addCallback(function(res) {
 			return Clipperz.NotificationCenter.deferredNotification(this, 'updatedProgressState', {steps:(res.length)}, res);
@@ -184,7 +155,7 @@ YAHOO.extendX(Clipperz.PM.Components.Import.ClipperzImportComponent, Clipperz.PM
 					var record;
 					var recordVersion;
 
-//MochiKit.Logging.logDebug("=== someData: " + MochiKit.Base.serializeJSON(someData));
+//MochiKit.Logging.logDebug("=== someData: " + Clipperz.Base.serializeJSON(someData));
 					record = new Clipperz.PM.DataModel.Record({user:this.user()});
 					record.setLabel(someData['label']);
 					record.setShouldProcessData(true);

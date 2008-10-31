@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -61,7 +32,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.HeaderComponent, Clipperz.PM.C
 		var editButton;
 		
 //MochiKit.Logging.logDebug(">>> RecordDetail.HeaderComponent.appendTo");
- 		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', cls:'recordDetailButtonsBox', children:[
+ 		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', cls:'recordDetailButtonsBox', children:[
 			{tag:'div', id:this.getId('editButtonBox'), children:[
 				{tag:'table', cls:'recordDetailButtonsTABLE', border:'0', cellpadding:'0', cellspacing:'0', children:[
 					{tag:'tbody', children:[
@@ -155,7 +126,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.HeaderComponent, Clipperz.PM.C
 
 	'cancelButtonHandler': function(anEvent) {
 		this.record().cancelChanges();
-//MochiKit.Logging.logDebug("--- HeaderComponent.cancelButtonHandler - " + MochiKit.Base.serializeJSON(this.record().currentDataSnapshot()));
+//MochiKit.Logging.logDebug("--- HeaderComponent.cancelButtonHandler - " + Clipperz.Base.serializeJSON(this.record().currentDataSnapshot()));
 		this.mainComponent().setEditMode('VIEW', null, true);
 	},
 

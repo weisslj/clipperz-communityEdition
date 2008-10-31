@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.DataModel) == 'undefined') { Clipperz.PM.DataModel = {}; }
@@ -161,7 +132,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 			}
 			
 		}
-//MochiKit.Logging.logDebug("<<< Header.serializedData - result: " + MochiKit.Base.serializeJSON(result));
+//MochiKit.Logging.logDebug("<<< Header.serializedData - result: " + Clipperz.Base.serializeJSON(result));
 //MochiKit.Logging.logDebug("<<< Header.serializedData");
 
 		return result;
@@ -177,7 +148,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 		var result;
 
 //MochiKit.Logging.logDebug(">>> [" + (new Date()).valueOf() + "] Header.encryptedData");
-//MochiKit.Logging.logDebug("### Header.encryptedData - " + MochiKit.Base.serializeJSON(this.updatedSections()));
+//MochiKit.Logging.logDebug("### Header.encryptedData - " + Clipperz.Base.serializeJSON(this.updatedSections()));
 		result = {
 			'records': this.cachedServerDataSection('records'),
 			'directLogins': this.cachedServerDataSection('directLogins'),
@@ -264,7 +235,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 		deferredResult.addCallback(function(anHeader, aResult, aValue) {
 			var serverData;
 			
-			serverData = MochiKit.Base.serializeJSON(aResult);
+			serverData = Clipperz.Base.serializeJSON(aResult);
 			anHeader.setServerData(serverData);
 			
 			return serverData;
@@ -298,7 +269,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 
 	'jsonEvaledServerData': function() {
 		if (this._jsonEvaledServerData == null) {
-			this._jsonEvaledServerData = MochiKit.Base.evalJSON(this.serverData());
+			this._jsonEvaledServerData = Clipperz.Base.evalJSON(this.serverData());
 		}
 		
 		return this._jsonEvaledServerData;
@@ -368,7 +339,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 		if (this.serverData().charAt(0) == '{') {
 			var	serverData;
 			
-			serverData = MochiKit.Base.evalJSON(this.serverData());
+			serverData = Clipperz.Base.evalJSON(this.serverData());
 			result = serverData['version'];
 		} else {
 			result = 'LEGACY';
@@ -411,7 +382,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 			case '0.1':
 				var data;
 
-//#				data = MochiKit.Base.evalJSON(this.serverData());
+//#				data = Clipperz.Base.evalJSON(this.serverData());
 				data = this.jsonEvaledServerData();
 				if (typeof(data[aKey]) != 'undefined') {
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Header.extractDataWithKey 4: "/* + res*/); return res;});
@@ -425,7 +396,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 					deferredResult.addCallback(function(/*anHeader,*/ aKey, aData, aRecordIndex, aValue) {
 						var result;
 //MochiKit.Logging.logDebug(">>> [start] ===============================================");
-//MochiKit.Logging.logDebug("--- extractDataWithKey - 0 [" + aKey + "]: " + MochiKit.Base.serializeJSON(aValue));
+//MochiKit.Logging.logDebug("--- extractDataWithKey - 0 [" + aKey + "]: " + Clipperz.Base.serializeJSON(aValue));
 //MochiKit.Logging.logDebug("<<< [end] =================================================");
 						if (aKey == 'records') {
 							var recordKey;
@@ -446,7 +417,7 @@ Clipperz.PM.DataModel.Header.prototype = MochiKit.Base.update(null, {
 								recordKeyReversedIndex[aRecordIndex[recordKey]] = recordKey;
 							}
 
-//MochiKit.Logging.logDebug("--- extractDataWithKey - 1 - aData['index']: " + MochiKit.Base.serializeJSON(aData['index']));
+//MochiKit.Logging.logDebug("--- extractDataWithKey - 1 - aData['index']: " + Clipperz.Base.serializeJSON(aData['index']));
 							for (directLoginKey in aData['index']) {
 try {
 								if ((aData['index'][directLoginKey] != null) && (aValue[aData['index'][directLoginKey]] != null)) {
@@ -497,7 +468,7 @@ try {
 		records = someRecordData;
 //MochiKit.Logging.logDebug("--- Header.processRecordData - 1");
 		if (records != null) {
-//MochiKit.Logging.logDebug("--- Header.processRecordData - records: " + MochiKit.Base.serializeJSON(records));
+//MochiKit.Logging.logDebug("--- Header.processRecordData - records: " + Clipperz.Base.serializeJSON(records));
 			for (recordReference in records) {
 				var newRecord;
 				var parameters;

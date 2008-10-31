@@ -1,165 +1,104 @@
-.ytree-icon, .ytree-ec-icon, .ytree-elbow-line, .ytree-elbow, .ytree-elbow-end, .ytree-elbow-plus, .ytree-elbow-minus, .ytree-elbow-end-plus, .ytree-elbow-end-minus{
-	border: 0 none;
-	height: 18px;
-	margin: 0px;
-	padding: 0px;
-	vertical-align: middle;
-	width: 16px;
-}
-.ytree-node-collapsed .ytree-node-icon, .ytree-node-expanded .ytree-node-icon, .ytree-node-leaf .ytree-node-icon{
-	border: 0 none;
-	height: 16px;
-	margin: 0px;
-	padding: 0px;
-	vertical-align: middle;
-	width: 16px;
-	background-position:center;
+/*
+Copyright (c) 2006, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.txt
+Version: 0.11.3
+*/
+
+/* first or middle sibling, no children */
+.ygtvtn {
+	width:16px; height:22px; 
+	background: url(../../images/yui/treeview/tn.gif) 0 0 no-repeat; 
 }
 
-/* some default icons for leaf/folder */
-.ytree-node-collapsed .ytree-node-icon{
-	background:transparent url(../images/default/tree/folder.gif);
-}
-.ytree-node-expanded .ytree-node-icon{
-	background:transparent url(../images/default/tree/folder-open.gif);
-}
-.ytree-node-leaf .ytree-node-icon{
-	background:transparent url(../images/default/tree/leaf.gif);
+/* first or middle sibling, collapsable */
+.ygtvtm {
+	width:16px; height:22px; 
+	cursor:pointer ;
+	background: url(../../images/yui/treeview/tm.gif) 0 0 no-repeat; 
 }
 
-/* loading icon */
-.ytree-node-loading .ytree-node-icon{
-	background:transparent url(../images/default/tree/loading.gif) !important;
-}
-.ytree-node-loading a span{
-	 font-style: italic;
-	 color:#444444;
+/* first or middle sibling, collapsable, hover */
+.ygtvtmh {
+	width:16px; height:22px; 
+	cursor:pointer ;
+	background: url(../../images/yui/treeview/tmh.gif) 0 0 no-repeat; 
 }
 
-/* Line styles */
-.ytree-lines .ytree-elbow{
-	background:transparent url(../images/default/tree/elbow.gif);
-}
-.ytree-lines .ytree-elbow-plus{
-	background:transparent url(../images/default/tree/elbow-plus.gif);
-}
-.ytree-lines .ytree-elbow-minus{
-	background:transparent url(../images/default/tree/elbow-minus.gif);
-}
-.ytree-lines .ytree-elbow-end{
-	background:transparent url(../images/default/tree/elbow-end.gif);
-}
-.ytree-lines .ytree-elbow-end-plus{
-	background:transparent url(../images/default/tree/elbow-end-plus.gif);
-}
-.ytree-lines .ytree-elbow-end-minus{
-	background:transparent url(../images/default/tree/elbow-end-minus.gif);
-}
-.ytree-lines .ytree-elbow-line{
-	background:transparent url(../images/default/tree/elbow-line.gif);
+/* first or middle sibling, expandable */
+.ygtvtp {
+	width:16px; height:22px; 
+	cursor:pointer ;
+	background: url(../../images/yui/treeview/tp.gif) 0 0 no-repeat; 
 }
 
-/* No line styles */
-.ytree-no-lines .ytree-elbow{
-	background:transparent;
-}
-.ytree-no-lines .ytree-elbow-plus{
-	background:transparent url(../images/default/tree/elbow-plus-nl.gif);
-}
-.ytree-no-lines .ytree-elbow-minus{
-	background:transparent url(../images/default/tree/elbow-minus-nl.gif);
-}
-.ytree-no-lines .ytree-elbow-end{
-	background:transparent;
-}
-.ytree-no-lines .ytree-elbow-end-plus{
-	background:transparent url(../images/default/tree/elbow-end-plus-nl.gif);
-}
-.ytree-no-lines .ytree-elbow-end-minus{
-	background:transparent url(../images/default/tree/elbow-end-minus-nl.gif);
-}
-.ytree-no-lines .ytree-elbow-line{
-	background:transparent;
+/* first or middle sibling, expandable, hover */
+.ygtvtph {
+	width:16px; height:22px; 
+	cursor:pointer ;
+	background: url(../../images/yui/treeview/tph.gif) 0 0 no-repeat; 
 }
 
-.ytree-elbow-plus, .ytree-elbow-minus, .ytree-elbow-end-plus, .ytree-elbow-end-minus{
-	cursor:pointer;
+/* last sibling, no children */
+.ygtvln {
+	width:16px; height:22px; 
+	background: url(../../images/yui/treeview/ln.gif) 0 0 no-repeat; 
 }
 
-.ytree-node{
-	color: black;
-	font: normal 11px arial, helvetica, sans-serif;
-	white-space: nowrap;
+/* Last sibling, collapsable */
+.ygtvlm {
+	width:16px; height:22px; 
+	cursor:pointer ;
+	background: url(../../images/yui/treeview/lm.gif) 0 0 no-repeat; 
 }
-.ytree-node a, .ydd-drag-ghost a{
-	text-decoration:none;
-	color:black;
-	-khtml-user-select:normal;
-	-moz-user-select:normal;
+
+/* Last sibling, collapsable, hover */
+.ygtvlmh {
+	width:16px; height:22px; 
+	cursor:pointer ;
+	background: url(../../images/yui/treeview/lmh.gif) 0 0 no-repeat; 
 }
-.ytree-node a span, .ydd-drag-ghost a span{
-	text-decoration:none;
-	color:black;
-	padding:1px 3px 1px 2px;
+
+/* Last sibling, expandable */
+.ygtvlp { 
+	width:16px; height:22px; 
+	cursor:pointer ;
+	background: url(../../images/yui/treeview/lp.gif) 0 0 no-repeat; 
 }
-.ytree-node .ytree-node-disabled a span{
-	color:gray !important;
+
+/* Last sibling, expandable, hover */
+.ygtvlph { 
+	width:16px; height:22px; cursor:pointer ;
+	background: url(../../images/yui/treeview/lph.gif) 0 0 no-repeat; 
 }
-.ytree-node .ytree-node-disabled .ytree-node-icon{
-	-moz-opacity: 0.5;
-   opacity:.5;
-   filter: alpha(opacity=50);
+
+/* Loading icon */
+.ygtvloading { 
+	width:16px; height:22px; 
+	background: url(../../images/yui/treeview/loading.gif) 0 0 no-repeat; 
 }
-.ytree-node .ytree-node-inline-icon{
-	background:transparent;
+
+/* the style for the empty cells that are used for rendering the depth 
+ * of the node */
+.ygtvdepthcell { 
+	width:16px; height:22px; 
+	background: url(../../images/yui/treeview/vline.gif) 0 0 no-repeat; 
 }
-.ytree-node a:hover, .ydd-drag-ghost a:hover{
-	text-decoration:none;
+
+.ygtvblankdepthcell { width:16px; height:22px; }
+
+/* the style of the div around each node */
+.ygtvitem { }  
+
+/* the style of the div around each node's collection of children */
+.ygtvchildren { }  
+* html .ygtvchildren { height:2%; }  
+
+/* the style of the text label in ygTextNode */
+.ygtvlabel, .ygtvlabel:link, .ygtvlabel:visited, .ygtvlabel:hover { 
+	margin-left:2px;
+	text-decoration: none;
 }
-.ytree-node div.ytree-drag-insert-below{
- 	 border-bottom:1px dotted #3366cc;
-}
-.ytree-node div.ytree-drag-insert-above{
-	 border-top:1px dotted #3366cc;
-}
-.ytree-dd-underline .ytree-node div.ytree-drag-insert-below{
- 	 border-bottom:0px none;
-}
-.ytree-dd-underline .ytree-node div.ytree-drag-insert-above{
-	 border-top:0px none;
-}
-.ytree-dd-underline .ytree-node div.ytree-drag-insert-below a{
- 	 border-bottom:2px solid #3366cc;
-}
-.ytree-dd-underline .ytree-node div.ytree-drag-insert-above a{
-	 border-top:2px solid #3366cc;
-}
-.ytree-node .ytree-drag-append a span{
-	 background:#dddddd;
-	 border:1px dotted gray;
-}
-.ytree-node .ytree-selected a span{
-	background:#3366cc;
-	color:white;
-}
-.ydd-drag-ghost .ytree-node-indent, .ydd-drag-ghost .ytree-ec-icon{
-	display:none !important;
-}
-.ytree-drop-ok-append .ydd-drop-icon{
-  background-image: url(../images/default/tree/drop-add.gif);
-}
-.ytree-drop-ok-above .ydd-drop-icon{
-  background-image: url(../images/default/tree/drop-over.gif);
-}
-.ytree-drop-ok-below .ydd-drop-icon{
-  background-image: url(../images/default/tree/drop-under.gif);
-}
-.ytree-drop-ok-between .ydd-drop-icon{
-  background-image: url(../images/default/tree/drop-between.gif);
-}
-.ylayer-shadow{
-	background:#cccccc;
-   opacity:.3;
-   -moz-opacity:.3;
-   filter: alpha(opacity=30);
-}
+
+.ygtvspacer { height: 10px; width: 10px; margin: 2px; }
+

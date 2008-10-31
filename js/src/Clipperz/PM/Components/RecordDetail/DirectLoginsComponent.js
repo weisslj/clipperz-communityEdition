@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -76,16 +47,16 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginsComponent, Clipper
 	'render': function() {
 		this.element().update("");
 
-		YAHOO.ext.DomHelper.append(this.element().dom,
+		Clipperz.YUI.DomHelper.append(this.element().dom,
 			{tag:'div', cls:'directLoginsRecordBox', children:[
-				{tag:'h3', html:Clipperz.PM.Strings['recordDetailDirectLoginBlockTitle']},
+				{tag:'h3', htmlString:Clipperz.PM.Strings['recordDetailDirectLoginBlockTitle']},
 				{tag:'ul', id:this.getId('directLogins')},
 
 				{tag:'div', cls:'addDirectLoginBox', id:this.getId('addDirectLogin'), children:[
 					{tag:'div', cls:'addDirectLoginBoxContent', children:[
 						{tag:'div', cls:'bookmarkletConfiguration', children:[
-//							{tag:'span', html:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationLabel']},
-							{tag:'div', html:Clipperz.PM.Strings['recordDetailNewDirectLoginDescription']},
+//							{tag:'span', htmlString:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationLabel']},
+							{tag:'div', htmlString:Clipperz.PM.Strings['recordDetailNewDirectLoginDescription']},
 							{tag:'textarea', id:this.getId('addDirectLoginTextarea')}
 						]},
 						{tag:'div', id:this.getId('addDirectLoginButton')}
@@ -96,10 +67,10 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginsComponent, Clipper
 
 		if (MochiKit.Base.keys(this.record().directLogins()).length == 0) {
 //MochiKit.Logging.logDebug("--- DirectLoginsComponent.render - 3");
-			YAHOO.ext.DomHelper.append(this.getElement('directLogins'),
+			Clipperz.YUI.DomHelper.append(this.getElement('directLogins'),
 				{tag:'li', children:[
-//					{tag:'span', html:Clipperz.PM.Strings['recordDetailDirectLoginBlockNoDirectLoginConfiguredLabel']}
-					{tag:'div', cls:'recordDetailNoDirectLoginDescriptionBox', html:Clipperz.PM.Strings['recordDetailDirectLoginBlockNoDirectLoginConfiguredDescription']}
+//					{tag:'span', htmlString:Clipperz.PM.Strings['recordDetailDirectLoginBlockNoDirectLoginConfiguredLabel']}
+					{tag:'div', cls:'recordDetailNoDirectLoginDescriptionBox', htmlString:Clipperz.PM.Strings['recordDetailDirectLoginBlockNoDirectLoginConfiguredDescription']}
 				]}
 			);
 //MochiKit.Logging.logDebug("--- DirectLoginsComponent.render - 4");
@@ -131,7 +102,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginsComponent, Clipper
 	'addDirectLogin': function(aDirectLogin) {
 //MochiKit.Logging.logDebug(">>> DirectLoginsComponent.addDirectLogin");
 		new Clipperz.PM.Components.RecordDetail.DirectLoginComponent(
-				YAHOO.ext.DomHelper.append(this.getDom('directLogins'), {tag:'div'}, true),
+				Clipperz.YUI.DomHelper.append(this.getDom('directLogins'), {tag:'div'}, true),
 				{
 					mainComponent:this.mainComponent(),
 					directLogin:aDirectLogin

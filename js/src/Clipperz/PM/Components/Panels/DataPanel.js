@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -62,35 +33,35 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.DataPanel, Clipperz.PM.Components.Pa
 		Clipperz.NotificationCenter.unregister(this);
 		this.element().update("");
 
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'table', border:'0', cellspacing:'0', cellpadding:'0', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'table', border:'0', cellspacing:'0', cellpadding:'0', children:[
 			{tag:'tbody', children:[
 				{tag:'tr', children:[
 					{tag:'td', valign:'top', width:'200', children:[
 						{tag:'ul', id:"dataSubMenu", cls:'subMenu', children:[
-							{tag:'li', id:'offlineCopyTab', html:Clipperz.PM.Strings['offlineCopyTabLabel']},
-							{tag:'li', id:'sharingTab', html:Clipperz.PM.Strings['sharingTabLabel']},
-							{tag:'li', id:'importTab', html:Clipperz.PM.Strings['importTabLabel']},
-							{tag:'li', id:'printingTab', html:Clipperz.PM.Strings['printingTabLabel']}
+							{tag:'li', id:'offlineCopyTab', htmlString:Clipperz.PM.Strings['offlineCopyTabLabel']},
+							{tag:'li', id:'sharingTab', htmlString:Clipperz.PM.Strings['sharingTabLabel']},
+							{tag:'li', id:'importTab', htmlString:Clipperz.PM.Strings['importTabLabel']},
+							{tag:'li', id:'printingTab', htmlString:Clipperz.PM.Strings['printingTabLabel']}
 						]}
 					]},
 					{tag:'td', valign:'top', children:[
 						{tag:'ul', cls:'clipperzTabPanels', children:[
 							{tag:'li', id:this.getId('offlineCopyPanel'), children:[
 								{tag:'div', cls:'clipperzSubPanel', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['offlineCopyTabTitle']},
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['offlineCopyTabDescription']},
+									{tag:'h5', htmlString:Clipperz.PM.Strings['offlineCopyTabTitle']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['offlineCopyTabDescription']},
 									{tag:'div', id:this.getId('offlineCopyLinkBox'), children:[
-										{tag:'a', id:'offlineCopyLink', href:'#', html:Clipperz.PM.Strings['offlineCopyDownloadLinkLabel']}
+										{tag:'a', id:'offlineCopyLink', href:'#', htmlString:Clipperz.PM.Strings['offlineCopyDownloadLinkLabel']}
 									]},
 									{tag:'div', id:this.getId('offlineCopyLinkBox_read-only'), children:[
-										{tag:'span', cls:'read-only', html:Clipperz.PM.Strings['offlineCopyDownloadLinkLabel']}
+										{tag:'span', cls:'read-only', htmlString:Clipperz.PM.Strings['offlineCopyDownloadLinkLabel']}
 									]}
 								]}
 							]},
 							{tag:'li', id:this.getId('sharingPanel'), children:[
 								{tag:'div', cls:'clipperzSubPanel', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['sharingTabTitle']},
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['sharingTabDescription']}
+									{tag:'h5', htmlString:Clipperz.PM.Strings['sharingTabTitle']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['sharingTabDescription']}
 								]}
 							]},
 							{tag:'li', id:this.getId('importPanel'), children:[
@@ -100,18 +71,18 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.DataPanel, Clipperz.PM.Components.Pa
 							]},
 							{tag:'li', id:this.getId('printingPanel'), children:[
 								{tag:'div', cls:'clipperzSubPanel', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['printingTabTitle']},
+									{tag:'h5', htmlString:Clipperz.PM.Strings['printingTabTitle']},
 
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['printingTabDescription']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['printingTabDescription']},
 									{tag:'div', id:this.getId('printingLinkBox'), children:[
-										{tag:'a', id:'printingLink', href:'#', html:Clipperz.PM.Strings['printingLinkLabel']}
+										{tag:'a', id:'printingLink', href:'#', htmlString:Clipperz.PM.Strings['printingLinkLabel']}
 									]},
 
 									{tag:'hr'},
 
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['exportTabDescription']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['exportTabDescription']},
 									{tag:'div', id:this.getId('exportLinkBox'), children:[
-										{tag:'a', id:'exportLink', href:'#', html:Clipperz.PM.Strings['exportLinkLabel']}
+										{tag:'a', id:'exportLink', href:'#', htmlString:Clipperz.PM.Strings['exportLinkLabel']}
 									]}
 								]}
 							]}

@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -122,8 +93,8 @@ YAHOO.extendX(Clipperz.PM.Components.Import.MainComponent, Clipperz.PM.Component
 		this.element().update("");
 		this.domHelper().append(this.element(), {tag:'div', id:this.getId('mainDiv'), children:[
 			{tag:'div', id:this.getId('importCover'), children:[
-				{tag:'h5', html:Clipperz.PM.Strings['importTabTitle']},
-				{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['importTabDescription']},
+				{tag:'h5', htmlString:Clipperz.PM.Strings['importTabTitle']},
+				{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['importTabDescription']},
 				{tag:'div', cls:'importFormats', children:[
 					{tag:'ul', cls:'radioList', children:[
 						{tag:'li', children:[
@@ -132,8 +103,8 @@ YAHOO.extendX(Clipperz.PM.Components.Import.MainComponent, Clipperz.PM.Component
 									{tag:'input', id:this.getId('CSV_radio'), type:'radio', name:'importFormat', value:'CSV'}
 								]},
 								{tag:'td', valign:'top', children:[
-									{tag:'h4', id:this.getId('CSV_title'), html:Clipperz.PM.Strings['importFormats']['CSV']['label']},
-									{tag:'div', cls:'templateDescription', html:Clipperz.PM.Strings['importFormats']['CSV']['description']}
+									{tag:'h4', id:this.getId('CSV_title'), htmlString:Clipperz.PM.Strings['importFormats']['CSV']['label']},
+									{tag:'div', cls:'templateDescription', htmlString:Clipperz.PM.Strings['importFormats']['CSV']['description']}
 								]}
 							]}]}]}
 						]},
@@ -143,8 +114,8 @@ YAHOO.extendX(Clipperz.PM.Components.Import.MainComponent, Clipperz.PM.Component
 									{tag:'input', id:this.getId('Excel_radio'), type:'radio', name:'importFormat', value:'EXCEL'}
 								]},
 								{tag:'td', valign:'top', children:[
-									{tag:'h4', id:this.getId('Excel_title'), html:Clipperz.PM.Strings['importFormats']['Excel']['label']},
-									{tag:'div', cls:'templateDescription', html:Clipperz.PM.Strings['importFormats']['Excel']['description']}
+									{tag:'h4', id:this.getId('Excel_title'), htmlString:Clipperz.PM.Strings['importFormats']['Excel']['label']},
+									{tag:'div', cls:'templateDescription', htmlString:Clipperz.PM.Strings['importFormats']['Excel']['description']}
 								]}
 							]}]}]}
 						]},
@@ -154,8 +125,8 @@ YAHOO.extendX(Clipperz.PM.Components.Import.MainComponent, Clipperz.PM.Component
 									{tag:'input', id:this.getId('KeePass_radio'), type:'radio', name:'importFormat', value:'KEEPASS'}
 								]},
 								{tag:'td', valign:'top', children:[
-									{tag:'h4', id:this.getId('KeePass_title'), html:Clipperz.PM.Strings['importFormats']['KeePass']['label']},
-									{tag:'div', cls:'templateDescription', html:Clipperz.PM.Strings['importFormats']['KeePass']['description']}
+									{tag:'h4', id:this.getId('KeePass_title'), htmlString:Clipperz.PM.Strings['importFormats']['KeePass']['label']},
+									{tag:'div', cls:'templateDescription', htmlString:Clipperz.PM.Strings['importFormats']['KeePass']['description']}
 								]}
 							]}]}]}
 						]},
@@ -165,8 +136,8 @@ YAHOO.extendX(Clipperz.PM.Components.Import.MainComponent, Clipperz.PM.Component
 									{tag:'input', id:this.getId('Roboform_radio'), type:'radio', name:'importFormat', value:'ROBOFORM'}
 								]},
 								{tag:'td', valign:'top', children:[
-									{tag:'h4', id:this.getId('Roboform_title'), html:Clipperz.PM.Strings['importFormats']['Roboform']['label']},
-									{tag:'div', cls:'templateDescription', html:Clipperz.PM.Strings['importFormats']['Roboform']['description']}
+									{tag:'h4', id:this.getId('Roboform_title'), htmlString:Clipperz.PM.Strings['importFormats']['Roboform']['label']},
+									{tag:'div', cls:'templateDescription', htmlString:Clipperz.PM.Strings['importFormats']['Roboform']['description']}
 								]}
 							]}]}]}
 						]},
@@ -176,8 +147,8 @@ YAHOO.extendX(Clipperz.PM.Components.Import.MainComponent, Clipperz.PM.Component
 									{tag:'input', id:this.getId('PasswordPlus_radio'), type:'radio', name:'importFormat', value:'PASSWORD_PLUS'}
 								]},
 								{tag:'td', valign:'top', children:[
-									{tag:'h4', id:this.getId('PasswordPlus_title'), html:Clipperz.PM.Strings['importFormats']['PasswordPlus']['label']},
-									{tag:'div', cls:'templateDescription', html:Clipperz.PM.Strings['importFormats']['PasswordPlus']['description']}
+									{tag:'h4', id:this.getId('PasswordPlus_title'), htmlString:Clipperz.PM.Strings['importFormats']['PasswordPlus']['label']},
+									{tag:'div', cls:'templateDescription', htmlString:Clipperz.PM.Strings['importFormats']['PasswordPlus']['description']}
 								]}
 							]}]}]}
 						]},
@@ -187,8 +158,8 @@ YAHOO.extendX(Clipperz.PM.Components.Import.MainComponent, Clipperz.PM.Component
 									{tag:'input', id:this.getId('ClipperzExport_radio'), type:'radio', name:'importFormat', value:'CLIPPERZ_EXPORT'}
 								]},
 								{tag:'td', valign:'top', children:[
-									{tag:'h4', id:this.getId('ClipperzExport_title'), html:Clipperz.PM.Strings['importFormats']['ClipperzExport']['label']},
-									{tag:'div', cls:'templateDescription', html:Clipperz.PM.Strings['importFormats']['ClipperzExport']['description']}
+									{tag:'h4', id:this.getId('ClipperzExport_title'), htmlString:Clipperz.PM.Strings['importFormats']['ClipperzExport']['label']},
+									{tag:'div', cls:'templateDescription', htmlString:Clipperz.PM.Strings['importFormats']['ClipperzExport']['description']}
 								]}
 							]}]}]}
 						]}

@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 Clipperz.PM.Strings.Languages['it-IT'.toLowerCase()] = MochiKit.Base.merge(Clipperz.PM.Strings.Languages['en-us'], {
 'clipperzServiceDescription':	"<h2>Tienilo per te!</h2> <ul> <li> <h3>Clipperz è:</h3> <ul> <li> <p>un archivio semplice e sicuro per le tue password</p> </li> <li> <p>un canale di accesso unificato a tutti i tuoi servizi online</p> </li> <li> <p>una cassaforte digitale per tutti i tuoi dati riservati</p> </li> </ul> </li> <li> <h3>Con Clipperz puoi:</h3> <ul> <li> <p>memorizzare e gestire le password e le credenziali di accesso dei tuoi servizi online</p> </li> <li> <p>accedere ai tuoi servizi online con un solo click senza bisogno di inserire username o password</p> </li> <li> <p>proteggere tutte le tue informazioni confidenziali: codice dell&#x27;allarme di casa, dati delle carte di credito, …</p> </li> <li> <p>condividere dati riservati con i tuoi familiari o colleghi (disponibile a breve)</p> </li> </ul> </li> <li> <h3>I vantaggi di Clipperz:</h3> <ul> <li> <p>gratuito e completamente anonimo</p> </li> <li> <p>accessibile da qualsiasi computer</p> </li> <li> <p>nessun software da scaricare e niente da installare</p> </li> <li> <p>mai più informazioni riservate sul tuo PC o sulla carta!</p> </li> </ul> </li> <li> <h3>La sicurezza di Clipperz:</h3> <ul> <li> <p>i dati sono criptati dal tuo browser prima di essere inviati a Clipperz</p> </li> <li> <p>la chiave per decriptare i dati è conosciuta soltanto da te</p> </li> <li> <p>Clipperz riceve e memorizza solo i tuoi dati criptati e non ha nessuna possibilità di accedere alla versione in chiaro</p> </li> <li> <p>Clipperz utilizza solo sistemi crittografici standard, senza nessuna velleità di inventare e proporre nuovi algoritmi non validati dalla comunità scientifica</p> </li> <li> <p>tutto il codice di Clipperz è disponibile e può essere analizzato in qualsiasi momento, ma non serve essere un esperto di crittografia per apprezzare la sicurezza e la comodità di Clipperz!</p> </li> </ul> </li> <li><a href=\"http://www.clipperz.com\" target=\"_blank\">Maggiori informazioni su Clipperz (in inglese)</a> </li> </ul> ",
 'loginFormTitle':	"accedi a Clipperz",

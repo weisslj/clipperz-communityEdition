@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 
@@ -210,7 +181,7 @@ Clipperz.PM.Connection.SRP['1.0'].prototype = MochiKit.Base.update(new Clipperz.
 		}, parameters, this.user());
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.register - 6: " + res); return res;});
 		deferredResult.addCallback(MochiKit.Base.method(Clipperz.PM.Proxy.defaultProxy, 'registration'));
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.register - 7: " + MochiKit.Base.serializeJSON(res)); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.register - 7: " + Clipperz.Base.serializeJSON(res)); return res;});
 		deferredResult.addCallback(MochiKit.Base.bind(function(res) {
 			this.user().setLock(res['lock']);
 
@@ -251,7 +222,7 @@ Clipperz.PM.Connection.SRP['1.0'].prototype = MochiKit.Base.update(new Clipperz.
 //#				args.parameters['reconnecting'] = "yes";
 				args.parameters['reconnecting'] = aConnection.connectionId();
 			}
-//MochiKit.Logging.logDebug("--- Connection.login - args: " + MochiKit.Base.serializeJSON(args));
+//MochiKit.Logging.logDebug("--- Connection.login - args: " + Clipperz.Base.serializeJSON(args));
 //MochiKit.Logging.logDebug("--- Connection.login - srp.a: " + aConnection.srpConnection().a().asString(16));
 
 			return args;
@@ -296,7 +267,7 @@ deferredResult.addErrback(MochiKit.Base.bind(function(res) {MochiKit.Logging.log
 			if (someParameters['M2'] == this.srpConnection().M2()) {
 				result = new MochiKit.Async.Deferred();
 				
-//MochiKit.Logging.logDebug("--- Connection.loginDone - someParameters: " + MochiKit.Base.serializeJSON(someParameters));
+//MochiKit.Logging.logDebug("--- Connection.loginDone - someParameters: " + Clipperz.Base.serializeJSON(someParameters));
 				this.setConnectionId(someParameters['connectionId']);
 				this.user().setLoginInfo(someParameters['loginInfo']);
 				this.user().setShouldDownloadOfflineCopy(someParameters['offlineCopyNeeded']);
@@ -309,13 +280,13 @@ deferredResult.addErrback(MochiKit.Base.bind(function(res) {MochiKit.Logging.log
 				result.addCallback(MochiKit.Async.succeed, someParameters);
 				
 				result.callback();
-//MochiKit.Logging.logDebug("--- Connection.loginDone - 1 - result: "/* + MochiKit.Base.serializeJSON(result)*/);
+//MochiKit.Logging.logDebug("--- Connection.loginDone - 1 - result: "/* + Clipperz.Base.serializeJSON(result)*/);
 			} else {
 //MochiKit.Logging.logDebug("--- Connection.loginDone - 2 - ERROR");
 //deferredResult.addErrback(function(res) {MochiKit.Logging.logDebug("ERROR: " + res); return res;});
 				result = MochiKit.Async.fail(Clipperz.PM.Connection.exception.WrongChecksum);
 			}
-//MochiKit.Logging.logDebug("<<< Connection.loginDone - result: " + MochiKit.Base.serializeJSON(result));
+//MochiKit.Logging.logDebug("<<< Connection.loginDone - result: " + Clipperz.Base.serializeJSON(result));
 
 			return result;
 		}, this));
@@ -363,7 +334,7 @@ deferredResult.addErrback(MochiKit.Base.bind(function(res) {MochiKit.Logging.log
 		} else {
 			args['parameters'] = {};
 		} 
-//MochiKit.Logging.logDebug("--- Connection.message - args: " + MochiKit.Base.serializeJSON(args));
+//MochiKit.Logging.logDebug("--- Connection.message - args: " + Clipperz.Base.serializeJSON(args));
 
 //		deferredResult = new MochiKit.Async.Deferred();		//	### ?????????????
 		
@@ -390,7 +361,7 @@ deferredResult.addErrback(MochiKit.Base.bind(function(res) {MochiKit.Logging.log
 
 		deferredResult.addErrback(MochiKit.Base.method(this, 'messageExceptionHandler'), someArguments);
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.sendMessage - 3: " + res); return res;});
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.sendMessage - 3: " + MochiKit.Base.serializeJSON(res)); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.sendMessage - 3: " + Clipperz.Base.serializeJSON(res)); return res;});
 		deferredResult.callback();
 //MochiKit.Logging.logDebug("<<< Connection.sendMessage");
 		
@@ -436,7 +407,7 @@ deferredResult.addErrback(MochiKit.Base.bind(function(res) {MochiKit.Logging.log
 	'reestablishConnection': function(anOriginalMessageArguments) {
 		var deferredResult;
 
-//MochiKit.Logging.logDebug("+++ Connection.reestablishConnection: " + MochiKit.Base.serializeJSON(anOriginalMessageArguments));
+//MochiKit.Logging.logDebug("+++ Connection.reestablishConnection: " + Clipperz.Base.serializeJSON(anOriginalMessageArguments));
 
 //MochiKit.Logging.logDebug(">>> Connection.reestablishConnection: " + this);
 		deferredResult = new MochiKit.Async.Deferred();
@@ -449,7 +420,7 @@ deferredResult.addErrback(MochiKit.Base.bind(function(res) {MochiKit.Logging.log
 			aMessage['srpSharedSecret'] = this.srpConnection().K();
 			return aMessage;
 		}, this), anOriginalMessageArguments);
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.reestablishConnection 4: " + MochiKit.Base.serializeJSON(res)); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.reestablishConnection 4: " + Clipperz.Base.serializeJSON(res)); return res;});
 		deferredResult.addCallback(MochiKit.Base.method(this, 'sendMessage'));
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Connection.reestablishConnection 5: " + res); return res;});
 		deferredResult.addErrback(Clipperz.NotificationCenter.deferredNotification, this, 'EXCEPTION', null);
@@ -477,7 +448,7 @@ deferredResult.addErrback(MochiKit.Base.bind(function(res) {MochiKit.Logging.log
 		result = newSrpConnection.serverSideCredentials();
 		result['version'] = this.clipperz_pm_crypto_version();
 
-//MochiKit.Logging.logDebug("<<< Connection.serverSideUserCredentials - result: " + MochiKit.Base.serializeJSON(result));
+//MochiKit.Logging.logDebug("<<< Connection.serverSideUserCredentials - result: " + Clipperz.Base.serializeJSON(result));
 		return result;
 	},
 

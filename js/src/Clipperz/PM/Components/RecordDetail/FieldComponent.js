@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -124,10 +95,10 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldComponent, Clipperz.PM.Co
 
 	'render': function() {
 //MochiKit.Logging.logDebug(">>> RecordDetail.FieldComponent.render");
- 		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td',/* width:'32',*/ height:'24', cls:'removeFieldButton', align:'left', valign:'top', id:this.getId('button')});
- 		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td',/* width:'25%',*/ valign:'top', id:this.getId('label')});
- 		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td',/* width:'3',*/ valign:'top', id:this.getId('dragHandler')});
- 		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td',/* width:'50%',*/ valign:'top', children:[
+ 		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td',/* width:'32',*/ height:'24', cls:'removeFieldButton', align:'left', valign:'top', id:this.getId('button')});
+ 		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td',/* width:'25%',*/ valign:'top', id:this.getId('label')});
+ 		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td',/* width:'3',*/ valign:'top', id:this.getId('dragHandler')});
+ 		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td',/* width:'50%',*/ valign:'top', children:[
 			{tag:'div', cls:'Clipperz_recordFieldData', id:this.getId('value')}
 		]});
 		
@@ -138,7 +109,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldComponent, Clipperz.PM.Co
 		this.setValueComponent(new Clipperz.PM.Components.RecordDetail.FieldValueComponent(this.getElement('value'), {fieldComponent:this}));
 
 		if (this.editMode() == 'EDIT') {
- 			YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td',/* width:'60',*/ align:'left', cls:'fieldTypeTD', valign:'top', id:this.getId('type')});
+ 			Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td',/* width:'60',*/ align:'left', cls:'fieldTypeTD', valign:'top', id:this.getId('type')});
 			this.setTypeComponent(new Clipperz.PM.Components.RecordDetail.FieldTypeComponent(this.getElement('type'), {fieldComponent:this}));
 		}
 		

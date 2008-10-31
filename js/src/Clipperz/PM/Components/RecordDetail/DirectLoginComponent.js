@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -84,7 +55,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginComponent, Clipperz
 	//-------------------------------------------------------------------------
 /*
 	'formDataValue': function() {
-		return MochiKit.Base.serializeJSON(this.directLogin().formData());
+		return Clipperz.Base.serializeJSON(this.directLogin().formData());
 	},
 	
 	'setFormDataValue': function(aValue) {
@@ -127,7 +98,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginComponent, Clipperz
 //MochiKit.Logging.logDebug(">>> DirectLoginComponent.render");
 		try {
 			this.element().update("");
-			YAHOO.ext.DomHelper.append(this.element().dom,
+			Clipperz.YUI.DomHelper.append(this.element().dom,
 				{tag:'li', children:[
 					{tag:'table', width:'100%', border:'0', cellpadding:'0', cellspacing:'0', children:[
 						{tag:'tbody', children:[
@@ -221,7 +192,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginComponent, Clipperz
 						var directLoginBindingComponent;
 				
 //MochiKit.Logging.logDebug("--- DirectLoginComponent.render - 9");
-						directLoginBindingElement = YAHOO.ext.DomHelper.append(bindingsElement.dom, {tag:'tr'}, true);
+						directLoginBindingElement = Clipperz.YUI.DomHelper.append(bindingsElement.dom, {tag:'tr'}, true);
 //MochiKit.Logging.logDebug("--- DirectLoginComponent.render - 10");
 						directLoginBindingComponent =	new Clipperz.PM.Components.RecordDetail.DirectLoginBindingComponent(directLoginBindingElement, {
 																mainComponent:this,
@@ -239,7 +210,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginComponent, Clipperz
 				inputsRequiringAdditionalValues = this.directLogin().inputsRequiringAdditionalValues();
 //MochiKit.Logging.logDebug("--- DirectLoginComponent.render - 13.1");
 				for (valueName in inputsRequiringAdditionalValues) {
-//-					YAHOO.ext.DomHelper.append(bindingsElement.dom, {tag:'tr', children:[
+//-					Clipperz.YUI.DomHelper.append(bindingsElement.dom, {tag:'tr', children:[
 //-						{tag:'td', html:valueName},
 //-						{tag:'td', children:inputsRequiringAdditionalValues[valueName].inputElementConfiguration()}
 //-					]}, true)
@@ -247,7 +218,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginComponent, Clipperz
 					var directLoginValueComponent;
 				
 //MochiKit.Logging.logDebug("--- DirectLoginComponent.render - 13.2");
-					directLoginValueElement = YAHOO.ext.DomHelper.append(bindingsElement.dom, {tag:'tr'}, true);
+					directLoginValueElement = Clipperz.YUI.DomHelper.append(bindingsElement.dom, {tag:'tr'}, true);
 //MochiKit.Logging.logDebug("--- DirectLoginComponent.render - 13.3");
 					directLoginValueComponent =	new Clipperz.PM.Components.RecordDetail.DirectLoginValueComponent(directLoginValueElement, {
 															mainComponent:this,
@@ -302,10 +273,10 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginComponent, Clipperz
 
 	'updateEditMode': function() {
 //		this.element().update("");
-//		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', style:'border:4px solid red; padding:10px;', children:[
+//		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', style:'border:4px solid red; padding:10px;', children:[
 //			{tag:'div', style:'font-weight:bold;', html:this.directLogin().label()},
-//			{tag:'div', style:'border:1px solid #aaaaaa;', html:MochiKit.Base.serializeJSON(this.directLogin().formData())},
-//			{tag:'div', style:'border:1px solid #aaaaaa;', html:MochiKit.Base.serializeJSON(this.directLogin().bindings())}
+//			{tag:'div', style:'border:1px solid #aaaaaa;', html:Clipperz.Base.serializeJSON(this.directLogin().formData())},
+//			{tag:'div', style:'border:1px solid #aaaaaa;', html:Clipperz.Base.serializeJSON(this.directLogin().bindings())}
 //		]});
 		
 		this.getElement('titleEditBox').show();

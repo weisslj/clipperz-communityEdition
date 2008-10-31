@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -71,23 +42,23 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.ToolsPanel, Clipperz.PM.Components.P
 		}
 		
 		this.element().update("");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'table', border:'0', cellspacing:'0', cellpadding:'0', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'table', border:'0', cellspacing:'0', cellpadding:'0', children:[
 			{tag:'tbody', children:[
 				{tag:'tr', children:[
 					{tag:'td', valign:'top', width:'200', children:[
 						{tag:'ul', id:"dataSubMenu", cls:'subMenu', children:[
-							{tag:'li', id:this.getId('passwordGenerator'), html:Clipperz.PM.Strings['passwordGeneratorTabLabel']},
-							{tag:'li', id:this.getId('bookmarklet'), html:Clipperz.PM.Strings['bookmarkletTabLabel']},
-							{tag:'li', id:this.getId('compact'), html:Clipperz.PM.Strings['compactTabLabel']},
-							{tag:'li', id:this.getId('httpAuth'), html:Clipperz.PM.Strings['httpAuthTabLabel']}
+							{tag:'li', id:this.getId('passwordGenerator'), htmlString:Clipperz.PM.Strings['passwordGeneratorTabLabel']},
+							{tag:'li', id:this.getId('bookmarklet'), htmlString:Clipperz.PM.Strings['bookmarkletTabLabel']},
+							{tag:'li', id:this.getId('compact'), htmlString:Clipperz.PM.Strings['compactTabLabel']},
+							{tag:'li', id:this.getId('httpAuth'), htmlString:Clipperz.PM.Strings['httpAuthTabLabel']}
 						]}
 					]},
 					{tag:'td', valign:'top', children:[
 						{tag:'ul', cls:'clipperzTabPanels', children:[
 							{tag:'li', id:this.getId('passwordGeneratorPanel'), children:[
 								{tag:'div', cls:'clipperzSubPanel', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['passwordGeneratorTabTitle']},
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['paswordGeneratorTabDescription']},
+									{tag:'h5', htmlString:Clipperz.PM.Strings['passwordGeneratorTabTitle']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['paswordGeneratorTabDescription']},
 									
 									//---------------------------------------------------
 									{tag:'div', children:[
@@ -98,23 +69,23 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.ToolsPanel, Clipperz.PM.Components.P
 													{tag:'tr', children:[
 														{tag:'td', width:'20%', children:[
 															{tag:'input', type:'checkbox', name:'lowercase', id:this.getId('lowercase'), checked:true},
-															{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorLowercaseLabel']}
+															{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorLowercaseLabel']}
 														]},
 														{tag:'td', width:'20%', children:[
 															{tag:'input', type:'checkbox', name:'uppercase', id:this.getId('uppercase'), checked:true},
-															{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorUppercaseLabel']}
+															{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorUppercaseLabel']}
 														]},
 														{tag:'td', width:'20%', children:[
 															{tag:'input', type:'checkbox', name:'numbers', id:this.getId('numbers'), checked:true},
-															{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorNumberLabel']}
+															{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorNumberLabel']}
 														]},
 														{tag:'td', width:'20%', children:[
 															{tag:'input', type:'checkbox', name:'symbols', id:this.getId('symbols'), checked:true},
-															{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorSymbolLabel']}
+															{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorSymbolLabel']}
 														]},
 														{tag:'td', width:'20%', children:[
 															{tag:'span', cls:'passwordGeneratorLength', children:[
-																{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorLengthLabel']},
+																{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorLengthLabel']},
 																{tag:'span', id:this.getId('passwordLength'), cls:'passwordGeneratorLengthValue', html:'0'}
 															]}
 														]}
@@ -130,22 +101,22 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.ToolsPanel, Clipperz.PM.Components.P
 							]},
 							{tag:'li', id:this.getId('bookmarkletPanel'), children:[
 								{tag:'div', cls:'clipperzSubPanel', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['bookmarkletTabTitle']},
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['bookmarkletTabDescription']},
-									{tag:'a', href:bookmarkletUrl, cls:'bookmarkletLink', html:Clipperz.PM.Strings['bookmarkletTabBookmarkletTitle']},
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['bookmarkletTabInstructions']}
+									{tag:'h5', htmlString:Clipperz.PM.Strings['bookmarkletTabTitle']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['bookmarkletTabDescription']},
+									{tag:'a', href:bookmarkletUrl, cls:'bookmarkletLink', htmlString:Clipperz.PM.Strings['bookmarkletTabBookmarkletTitle']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['bookmarkletTabInstructions']}
 								]}
 							]},
 							{tag:'li', id:this.getId('compactPanel'), children:[
 								{tag:'div', cls:'clipperzSubPanel', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['compactTabTitle']},
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['compactTabDescription']}
+									{tag:'h5', htmlString:Clipperz.PM.Strings['compactTabTitle']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['compactTabDescription']}
 								]}
 							]},
 							{tag:'li', id:this.getId('httpAuthPanel'), children:[
 								{tag:'div', cls:'clipperzSubPanel', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['httpAuthTabTitle']},
-									{tag:'div', cls:'panelDescription', html:Clipperz.PM.Strings['httpAuthTabDescription']},
+									{tag:'h5', htmlString:Clipperz.PM.Strings['httpAuthTabTitle']},
+									{tag:'div', cls:'panelDescription', htmlString:Clipperz.PM.Strings['httpAuthTabDescription']},
 									{tag:'div', cls:'bookmarkletConfiguration', children:[Clipperz.PM.Strings['httpAuthBookmarkletConfiguration']]}
 								]}
 							]}

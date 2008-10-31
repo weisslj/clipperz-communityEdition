@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -89,7 +60,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldTypeComponent, Clipperz.P
 			var element;
 
 			width = this.element().getWidth(true);
-			element = YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', html:this.recordField().typeShortDescription()}, true);
+			element = Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', html:this.recordField().typeShortDescription()}, true);
 			element.setWidth(width-1);
 		}
 	},
@@ -103,12 +74,12 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldTypeComponent, Clipperz.P
 			var	width;
 
 			width = this.element().getWidth(true);
-			this.setInputElement(YAHOO.ext.DomHelper.append(this.element().dom, {tag:'select', children:[
-				{tag:'option', value:'TXT', html:Clipperz.PM.Strings['recordFieldTypologies']['TXT']['shortDescription']},
-				{tag:'option', value:'PWD', html:Clipperz.PM.Strings['recordFieldTypologies']['PWD']['shortDescription']},
-				{tag:'option', value:'URL', html:Clipperz.PM.Strings['recordFieldTypologies']['URL']['shortDescription']},
-				{tag:'option', value:'DATE', html:Clipperz.PM.Strings['recordFieldTypologies']['DATE']['shortDescription']},
-				{tag:'option', value:'ADDR', html:Clipperz.PM.Strings['recordFieldTypologies']['ADDR']['shortDescription']}
+			this.setInputElement(Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'select', children:[
+				{tag:'option', value:'TXT', htmlString:Clipperz.PM.Strings['recordFieldTypologies']['TXT']['shortDescription']},
+				{tag:'option', value:'PWD', htmlString:Clipperz.PM.Strings['recordFieldTypologies']['PWD']['shortDescription']},
+				{tag:'option', value:'URL', htmlString:Clipperz.PM.Strings['recordFieldTypologies']['URL']['shortDescription']},
+				{tag:'option', value:'DATE', htmlString:Clipperz.PM.Strings['recordFieldTypologies']['DATE']['shortDescription']},
+				{tag:'option', value:'ADDR', htmlString:Clipperz.PM.Strings['recordFieldTypologies']['ADDR']['shortDescription']}
 			
 //				{tag:'option', value:'CHECK', html:Clipperz.PM.DataModel.RecordField.TypeDescriptions['CHECK']['shortDescription']},
 //				{tag:'option', value:'RADIO', html:Clipperz.PM.DataModel.RecordField.TypeDescriptions['RADIO']['shortDescription']},

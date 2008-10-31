@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -68,14 +39,14 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginBindingComponent, C
 	//-------------------------------------------------------------------------
 
 	'render': function() {
-//		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'span', style:'font-weight:bold;', html:this.directLoginBinding().key()})
-//		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'span', html:this.directLoginBinding().value()})
+//		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'span', style:'font-weight:bold;', html:this.directLoginBinding().key()})
+//		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'span', html:this.directLoginBinding().value()})
 //MochiKit.Logging.logDebug(">>> DirectLoginBindingComponent.render");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td', cls:'directLoginBindingLabelTD', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td', cls:'directLoginBindingLabelTD', children:[
 			{tag:'span', html:this.directLoginBinding().key()}
 		]});
 //MochiKit.Logging.logDebug("--- DirectLoginBindingComponent.render - 1");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td', cls:'directLoginBindingValueTD', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td', cls:'directLoginBindingValueTD', children:[
 			{tag:'div', id:this.getId('editModeBox'), children:[
 				{tag:'select', id:this.getId('select'), children:this.recordFieldOptions()}
 			]},
@@ -105,6 +76,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginBindingComponent, C
 		option = {tag:'option', value:null, html:'---'};
 		result.push(option);
 		for (recordFieldKey in recordFields) {
+//	TODO: remove the value: field and replace it with element.dom.value = <some value>
 			option = {tag:'option', value:recordFieldKey, html:recordFields[recordFieldKey].label()}
 			if (recordFieldKey == this.directLoginBinding().fieldKey()) {
 				option['selected'] = true;
@@ -132,14 +104,14 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginBindingComponent, C
 		selectElementBox = this.getElement('editModeBox');
 		selectElementBox.update("");
 
-		YAHOO.ext.DomHelper.append(selectElementBox.dom, {tag:'select', id:this.getId('select'), children:this.recordFieldOptions()});
+		Clipperz.YUI.DomHelper.append(selectElementBox.dom, {tag:'select', id:this.getId('select'), children:this.recordFieldOptions()});
 
 /*
 		selectElement = this.getElement('select');
 		
 		selectElement.update("");
 		MochiKit.Iter.forEach(this.recordFieldOptions(), function(anOption) {
-			YAHOO.ext.DomHelper.append(selectElement.dom, anOption);
+			Clipperz.YUI.DomHelper.append(selectElement.dom, anOption);
 		});
 */
 

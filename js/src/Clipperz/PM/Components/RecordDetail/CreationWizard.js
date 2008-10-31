@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -75,18 +46,18 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.CreationWizard, Clipperz.PM.Co
 		
 		this.element().update("");
 		
-		YAHOO.ext.DomHelper.append(this.element().dom,
+		Clipperz.YUI.DomHelper.append(this.element().dom,
 			{tag:'form', cls:'recordDataFORM', id:this.getId('form'), children:[
 				{tag:'div', id:'recordDetailDataBox', cls:'recordDetailDataBox', children:[
 					{tag:'div', id:this.getId('wizardBox'), cls:'recordCreationWizard', children:[
-						{tag:'div', id:this.getId('recordCreationWizardTitleBox'), cls:'recordCreationWizardTitleBox', html:Clipperz.PM.Strings['newRecordWizardTitleBox']},
+						{tag:'div', id:this.getId('recordCreationWizardTitleBox'), cls:'recordCreationWizardTitleBox', htmlString:Clipperz.PM.Strings['newRecordWizardTitleBox']},
 						{tag:'ul', id:this.getId('templateList'), cls:'radioList'}
 					]}
 				]}
 			]}
 		);
 
-		YAHOO.ext.DomHelper.append(this.getDom('recordCreationWizardTitleBox'), {tag:'div', cls:'newRecordWizardHeader', children:[
+		Clipperz.YUI.DomHelper.append(this.getDom('recordCreationWizardTitleBox'), {tag:'div', cls:'newRecordWizardHeader', children:[
 			{tag:'table', width:'100%', cellpadding:'5', children:[
 				{tag:'tbody', children:[
 					{tag:'tr', children:[
@@ -105,25 +76,26 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.CreationWizard, Clipperz.PM.Co
 		templateListElement = this.getElement('templateList');
 		templates = Clipperz.PM.Strings['recordTemplates'];
 		MochiKit.Iter.forEach(MochiKit.Base.keys(templates), MochiKit.Base.bind(function(aTemplateKey) {
-			YAHOO.ext.DomHelper.append(templateListElement.dom, {tag:'li', children:[
+			Clipperz.YUI.DomHelper.append(templateListElement.dom, {tag:'li', children:[
 				{tag:'table', children:[
 					{tag:'tbody', children:[
 						{tag:'tr', children:[
 							{tag:'td', valign:'top', children:[
-								{tag:'input', id:this.getId(aTemplateKey+"_radio"), type:'radio', name:'recordTemplate', value:aTemplateKey}
+								{tag:'input', id:this.getId(aTemplateKey+"_radio"), type:'radio', name:'recordTemplate', value:"aTemplateKey"}
 							]},
 							{tag:'td', valign:'top', children:[
 								{tag:'h4', id:this.getId(aTemplateKey+"_title"), html:templates[aTemplateKey]['title']},
-								{tag:'div', cls:'templateDescription', html:templates[aTemplateKey]['description']}
+								{tag:'div', cls:'templateDescription', htmlString:templates[aTemplateKey]['description']}
 							]}
 						]}
 					]}
 				]}
 			]});
+			this.getElement(aTemplateKey+"_radio").dom.value = aTemplateKey;
 			MochiKit.Signal.connect(this.getDom(aTemplateKey+"_title"), 'onclick', MochiKit.Base.partial(function(aRadioButton) {aRadioButton.click();}, this.getDom(aTemplateKey+"_radio")));
 		}, this));
 
-		YAHOO.ext.DomHelper.append(templateListElement.dom, {tag:'li', children:[
+		Clipperz.YUI.DomHelper.append(templateListElement.dom, {tag:'li', children:[
 			{tag:'table', children:[
 				{tag:'tbody', children:[
 					{tag:'tr', children:[
@@ -131,11 +103,11 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.CreationWizard, Clipperz.PM.Co
 							{tag:'input', type:'radio', name:'recordTemplate', id:this.getId('bookmarkletRadioButton'), value:'BookmarkletConfigurationTemplate'}
 						]},
 						{tag:'td', valign:'top', children:[
-							{tag:'h4', html:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationTitle']},
-							{tag:'div', cls:'templateDescription', html:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationDescription']},
+							{tag:'h4', htmlString:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationTitle']},
+							{tag:'div', cls:'templateDescription', htmlString:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationDescription']},
 							{tag:'div', cls:'bookmarkletConfiguration', children:[
-//								{tag:'span', html:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationLabel']},
-								{tag:'div', html:Clipperz.PM.Strings['recordDetailNewDirectLoginDescription']},
+//								{tag:'span', htmlString:Clipperz.PM.Strings['newRecordWizardBookmarkletConfigurationLabel']},
+								{tag:'div', htmlString:Clipperz.PM.Strings['recordDetailNewDirectLoginDescription']},
 								{tag:'textarea', id:this.getId('bookmarkletConfiguration')}
 							]}
 						]}
@@ -144,7 +116,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.CreationWizard, Clipperz.PM.Co
 			]}
 		]});
 
-		YAHOO.ext.DomHelper.append(this.getDom('wizardBox'), {tag:'div', cls:'newRecordWizardFooter', children:[
+		Clipperz.YUI.DomHelper.append(this.getDom('wizardBox'), {tag:'div', cls:'newRecordWizardFooter', children:[
 			{tag:'table', width:'100%', cellpadding:'5', children:[
 				{tag:'tbody', children:[
 					{tag:'tr', children:[

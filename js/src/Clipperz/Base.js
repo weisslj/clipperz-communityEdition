@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.Base) == 'undefined') { Clipperz.Base = {}; }
 
@@ -202,7 +173,52 @@ MochiKit.Base.update(Clipperz.Base, {
 	'deepClone': function(anObject) {
 		var result;
 		
-		result = MochiKit.Base.evalJSON(MochiKit.Base.serializeJSON(anObject));
+		result = Clipperz.Base.evalJSON(Clipperz.Base.serializeJSON(anObject));
+		
+		return result;
+	},
+
+	//-------------------------------------------------------------------------
+
+	'evalJSON': function(aString) {
+/*
+		var result;
+		
+		//	check for XSS injection
+		if (/<script>/.test(aString)) {
+			throw "error";
+		}
+
+		if (/<iframe>/.test(aString)) {
+			throw "error";
+		}
+
+		result = MochiKit.Base.evalJSON(aString);
+		
+		return result;
+*/
+
+//		return MochiKit.Base.evalJSON(aString);
+		return JSON.parse(aString);
+	},
+	
+	'serializeJSON': function(anObject) {
+//		return MochiKit.Base.serializeJSON(anObject);
+		return JSON.stringify(anObject);
+	},
+
+	//-------------------------------------------------------------------------
+
+	'sanitizeString': function(aValue) {
+		var result;
+		
+		if (Clipperz.Base.objectType(aValue) == 'string') {
+			result = aValue;
+			result = result.replace(/</img,"&lt;");
+			result = result.replace(/>/img,"&gt;");
+		} else {
+			result = aValue;
+		}
 		
 		return result;
 	},
@@ -210,8 +226,9 @@ MochiKit.Base.update(Clipperz.Base, {
 	//-------------------------------------------------------------------------
 
 	'exception': {
-		'AbstractMethod': new MochiKit.Base.NamedError("Clipperz.Base.exception.AbstractMethod"),
-		'UnknownType':    new MochiKit.Base.NamedError("Clipperz.Base.exception.UnknownType") 
+		'AbstractMethod': 		new MochiKit.Base.NamedError("Clipperz.Base.exception.AbstractMethod"),
+		'UnknownType':    		new MochiKit.Base.NamedError("Clipperz.Base.exception.UnknownType"),
+		'VulnerabilityIssue':	new MochiKit.Base.NamedError("Clipperz.Base.exception.VulnerabilityIssue") 
 	},
 
 	//-------------------------------------------------------------------------
@@ -231,16 +248,16 @@ MochiKit.Base.registerComparator('Object dummy comparator',
 		var bKeys;
 		
 //MochiKit.Logging.logDebug(">>> comparator");
-//MochiKit.Logging.logDebug("- a: " + MochiKit.Base.serializeJSON(a));
-//MochiKit.Logging.logDebug("- b: " + MochiKit.Base.serializeJSON(a));
+//MochiKit.Logging.logDebug("- a: " + Clipperz.Base.serializeJSON(a));
+//MochiKit.Logging.logDebug("- b: " + Clipperz.Base.serializeJSON(a));
 		aKeys = MochiKit.Base.keys(a).sort();
 		bKeys = MochiKit.Base.keys(b).sort();
 		
 		result = MochiKit.Base.compare(aKeys, bKeys);
 //if (result != 0) {
 //	MochiKit.Logging.logDebug("- comparator 'keys':");
-//	MochiKit.Logging.logDebug("- comparator aKeys: " + MochiKit.Base.serializeJSON(aKeys));
-//	MochiKit.Logging.logDebug("- comparator bKeys: " + MochiKit.Base.serializeJSON(bKeys));
+//	MochiKit.Logging.logDebug("- comparator aKeys: " + Clipperz.Base.serializeJSON(aKeys));
+//	MochiKit.Logging.logDebug("- comparator bKeys: " + Clipperz.Base.serializeJSON(bKeys));
 //}
 		if (result == 0) {
 			var	i, c;
@@ -250,8 +267,8 @@ MochiKit.Base.registerComparator('Object dummy comparator',
 				result = MochiKit.Base.compare(a[aKeys[i]], b[bKeys[i]]);
 //if (result != 0) {
 //	MochiKit.Logging.logDebug("- comparator 'values':");
-//	MochiKit.Logging.logDebug("- comparator a[aKeys[i]]: " + MochiKit.Base.serializeJSON(a[aKeys[i]]));
-//	MochiKit.Logging.logDebug("- comparator b[bKeys[i]]: " + MochiKit.Base.serializeJSON(b[bKeys[i]]));
+//	MochiKit.Logging.logDebug("- comparator a[aKeys[i]]: " + Clipperz.Base.serializeJSON(a[aKeys[i]]));
+//	MochiKit.Logging.logDebug("- comparator b[bKeys[i]]: " + Clipperz.Base.serializeJSON(b[bKeys[i]]));
 //}
 			}
 		}		

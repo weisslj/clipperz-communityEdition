@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 
@@ -70,7 +41,7 @@ YAHOO.extendX(Clipperz.PM.Proxy.DWR, Clipperz.PM.Proxy, {
 			deferredResult.addCallback(function(someParameters) {
 				return new Clipperz.PM.Toll(someParameters['toll']);
 			})
-			com_clipperz_pm_Proxy.knock(MochiKit.Base.serializeJSON({requestType:aRequestType}), {
+			com_clipperz_pm_Proxy.knock(Clipperz.Base.serializeJSON({requestType:aRequestType}), {
 				callback:MochiKit.Base.method(deferredResult, 'callback'),
 				errorHandler:MochiKit.Base.method(deferredResult, 'errback')
 			});
@@ -103,7 +74,7 @@ YAHOO.extendX(Clipperz.PM.Proxy.DWR, Clipperz.PM.Proxy, {
 
 	'setTollCallback': function(someParameters) {
 //MochiKit.Logging.logDebug(">>> Proxy.DWR.setTollCallback");
-//MochiKit.Logging.logDebug("--- Proxy.DWR.setTollCallback - " + MochiKit.Base.serializeJSON(someParameters));
+//MochiKit.Logging.logDebug("--- Proxy.DWR.setTollCallback - " + Clipperz.Base.serializeJSON(someParameters));
 		if (typeof(someParameters['toll']) != 'undefined') {
 			this.addToll(new Clipperz.PM.Toll(someParameters['toll']));
 		}
@@ -147,10 +118,10 @@ YAHOO.extendX(Clipperz.PM.Proxy.DWR, Clipperz.PM.Proxy, {
 		deferredResult = new MochiKit.Async.Deferred();
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("x.1 Proxy.DWR.sendMessage - 1: " + res); return res;});
 		deferredResult.addCallback(MochiKit.Base.method(proxy, 'payToll'), aRequestType);
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("x.2 Proxy.DWR.sendMessage - 2: " + MochiKit.Base.serializeJSON(res)); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("x.2 Proxy.DWR.sendMessage - 2: " + Clipperz.Base.serializeJSON(res)); return res;});
 		deferredResult.addCallback(MochiKit.Base.method(proxy, 'sendRemoteMessage'), aFunctionName);
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("x.3 Proxy.DWR.sendMessage - 3: " + res); return res;});
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("x.3 Proxy.DWR.sendMessage - 3: " + MochiKit.Base.serializeJSON(res)); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("x.3 Proxy.DWR.sendMessage - 3: " + Clipperz.Base.serializeJSON(res)); return res;});
 		deferredResult.callback(someParameters);
 		
 //MochiKit.Logging.logDebug("<<< Proxy.DWR.sendMessage");
@@ -162,13 +133,13 @@ YAHOO.extendX(Clipperz.PM.Proxy.DWR, Clipperz.PM.Proxy, {
 	'sendRemoteMessage': function(aFunctionName, someParameters) {
 		var	deferredResult;
 
-//MochiKit.Logging.logDebug(">>> Proxy.DWR.sendRemoteMessage('" + aFunctionName + "', " + MochiKit.Base.serializeJSON(someParameters) + ") - " + this);
+//MochiKit.Logging.logDebug(">>> Proxy.DWR.sendRemoteMessage('" + aFunctionName + "', " + Clipperz.Base.serializeJSON(someParameters) + ") - " + this);
 		deferredResult = new MochiKit.Async.Deferred();
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Proxy.DWR.sendRemoteMessage - 1: " + res); return res;});
 		deferredResult.addCallback(MochiKit.Base.method(this, 'setTollCallback'));
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("Proxy.DWR.sendRemoteMessage - 2: " + res); return res;});
 
-		com_clipperz_pm_Proxy[aFunctionName](MochiKit.Base.serializeJSON(someParameters), {
+		com_clipperz_pm_Proxy[aFunctionName](Clipperz.Base.serializeJSON(someParameters), {
 			callback:MochiKit.Base.method(deferredResult, 'callback'),
 			errorHandler:MochiKit.Base.method(deferredResult, 'errback')
 		});

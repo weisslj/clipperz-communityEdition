@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -146,16 +117,16 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 
 	'renderWithNoRecordAtAll': function() {
 //MochiKit.Logging.logDebug(">>> RecordDetail.MainComponent.renderWithNoRecordAtAll");
-		YAHOO.ext.DomHelper.append(this.element().dom,
+		Clipperz.YUI.DomHelper.append(this.element().dom,
 			{tag:'form', cls:'noRecordAtAllFORM', children:[
 				{tag:'div', cls:'recordTitleBlock', children:[
-					{tag:'h2', id:'recordTitle', html:Clipperz.PM.Strings['recordDetailNoRecordAtAllTitle']}
+					{tag:'h2', id:'recordTitle', htmlString:Clipperz.PM.Strings['recordDetailNoRecordAtAllTitle']}
 				]},
 				{tag:'table', border:'0', cellspacing:'0', cellpadding:'0', children:[
 					{tag:'tbody', children:[
 						{tag:'tr', children:[
 							{tag:'td', colspan:'5', children:[
-								{tag:'div', cls:'recordDetailDescriptionBox', html:Clipperz.PM.Strings['recordDetailNoRecordAtAllDescription']}
+								{tag:'div', cls:'recordDetailDescriptionBox', htmlString:Clipperz.PM.Strings['recordDetailNoRecordAtAllDescription']}
 							]}
 						]}
 					]}
@@ -169,16 +140,16 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 	
 	'renderWithNoSelectedRecord': function() {
 //MochiKit.Logging.logDebug(">>> RecordDetail.MainComponent.renderWithNoSelectedRecord");
-		YAHOO.ext.DomHelper.append(this.element().dom,
+		Clipperz.YUI.DomHelper.append(this.element().dom,
 			{tag:'form', cls:'noRecordSelectedFORM', children:[
 				{tag:'div', cls:'recordTitleBlock', children:[
-					{tag:'h2', id:'recordTitle', html:Clipperz.PM.Strings['recordDetailNoRecordSelectedTitle']}
+					{tag:'h2', id:'recordTitle', htmlString:Clipperz.PM.Strings['recordDetailNoRecordSelectedTitle']}
 				]},
 				{tag:'table', border:'0', cellspacing:'0', cellpadding:'0', children:[
 					{tag:'tbody', children:[
 						{tag:'tr', children:[
 							{tag:'td', colspan:'5', children:[
-								{tag:'div', cls:'recordDetailDescriptionBox', html:Clipperz.PM.Strings['recordDetailNoRecordSelectedDescription']}
+								{tag:'div', cls:'recordDetailDescriptionBox', htmlString:Clipperz.PM.Strings['recordDetailNoRecordSelectedDescription']}
 							]}
 						]},
 						{tag:'tr', colspan:'5', children:[
@@ -236,7 +207,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 
 	'renderWhileProcessingWithMessage': function(aMessage) {
 //MochiKit.Logging.logDebug(">>> RecordDetail.MainComponent.renderWhileProcessingWithMessage");
-		YAHOO.ext.DomHelper.append(this.element().dom,
+		Clipperz.YUI.DomHelper.append(this.element().dom,
 			{tag:'form', cls:'processingRecordFORM', children:[
 				{tag:'div', cls:'recordTitleBlock', children:[
 					{tag:'h2', id:'recordTitle', html:this.record().label()}
@@ -260,7 +231,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 	//.........................................................................
 /*
 	'renderWithSelectedRecordLoading': function() {
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', cls:'', style:'border:1px solid red; padding: 20px;', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', cls:'', style:'border:1px solid red; padding: 20px;', children:[
 			{tag:'div', cls:'Clipprez_RecordDetailTitle', children:[
 				{tag:'h3', html:this.record().label()},
 				{tag:'h3', html:"loading"}
@@ -271,7 +242,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 	//.........................................................................
 
 	'renderWithSelectedRecordDecrypting': function() {
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', cls:'', style:'border:1px solid red; padding: 20px;', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', cls:'', style:'border:1px solid red; padding: 20px;', children:[
 			{tag:'div', cls:'Clipprez_RecordDetailTitle', children:[
 				{tag:'h3', html:this.record().label()},
 				{tag:'h3', html:"decrypting ... "}
@@ -282,7 +253,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 	//.........................................................................
 
 	'renderWithSelectedRecordCurrentVersionDecrypting': function() {
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', cls:'', style:'border:1px solid red; padding: 20px;', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', cls:'', style:'border:1px solid red; padding: 20px;', children:[
 			{tag:'div', cls:'Clipprez_RecordDetailTitle', children:[
 				{tag:'h3', html:this.record().label()},
 				{tag:'h3', html:"decrypting version ... "}
@@ -297,7 +268,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 		this.element().update("");
 		
 //MochiKit.Logging.logDebug("--- RecordDetail.MainComponent.renderWithErrorMessage - 1");
-		YAHOO.ext.DomHelper.append(this.element().dom,
+		Clipperz.YUI.DomHelper.append(this.element().dom,
 			{tag:'form', cls:'errorMessageFORM', children:[
 				{tag:'div', cls:'recordTitleBlock', children:[
 					{tag:'h2', id:'recordTitle', html:this.record().label()}
@@ -307,7 +278,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 						{tag:'tr', cls:'recordTR', children:[
 							{tag:'td', colspan:'5', children:[
 								{tag:'div', cls:'recordDetailDescriptionBox loadingError', children:[
-									{tag:'h5', html:Clipperz.PM.Strings['recordDetailLoadingErrorMessageTitle']},
+									{tag:'h5', htmlString:Clipperz.PM.Strings['recordDetailLoadingErrorMessageTitle']},
 									{tag:'p', html:anErrorMessage.message}
 								]}
 							]}
@@ -328,17 +299,17 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 
 		columns = [
 			{tag:'td', width:'25', html:'&#160'},
-			{tag:'td', width:'25%', html:Clipperz.PM.Strings['recordDetailLabelFieldColumnLabel']},
+			{tag:'td', width:'25%', htmlString:Clipperz.PM.Strings['recordDetailLabelFieldColumnLabel']},
 			{tag:'td', width:'3', html:'&#160'},
-			{tag:'td', /*width:'80%',*/ html:Clipperz.PM.Strings['recordDetailDataFieldColumnLabel']}
+			{tag:'td', /*width:'80%',*/ htmlString:Clipperz.PM.Strings['recordDetailDataFieldColumnLabel']}
 		];
 
 		if (this.editMode() == 'EDIT') {
-			columns.push({tag:'td', /*width:'55',*/ html:Clipperz.PM.Strings['recordDetailTypeFieldColumnLabel']})
+			columns.push({tag:'td', /*width:'55',*/ htmlString:Clipperz.PM.Strings['recordDetailTypeFieldColumnLabel']})
 		}
 		
 //MochiKit.Logging.logDebug(">>> RecordDetail.MainComponent.renderWithSelectedRecordData");
-		YAHOO.ext.DomHelper.append(this.element().dom,
+		Clipperz.YUI.DomHelper.append(this.element().dom,
 			{tag:'form', cls:'recordDataFORM', children:[
 				{tag:'div', cls:'recordTitleBlock', id:this.getId('title')},
 				{tag:'div', id:'recordDetailDataBox', cls:'recordDetailDataBox', children:[
@@ -356,10 +327,10 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 							]},
 							{tag:'tr', cls:'recordFieldsTR', children:columns /*	[
 								{tag:'td', width:'25', html:'&#160'},
-								{tag:'td', width:'25%', html:Clipperz.PM.Strings['recordDetailLabelFieldColumnLabel']},
+								{tag:'td', width:'25%', htmlString:Clipperz.PM.Strings['recordDetailLabelFieldColumnLabel']},
 								{tag:'td', width:'3', html:'&#160'},
-								{tag:'td', / *width:'80%',* / html:Clipperz.PM.Strings['recordDetailDataFieldColumnLabel']},
-								{tag:'td', / *width:'55',* / html:Clipperz.PM.Strings['recordDetailTypeFieldColumnLabel']}
+								{tag:'td', / *width:'80%',* / htmlString:Clipperz.PM.Strings['recordDetailDataFieldColumnLabel']},
+								{tag:'td', / *width:'55',* / htmlString:Clipperz.PM.Strings['recordDetailTypeFieldColumnLabel']}
 							] */	}
 						]}
 					]},
@@ -521,7 +492,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 	'appendFieldComponent': function(aRecordField) {
 //MochiKit.Logging.logDebug(">>> MainComponent.appendFieldComponent");
 		new Clipperz.PM.Components.RecordDetail.FieldComponent(
-			YAHOO.ext.DomHelper.append(this.getDom('tbody'), {tag:'tr'}, true),
+			Clipperz.YUI.DomHelper.append(this.getDom('tbody'), {tag:'tr'}, true),
 			{recordField:aRecordField, mainComponent:this}
 		);
 //MochiKit.Logging.logDebug("<<< MainComponent.appendFieldComponent");
@@ -638,22 +609,22 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 			
 			imageExtension = (Clipperz_IEisBroken == true) ? 'gif': 'png';
 
-			contentChildren.push({tag:'h4', valign:'top', html:Clipperz.PM.Strings['WELCOME_BACK']});
+			contentChildren.push({tag:'h4', valign:'top', htmlString:Clipperz.PM.Strings['WELCOME_BACK']});
 
 			currentIP = (this.user().loginInfo()['current']['ip'].match(/^\d{1,3}(.\d{1,3}){3}$/)) ? this.user().loginInfo()['current']['ip'] : Clipperz.PM.Strings['unknown_ip'];
 			currentConnectionText = Clipperz.PM.Strings['currentConnectionText'];
-			currentConnectionText = currentConnectionText.replace(/__ip__/, "<b>" + this.user().loginInfo()['current']['ip'] + "</b>");
-			currentConnectionText = currentConnectionText.replace(/__country__/, "<b>" + Clipperz.PM.Strings['countries'][this.user().loginInfo()['current']['country']] + "</b>");
-			currentConnectionText = currentConnectionText.replace(/__browser__/, "<b>" + Clipperz.PM.Strings['browsers'][this.user().loginInfo()['current']['browser']] + "</b>");
-			currentConnectionText = currentConnectionText.replace(/__operatingSystem__/, "<b>" + Clipperz.PM.Strings['operatingSystems'][this.user().loginInfo()['current']['operatingSystem']] + "</b>");
+			currentConnectionText = currentConnectionText.replace(/__ip__/, "<b>" + Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['ip']) + "</b>");
+			currentConnectionText = currentConnectionText.replace(/__country__/, "<b>" + Clipperz.PM.Strings['countries'][Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['country'])] + "</b>");
+			currentConnectionText = currentConnectionText.replace(/__browser__/, "<b>" + Clipperz.PM.Strings['browsers'][Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['browser'])] + "</b>");
+			currentConnectionText = currentConnectionText.replace(/__operatingSystem__/, "<b>" + Clipperz.PM.Strings['operatingSystems'][Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['operatingSystem'])] + "</b>");
 
 			contentChildren.push(
 				{tag:'div', cls:'loginInfo_now', children:[
-					{tag:'div', cls:'text', html:currentConnectionText},
+					{tag:'div', cls:'text', htmlString:currentConnectionText},
 					{tag:'div', cls:'icons', children:[
-						{tag:'img', title:Clipperz.PM.Strings['countries'][this.user().loginInfo()['current']['country']], cls:'flag', src:Clipperz.PM.Strings['icons_baseUrl'] + "/flags/" + this.user().loginInfo()['current']['country'].toLowerCase() + "." +  imageExtension, width:'32', height:'32'},
-						{tag:'img', title:Clipperz.PM.Strings['browsers'][this.user().loginInfo()['current']['browser']], src:Clipperz.PM.Strings['icons_baseUrl'] + "/browsers/" + this.user().loginInfo()['current']['browser'].toLowerCase() + "." + imageExtension, width:'32', height:'32'},
-						{tag:'img', title:Clipperz.PM.Strings['operatingSystems'][this.user().loginInfo()['current']['operatingSystem']], src:Clipperz.PM.Strings['icons_baseUrl'] + "/operatingSystems/" + this.user().loginInfo()['current']['operatingSystem'].toLowerCase() + "." + imageExtension, width:'32', height:'32'}
+						{tag:'img', title:Clipperz.PM.Strings['countries'][Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['country'])], cls:'flag', src:Clipperz.PM.Strings['icons_baseUrl'] + "/flags/" + Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['country']).toLowerCase() + "." +  imageExtension, width:'32', height:'32'},
+						{tag:'img', title:Clipperz.PM.Strings['browsers'][Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['browser'])], src:Clipperz.PM.Strings['icons_baseUrl'] + "/browsers/" + Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['browser']).toLowerCase() + "." + imageExtension, width:'32', height:'32'},
+						{tag:'img', title:Clipperz.PM.Strings['operatingSystems'][Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['operatingSystem'])], src:Clipperz.PM.Strings['icons_baseUrl'] + "/operatingSystems/" + Clipperz.Base.sanitizeString(this.user().loginInfo()['current']['operatingSystem']).toLowerCase() + "." + imageExtension, width:'32', height:'32'}
 					]}
 				]}
 			);
@@ -664,7 +635,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 				var latestIP;
 				var latestConnectionText;
 
-				latestLoginDate = Clipperz.PM.Date.parseDateWithUTCFormat(this.user().loginInfo()['latest']['date']);
+				latestLoginDate = Clipperz.PM.Date.parseDateWithUTCFormat(Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['date']));
 			
 				elapsedTimeDescription = Clipperz.PM.Date.getElapsedTimeDescription(latestLoginDate);
 				latestIP =  (this.user().loginInfo()['latest']['ip'].match(/^\d{1,3}(.\d{1,3}){3}$/)) ? this.user().loginInfo()['latest']['ip'] : Clipperz.PM.Strings['unknown_ip'];
@@ -672,25 +643,25 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 				latestConnectionText = Clipperz.PM.Strings['latestConnectionText'];
 				latestConnectionText = latestConnectionText.replace(/__elapsedTimeDescription__/, "<b>" + elapsedTimeDescription + "</b>");
 				latestConnectionText = latestConnectionText.replace(/__time__/, Clipperz.PM.Date.formatDateWithTemplate(latestLoginDate, Clipperz.PM.Strings['fullDate_format']));
-				latestConnectionText = latestConnectionText.replace(/__ip__/, "<b>" + this.user().loginInfo()['latest']['ip'] + "</b>");
-				latestConnectionText = latestConnectionText.replace(/__country__/, "<b>" + Clipperz.PM.Strings['countries'][this.user().loginInfo()['latest']['country']] + "</b>");
-				latestConnectionText = latestConnectionText.replace(/__browser__/, "<b>" + Clipperz.PM.Strings['browsers'][this.user().loginInfo()['latest']['browser']] + "</b>");
-				latestConnectionText = latestConnectionText.replace(/__operatingSystem__/, "<b>" + Clipperz.PM.Strings['operatingSystems'][this.user().loginInfo()['latest']['operatingSystem']] + "</b>");
+				latestConnectionText = latestConnectionText.replace(/__ip__/, "<b>" + Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['ip']) + "</b>");
+				latestConnectionText = latestConnectionText.replace(/__country__/, "<b>" + Clipperz.PM.Strings['countries'][Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['country'])] + "</b>");
+				latestConnectionText = latestConnectionText.replace(/__browser__/, "<b>" + Clipperz.PM.Strings['browsers'][Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['browser'])] + "</b>");
+				latestConnectionText = latestConnectionText.replace(/__operatingSystem__/, "<b>" + Clipperz.PM.Strings['operatingSystems'][Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['operatingSystem'])] + "</b>");
 
 
 				contentChildren.push(
 					{tag:'div', cls:'loginInfo_latest', children:[
 						{tag:'div', cls:'inner_header', html:'&nbsp;'},
 						{tag:'div', cls:'content', children:[
-							{tag:'div', cls:'text', html:latestConnectionText},
+							{tag:'div', cls:'text', htmlString:latestConnectionText},
 							{tag:'div', cls:'icons', children:[
-								{tag:'img', title:Clipperz.PM.Strings['countries'][this.user().loginInfo()['latest']['country']], cls:'flag', src:Clipperz.PM.Strings['icons_baseUrl'] + "/flags/" + this.user().loginInfo()['latest']['country'].toLowerCase() + "." +  imageExtension, width:'32', height:'32'},
-								{tag:'img', title:Clipperz.PM.Strings['browsers'][this.user().loginInfo()['latest']['browser']], src:Clipperz.PM.Strings['icons_baseUrl'] + "/browsers/" + this.user().loginInfo()['latest']['browser'].toLowerCase() + "." + imageExtension, width:'32', height:'32'},
-								{tag:'img', title:Clipperz.PM.Strings['operatingSystems'][this.user().loginInfo()['latest']['operatingSystem']], src:Clipperz.PM.Strings['icons_baseUrl'] + "/operatingSystems/" + this.user().loginInfo()['latest']['operatingSystem'].toLowerCase() + "." + imageExtension, width:'32', height:'32'}
+								{tag:'img', title:Clipperz.PM.Strings['countries'][Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['country'])], cls:'flag', src:Clipperz.PM.Strings['icons_baseUrl'] + "/flags/" + Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['country']).toLowerCase() + "." +  imageExtension, width:'32', height:'32'},
+								{tag:'img', title:Clipperz.PM.Strings['browsers'][Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['browser'])], src:Clipperz.PM.Strings['icons_baseUrl'] + "/browsers/" + Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['browser']).toLowerCase() + "." + imageExtension, width:'32', height:'32'},
+								{tag:'img', title:Clipperz.PM.Strings['operatingSystems'][Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['operatingSystem'])], src:Clipperz.PM.Strings['icons_baseUrl'] + "/operatingSystems/" + Clipperz.Base.sanitizeString(this.user().loginInfo()['latest']['operatingSystem']).toLowerCase() + "." + imageExtension, width:'32', height:'32'}
 							]}
 						]},
 						{tag:'div', children:[
-							{tag:'a', href:'#', id:'fullLoginHistoryLink', html:Clipperz.PM.Strings['fullLoginHistoryLinkLabel']}
+							{tag:'a', href:'#', id:'fullLoginHistoryLink', htmlString:Clipperz.PM.Strings['fullLoginHistoryLinkLabel']}
 						]},
 						{tag:'div', cls:'inner_footer', html:'&nbsp;'}
 					]}
@@ -703,7 +674,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.MainComponent, Clipperz.PM.Com
 						{tag:'tr', children:[
 							{tag:'td', cls:'offlineCopyDownloadWarningIconTD', valign:'top', align:'center', width:'50', children:(this.user().shouldDownloadOfflineCopy() ? [{tag:'img', src:Clipperz.PM.Strings['icons_baseUrl'] + "/misc/offlineCopyWarning.png" , width:'32', height:'32'}]: [])},
 							{tag:'td', children:[
-								{tag:'div', cls:'offlineCopyDownloadWarning', html:(this.user().shouldDownloadOfflineCopy() ? Clipperz.PM.Strings['offlineCopyDownloadWarning']: Clipperz.PM.Strings['offlineCopyDownloadOk'])}
+								{tag:'div', cls:'offlineCopyDownloadWarning', htmlString:(this.user().shouldDownloadOfflineCopy() ? Clipperz.PM.Strings['offlineCopyDownloadWarning']: Clipperz.PM.Strings['offlineCopyDownloadOk'])}
 							]}
 						]}
 					]}

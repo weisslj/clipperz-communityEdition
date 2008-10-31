@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -115,22 +86,22 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldValueComponent, Clipperz.
 			switch(this.recordField().type()) {
 				case 'TXT':
 				case 'PWD':
-					YAHOO.ext.DomHelper.append(this.element().dom, {tag:'span', html:this.value()});
+					Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'span', html:this.value()});
 					break;
 				case 'URL':
 					var	urlLocation;
 					
-					urlLocation = this.value();
+					urlLocation = Clipperz.Base.sanitizeString(this.value());
 					if (! (/(https?|ftp|svn):\/\//.test(urlLocation))) {
 						urlLocation = 'http://' + urlLocation;
 					}
-					YAHOO.ext.DomHelper.append(this.element().dom, {tag:'a', href:urlLocation, html:this.value(), target:'_blank'});
+					Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'a', href:urlLocation, html:this.value(), target:'_blank'});
 					break;
 				case 'DATE':
-					YAHOO.ext.DomHelper.append(this.element().dom, {tag:'span', html:this.value()});
+					Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'span', html:this.value()});
 					break;
 				case 'ADDR':
-					YAHOO.ext.DomHelper.append(this.element().dom, {tag:'a', href:this.addrUrl(), html:this.value(), target:'_blank'});
+					Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'a', href:this.addrUrl(), html:this.value(), target:'_blank'});
 					break;
 			}
 		} else {
@@ -143,9 +114,9 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldValueComponent, Clipperz.
 				var	scrambledInputElement;
 
 				if ((Clipperz_IEisBroken === true) && (Clipperz.PM.Proxy.defaultProxy.isReadOnly())) {
-					scrambledInputElement = {tag:'input', type:'password', value:this.value()};
+					scrambledInputElement = {tag:'input', type:'password', value:"this.value()"};
 				} else {
-					scrambledInputElement = {tag:'input', type:'text', cls:'scrambledField', title:Clipperz.PM.Strings['recordDetailPasswordFieldTooltipLabel'], value:this.value()};
+					scrambledInputElement = {tag:'input', type:'text', cls:'scrambledField', title:Clipperz.PM.Strings['recordDetailPasswordFieldTooltipLabel'], value:"this.value()"};
 				}
 
 				passwordElementConfiguration = 
@@ -154,10 +125,10 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldValueComponent, Clipperz.
 							{tag:'tr', children:[
 								{tag:'td', valign:'top', children:[
 									scrambledInputElement,
-									{tag:'a', cls:'scrambleLink', id:this.getId('scrambleLink'), href:'#', html:Clipperz.PM.Strings['recordDetailPasswordFieldUnscrambleLabel']}
+									{tag:'a', cls:'scrambleLink', id:this.getId('scrambleLink'), href:'#', htmlString:Clipperz.PM.Strings['recordDetailPasswordFieldUnscrambleLabel']}
 								]},
 								{tag:'td', valign:'top', children:[
-									{tag:'span', cls:'scrambledFieldLabel', html:Clipperz.PM.Strings['recordDetailPasswordFieldHelpLabel']}
+									{tag:'span', cls:'scrambledFieldLabel', htmlString:Clipperz.PM.Strings['recordDetailPasswordFieldHelpLabel']}
 								]}
 							]}
 						]}
@@ -165,12 +136,12 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldValueComponent, Clipperz.
 			} else {
 				passwordElementConfiguration =
 					{tag:'div', children:[
-						{tag:'input', type:'text', cls:'unscrambledField', value:this.value()},
-						{tag:'a', cls:'scrambleLink', id:this.getId('scrambleLink'), href:'#', html:Clipperz.PM.Strings['recordDetailPasswordFieldScrambleLabel']}
+						{tag:'input', type:'text', cls:'unscrambledField', value:"this.value()"},
+						{tag:'a', cls:'scrambleLink', id:this.getId('scrambleLink'), href:'#', htmlString:Clipperz.PM.Strings['recordDetailPasswordFieldScrambleLabel']}
 					]};
 			}
 			
-			tableElement = YAHOO.ext.DomHelper.append(this.element().dom, passwordElementConfiguration, true);
+			tableElement = Clipperz.YUI.DomHelper.append(this.element().dom, passwordElementConfiguration, true);
 
 			inputElement = tableElement.getChildrenByTagName('input')[0];
 			inputElement.dom.value = this.value();
@@ -194,15 +165,15 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldValueComponent, Clipperz.
 			case 'TXT':
 			case 'URL':
 			case 'ADDR':
-				inputElement = YAHOO.ext.DomHelper.append(this.element().dom, {tag:'input', type:'text', value:this.value()}, true);
+				inputElement = Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'input', type:'text', value:"this.value()"}, true);
 				inputElement.dom.value = this.value();
 				break;
 			case 'PWD':
-				YAHOO.ext.DomHelper.append(this.element().dom, {tag:'table', width:'100%', cellpadding:'0', cellspacing:'0', children:[
+				Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'table', width:'100%', cellpadding:'0', cellspacing:'0', children:[
 					{tag:'tbody', children:[
 						{tag:'tr', children:[
 							{tag:'td', valign:'top', children:[
-								{tag:'input', type:((scrambledStatus == 'SCRAMBLED') ? 'password' : 'text'), id:this.getId('passwordInputElement'), value:this.value()},
+								{tag:'input', type:((scrambledStatus == 'SCRAMBLED') ? 'password' : 'text'), id:this.getId('passwordInputElement'), value:"this.value()"},
 								{tag:'a', cls:'scrambleLink', id:this.getId('scrambleLink'), href:'#', html:(scrambledStatus == 'SCRAMBLED' ? Clipperz.PM.Strings['recordDetailPasswordFieldUnscrambleLabel'] : Clipperz.PM.Strings['recordDetailPasswordFieldScrambleLabel'])}
 							]},
 							{tag:'td', valign:'top', children:[
@@ -218,10 +189,10 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldValueComponent, Clipperz.
 				MochiKit.Signal.connect(this.getDom('scrambleLink'), 'onclick', this, 'toggleScramble');
 				break;
 //			case 'NOTE':
-//				inputElement = YAHOO.ext.DomHelper.append(this.element().dom, {tag:'textarea', rows:'5', html:this.value()}, true);
+//				inputElement = Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'textarea', rows:'5', html:this.value()}, true);
 //				break
 			case 'DATE':
-				inputElement = YAHOO.ext.DomHelper.append(this.element().dom, {tag:'input', type:'text', value:this.value()}, true);
+				inputElement = Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'input', type:'text', value:"this.value()"}, true);
 				inputElement.dom.value = this.value();
 				break;
 		}

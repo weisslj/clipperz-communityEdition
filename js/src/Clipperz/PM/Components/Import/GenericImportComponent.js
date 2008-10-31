@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -139,7 +110,7 @@ YAHOO.extendX(Clipperz.PM.Components.Import.GenericImportComponent, Clipperz.PM.
 			}
 			
 			result.push({tag:'td', cls:cls, children:[
-				{tag:'div', children:[{tag:'span', html:Clipperz.PM.Strings['ImportWizard'][this.steps()[i]]}]}
+				{tag:'div', children:[{tag:'span', htmlString:Clipperz.PM.Strings['ImportWizard'][this.steps()[i]]}]}
 			]})
 			if (i < (c-1)) {
 				if ((this.currentStep() == i) && (this.currentStatus() == 'PROCESSING')) {
@@ -170,7 +141,7 @@ YAHOO.extendX(Clipperz.PM.Components.Import.GenericImportComponent, Clipperz.PM.
 	
 	'updateSteps': function() {
 		this.getElement('importSteps').update("");
-		YAHOO.ext.DomHelper.append(this.getDom('importSteps'), {tag:'div', children:this.stepsConfig()});
+		Clipperz.YUI.DomHelper.append(this.getDom('importSteps'), {tag:'div', children:this.stepsConfig()});
 	},
 
 	//-------------------------------------------------------------------------
@@ -255,7 +226,7 @@ console.log("anError", anError);
 							{tag:'tbody', children:[
 								{tag:'tr', children:[
 									{tag:'td', rowspan:'2', valign:'top', children:[
-										{tag:'input', type:'checkbox', id:this.getId(aRecord.reference()), value:aRecord.reference(), checked:true}
+										{tag:'input', type:'checkbox', id:this.getId(aRecord.reference()), value:"aRecord.reference()", checked:true}
 									]},
 									{tag:'td', colspan:'2', children:[
 										{tag:'span', cls:'importPreview_title', html:aRecord.label()}
@@ -294,6 +265,10 @@ console.log("anError", anError);
 		]}]});
 //MochiKit.Logging.logDebug("--- previewRecordValues - 2");
 
+		MochiKit.Base.map(MochiKit.Base.bind(function(aRecord) {
+			this.getElement(aRecord.reference()).dom.value = aRecord.reference();
+		}, this), someProcessedRecords);
+		
 		Clipperz.Style.applyZebraStylesToTable('importPreview');
 //MochiKit.Logging.logDebug("<<< previewRecordValues");
 	},

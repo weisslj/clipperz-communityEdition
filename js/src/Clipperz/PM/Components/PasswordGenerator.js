@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -95,8 +66,8 @@ YAHOO.extendX(Clipperz.PM.Components.PasswordGenerator, Clipperz.PM.Components.B
 		var okFunction;
 		
 //MochiKit.Logging.logDebug(">>> PasswordGenerator.openPasswordPanel");
-		passwordGeneratorElement = YAHOO.ext.DomHelper.append(document.body, {tag:'div', id:'passwordGenerator', children:[
-			{tag:'div', cls:'ydlg-hd', html:Clipperz.PM.Strings['passwordGeneratorPanelTitle']},
+		passwordGeneratorElement = Clipperz.YUI.DomHelper.append(document.body, {tag:'div', id:'passwordGenerator', children:[
+			{tag:'div', cls:'ydlg-hd', htmlString:Clipperz.PM.Strings['passwordGeneratorPanelTitle']},
 			{tag:'div', cls:'ydlg-bd', children:[
 				{tag:'form', id:this.getId('passwordGeneratorForm'), cls:'passwordGenerator', children:[
 					{tag:'input', type:'text', cls:'clipperz_passwordGenerator_password', id:this.getId('passwordField')},
@@ -105,23 +76,23 @@ YAHOO.extendX(Clipperz.PM.Components.PasswordGenerator, Clipperz.PM.Components.B
 							{tag:'tr', children:[
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'lowercase', id:this.getId('lowercase'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorLowercaseLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorLowercaseLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'uppercase', id:this.getId('uppercase'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorUppercaseLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorUppercaseLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'numbers', id:this.getId('numbers'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorNumberLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorNumberLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'symbols', id:this.getId('symbols'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorSymbolLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorSymbolLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'span', cls:'passwordGeneratorLength', children:[
-										{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorLengthLabel']},
+										{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorLengthLabel']},
 										{tag:'span', id:this.getId('passwordLength'), cls:'passwordGeneratorLengthValue', html:'0'}
 									]}
 								]}

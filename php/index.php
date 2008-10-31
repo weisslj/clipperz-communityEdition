@@ -735,3 +735,4 @@ function arrayContainsValue($array, $value) {
 	
 	echo(json_encode($result));
 ?>
+

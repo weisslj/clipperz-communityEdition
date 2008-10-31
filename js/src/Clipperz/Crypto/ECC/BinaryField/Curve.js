@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 try { if (typeof(Clipperz.ByteArray) == 'undefined') { throw ""; }} catch (e) {
 	throw "Clipperz.Crypto.ECC depends on Clipperz.ByteArray!";
 }  
@@ -170,12 +141,6 @@ Clipperz.Crypto.ECC.BinaryField.Curve.prototype = MochiKit.Base.update(null, {
 
 	//-----------------------------------------------------------------------------
 
-	'addTwice': function(aPointA) {
-		return this.add(aPointA, aPointA);
-	},
-	
-	//-----------------------------------------------------------------------------
-
 	'overwriteAdd': function(aPointA, aPointB) {
 		if (aPointA.isZero()) {
 //			result = aPointB;
@@ -242,10 +207,8 @@ Clipperz.Crypto.ECC.BinaryField.Curve.prototype = MochiKit.Base.update(null, {
 	'multiply': function(aValue, aPoint) {
 		var result;
 
-//MochiKit.Logging.logDebug(">>> console.profile()");console.profile("ECC.Curve.multiply");
-//console.profile("ECC.Curve.multiply");MochiKit.Logging.logDebug("<<< console.profileEnd()");console.profileEnd();
+//console.profile();
 		result = new Clipperz.Crypto.ECC.BinaryField.Point({x:Clipperz.Crypto.ECC.BinaryField.Value.O, y:Clipperz.Crypto.ECC.BinaryField.Value.O});
-//console.profileEnd("ECC.Curve.multiply");MochiKit.Logging.logDebug("<<< console.profileEnd()");
 		
 		if (aValue.isZero() == false) {
 			var k, Q;
@@ -274,70 +237,9 @@ MochiKit.Logging.logError("The Clipperz.Crypto.ECC.BinaryFields.Value does not w
 //				if (countIndex==100) {console.log("multiply.break"); break;} else countIndex++;
 			}
 		}
-//console.profileEnd("ECC.Curve.multiply");MochiKit.Logging.logDebug("<<< console.profileEnd()");
+//console.profileEnd();
 		
 		return result;
-	},
-
-	//-----------------------------------------------------------------------------
-
-	'deferredMultiply': function(aValue, aPoint) {
-		var deferredResult;
-		var result;
-
-MochiKit.Logging.logDebug(">>> deferredMultiply - value: " + aValue + ", point: " + aPoint);
-//console.profile("ECC.Curve.multiply");
-		deferredResult = new MochiKit.Async.Deferred();
-deferredResult.addCallback(function(res) {console.profile("ECC.Curve.deferredMultiply"); return res;} );
-deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 1: " + res); return res;});
-		
-		result = new Clipperz.Crypto.ECC.BinaryField.Point({x:Clipperz.Crypto.ECC.BinaryField.Value.O, y:Clipperz.Crypto.ECC.BinaryField.Value.O});
-deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 2: " + res); return res;});
-		
-		if (aValue.isZero() == false) {
-			var k, Q;
-			var i;
-			var countIndex; countIndex = 0;
-			
-			if (aValue.compare(Clipperz.Crypto.ECC.BinaryField.Value.O) > 0) {
-				k = aValue;
-				Q = aPoint;
-			} else {
-MochiKit.Logging.logError("The Clipperz.Crypto.ECC.BinaryFields.Value does not work with negative values!!!!");
-				k = aValue.negate();
-				Q = this.negate(aPoint);
-			}
-
-//console.log("k: " + k.toString(16));
-//console.log("k.bitSize: " + k.bitSize());
-
-deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 3: " + res); return res;});
-			for (i=k.bitSize()-1; i>=0; i--) {
-//MochiKit.Logging.logDebug("====> " + i);
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 4 > i = " + i + ": " + res); return res;});
-				deferredResult.addCallback(MochiKit.Base.method(this, "addTwice"));
-//#				result = this.add(result, result);
-//				this.overwriteAdd(result, result);
-				if (k.isBitSet(i)) {
-					deferredResult.addCallback(MochiKit.Base.method(this, "add", Q));
-//#					result = this.add(result, Q);
-//					this.overwriteAdd(result, Q);
-				}
-				if (i%20 == 0) {deferredResult.addCallback(MochiKit.Async.wait, 0.1);}
-				
-//				if (countIndex==100) {console.log("multiply.break"); break;} else countIndex++;
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 4 < i = " + i + ": " + res); return res;});
-			}
-deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 4: " + res); return res;});
-		}
-//#console.profileEnd();
-deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 5: " + res); return res;});
-deferredResult.addBoth(function(res) {console.profileEnd(); return res;});
-deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("# 6: " + res); return res;});
-		deferredResult.callback(result);
-		
-//#		return result;
-		return deferredResult;
 	},
 
 	//-----------------------------------------------------------------------------

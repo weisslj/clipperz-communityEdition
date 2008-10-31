@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -79,11 +50,11 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.TitleComponent, Clipperz.PM.Co
 	//-------------------------------------------------------------------------
 
 	'render': function() {
-//		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td', html:'&#160'});
-//		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td', colspan:"3", html:'&#160', children:[
+//		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td', html:'&#160'});
+//		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td', colspan:"3", html:'&#160', children:[
 //			{tag:'div', /*style:'border: 1px solid green;',*/ id:this.getId('title')}
 //		]});
-//		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'td', html:'&#160'});
+//		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'td', html:'&#160'});
 //		
 //		this.setInputElement(new Clipperz.PM.Components.TextFormField(this.getElement('title'), {editMode:this.editMode(), value:this.value()}));
 		
@@ -100,7 +71,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.TitleComponent, Clipperz.PM.Co
 
 	'updateViewMode': function() {
 		this.element().update("");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'h2', html:this.value()});
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'h2', html:this.value()});
 	},
 
 	//-------------------------------------------------------------------------
@@ -108,12 +79,13 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.TitleComponent, Clipperz.PM.Co
 	'updateEditMode': function() {
 //MochiKit.Logging.logDebug(">>> TitleComponent.updateEditMode");
 //		this.getElement('title').update("");
-//		YAHOO.ext.DomHelper.append(this.getDom('title'), {tag:'div', id:this.getId('title_input')});
-//		this.setInputElement(YAHOO.ext.DomHelper.append(this.getDom('title_input'), {tag:'input', type:'text', value:this.value()}, true));
+//		Clipperz.YUI.DomHelper.append(this.getDom('title'), {tag:'div', id:this.getId('title_input')});
+//		this.setInputElement(Clipperz.YUI.DomHelper.append(this.getDom('title_input'), {tag:'input', type:'text', value:this.value()}, true));
 		
 		this.element().update("");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'input', type:'text', value:this.value()});
-
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'input', id:this.getId('titleField'), type:'text', value:"this.value()"});
+		this.getElement('titleField').dom.value = this.value();
+		
 //MochiKit.Logging.logDebug("<<< TitleComponent.updateEditMode");
 	},
 

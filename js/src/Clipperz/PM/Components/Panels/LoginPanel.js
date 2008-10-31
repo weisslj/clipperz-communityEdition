@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -72,31 +43,31 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 		this.element().update("");
 		
 //MochiKit.Logging.logDebug(">>> LoginPanel.initPanel");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', id:this.getId('baseDiv'), cls:'LoginPanel', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', id:this.getId('baseDiv'), cls:'LoginPanel', children:[
 			{tag:'table', children:[
 				{tag:'thead'},
 				{tag:'tbody', children:[
 					{tag:'tr', children:[
 						{tag:'td', valign:'top', children:[
-							{tag:'div', cls:'clipperzServiceDescription', html:Clipperz.PM.Strings['clipperzServiceDescription']}
+							{tag:'div', cls:'clipperzServiceDescription', htmlString:Clipperz.PM.Strings['clipperzServiceDescription']}
 						]},
 						{tag:'td', valign:'top', align:'right', children:[
 {tag:'div', id:this.getId('forms'), cls:'clipperzLoginForm', children:[
 	{tag:'div', id:this.getId('loginForm'), cls:'loginForm', children:[
-		{tag:'div', cls:'loginFormHeaderBox', children:[{tag:'h3', html:Clipperz.PM.Strings['loginFormTitle']}]},
+		{tag:'div', cls:'loginFormHeaderBox', children:[{tag:'h3', htmlString:Clipperz.PM.Strings['loginFormTitle']}]},
 		{tag:'form', id:this.getId('loginForm_form'), autocomplete:'off', children:[
 
 			{tag:'table', cls:'formLayout', children:[
 				{tag:'thead'},
 				{tag:'tbody', children:[
 					{tag:'tr', cls:'formFieldTR', children:[
-						{tag:'td', width:'90', html:Clipperz.PM.Strings['loginFormUsernameLabel']},
+						{tag:'td', width:'90', htmlString:Clipperz.PM.Strings['loginFormUsernameLabel']},
 						{tag:'td', children:[
 							{tag:'input', id:this.getId('login_username'), cls:'loginFormField', type:'text', name:'username'}
 						]}
 					]},
 					{tag:'tr', cls:'formFieldTR', children:[
-						{tag:'td', html:Clipperz.PM.Strings['loginFormPassphraseLabel']},
+						{tag:'td', htmlString:Clipperz.PM.Strings['loginFormPassphraseLabel']},
 						{tag:'td', children:[
 							{tag:'div', id:this.getId('passphraseDIV'), children:[
 								{tag:'input', id:this.getId('login_passphrase'), cls:'loginFormField', type:'password', name:'passphrase'}
@@ -118,8 +89,8 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 						]},
 						{tag:'td', children:[
 							{tag:'div', cls:'passwordTypeChooser', children:[
-								{tag:'h4', html:Clipperz.PM.Strings['loginFormOneTimePasswordCheckboxLabel']},
-								{tag:'span', html:Clipperz.PM.Strings['loginFormOneTimePasswordCheckboxDescription']}
+								{tag:'h4', htmlString:Clipperz.PM.Strings['loginFormOneTimePasswordCheckboxLabel']},
+								{tag:'span', htmlString:Clipperz.PM.Strings['loginFormOneTimePasswordCheckboxDescription']}
 							]}
 						]}
 					]},
@@ -137,16 +108,16 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 		{tag:'div', cls:'loginFormFooterBox', children:[
 			{tag:'ul', children:[
 				{tag:'li', id:this.getId('showRegistrationLI'), children:[
-					{tag:'span', html:Clipperz.PM.Strings['loginFormDontHaveAnAccountLabel']},
-					{tag:'a', href:'.', id:this.getId('showRegistration'), cls:'clipperzActionLink', html:Clipperz.PM.Strings['loginFormCreateOneLabel']}
+					{tag:'span', htmlString:Clipperz.PM.Strings['loginFormDontHaveAnAccountLabel']},
+					{tag:'a', href:'.', id:this.getId('showRegistration'), cls:'clipperzActionLink', htmlString:Clipperz.PM.Strings['loginFormCreateOneLabel']}
 				]},
 				{tag:'li', children:[
-					{tag:'span', html:Clipperz.PM.Strings['loginFormForgotYourCredentialsLabel']},
-					{tag:'a', href:Clipperz.PM.Strings['loginFormAarghThatsBadUrl'], target:'Clipperz_Help', html:Clipperz.PM.Strings['loginFormAarghThatsBadLabel']}
+					{tag:'span', htmlString:Clipperz.PM.Strings['loginFormForgotYourCredentialsLabel']},
+					{tag:'a', href:Clipperz.PM.Strings['loginFormAarghThatsBadUrl'], target:'Clipperz_Help', htmlString:Clipperz.PM.Strings['loginFormAarghThatsBadLabel']}
 				]},
 				{tag:'li', children:[
-					{tag:'span', html:Clipperz.PM.Strings['loginFormAfraidOfMaliciousScriptsLabel']},
-					{tag:'a', href:Clipperz.PM.Strings['loginFormVerifyTheCodeUrl'], target:'Clipperz_Help', html:Clipperz.PM.Strings['loginFormVerifyTheCodeLabel']}
+					{tag:'span', htmlString:Clipperz.PM.Strings['loginFormAfraidOfMaliciousScriptsLabel']},
+					{tag:'a', href:Clipperz.PM.Strings['loginFormVerifyTheCodeUrl'], target:'Clipperz_Help', htmlString:Clipperz.PM.Strings['loginFormVerifyTheCodeLabel']}
 				]}
 			]}
 		]}
@@ -155,26 +126,26 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 
 
 	{tag:'div', id:this.getId('registrationForm'), cls:'registrationForm', children:[
-		{tag:'div', cls:'loginFormHeaderBox', children:[{tag:'h3', html:Clipperz.PM.Strings['registrationFormTitle']}]},
+		{tag:'div', cls:'loginFormHeaderBox', children:[{tag:'h3', htmlString:Clipperz.PM.Strings['registrationFormTitle']}]},
 		{tag:'form', id:this.getId('registrationForm_form'), children:[
 			{tag:'h5', cls:'errorMessage', id:this.getId('registration_errorMessage')},
 			{tag:'table', cls:'formLayout', children:[
 				{tag:'thead'},
 				{tag:'tbody', children:[
 					{tag:'tr', cls:'formFieldTR', children:[
-						{tag:'td', width:'90', html:Clipperz.PM.Strings['registrationFormUsernameLabel']},
+						{tag:'td', width:'90', htmlString:Clipperz.PM.Strings['registrationFormUsernameLabel']},
 						{tag:'td', children:[
 							{tag:'input', id:this.getId('registration_username'), cls:'loginFormField', type:'text', name:'username'}
 						]}
 					]},
 					{tag:'tr', cls:'formFieldTR', children:[
-						{tag:'td', html:Clipperz.PM.Strings['registrationFormPassphraseLabel']},
+						{tag:'td', htmlString:Clipperz.PM.Strings['registrationFormPassphraseLabel']},
 						{tag:'td', children:[
 							{tag:'input', id:this.getId('registration_passphrase'), cls:'loginFormField', type:'password', name:'passphrase'}
 						]}
 					]},
 					{tag:'tr', cls:'formFieldTR', children:[
-						{tag:'td', html:Clipperz.PM.Strings['registrationFormRetypePassphraseLabel']},
+						{tag:'td', htmlString:Clipperz.PM.Strings['registrationFormRetypePassphraseLabel']},
 						{tag:'td', children:[
 							{tag:'input', id:this.getId('registration_repassphrase'), cls:'loginFormField', type:'password', name:'repeat-passphrase'}
 						]}
@@ -184,7 +155,7 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 							{tag:'input', id:this.getId('registration_check'), type:'checkbox', name:'safetyCheck'}
 						]},
 						{tag:'td', children:[
-							{tag:'span', html:Clipperz.PM.Strings['registrationFormSafetyCheckLabel']}
+							{tag:'span', htmlString:Clipperz.PM.Strings['registrationFormSafetyCheckLabel']}
 						]}
 					]},
 					{tag:'tr', cls:'formFieldTR', children:[
@@ -192,11 +163,11 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 							{tag:'input', id:this.getId('registration_termsOfServiceCheck'), type:'checkbox', name:'termsOfServiceCheck'}
 						]},
 						{tag:'td', children:[
-							{tag:'span', html:Clipperz.PM.Strings['registrationFormTermsOfServiceCheckLabel']}
+							{tag:'span', htmlString:Clipperz.PM.Strings['registrationFormTermsOfServiceCheckLabel']}
 						]}
 					]},
 //					{tag:'tr', cls:'formFieldTR', children:[
-//						{tag:'td', html:Clipperz.PM.Strings['registrationFormInvitationCodeLabel']},
+//						{tag:'td', htmlString:Clipperz.PM.Strings['registrationFormInvitationCodeLabel']},
 //						{tag:'td', children:[
 //							{tag:'input', id:this.getId('registration_invitationCode'), type:'text', size:'30', name:'invitationCode'}
 //						]}
@@ -214,20 +185,20 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 		{tag:'div', cls:'loginFormFooterBox', children:[
 			{tag:'ul', children:[
 				{tag:'li', children:[
-					{tag:'span', html:Clipperz.PM.Strings['registrationFormDoYouAlreadyHaveAnAccountLabel']},
-					{tag:'a', href:'.', id:this.getId('showLogin'), cls:'clipperzActionLink', html:Clipperz.PM.Strings['registrationFormSimplyLoginLabel']}
+					{tag:'span', htmlString:Clipperz.PM.Strings['registrationFormDoYouAlreadyHaveAnAccountLabel']},
+					{tag:'a', href:'.', id:this.getId('showLogin'), cls:'clipperzActionLink', htmlString:Clipperz.PM.Strings['registrationFormSimplyLoginLabel']}
 				]}
 			]}
 		]}
 	]}
 ]},
 							{tag:'div', cls:'loginPanelSwitchLanguageBox', children:[
-								{tag:'div', cls:'loginPanelSwitchLanguageDescription', html:Clipperz.PM.Strings['loginPanelSwithLanguageDescription']},
+								{tag:'div', cls:'loginPanelSwitchLanguageDescription', htmlString:Clipperz.PM.Strings['loginPanelSwithLanguageDescription']},
 								{tag:'div', cls:'loginPanelSwitchLanguageSelect', children:[
 									{tag:'select', id:this.getId('languageSelector'), children:Clipperz.PM.Strings['loginPanelSwitchLanguageSelectOptions']}
 								]}
 							]},
-							{tag:'div', cls:'browserCompatibilityBox', html:Clipperz.PM.Strings['browserCompatibilityDescription']}
+							{tag:'div', cls:'browserCompatibilityBox', htmlString:Clipperz.PM.Strings['browserCompatibilityDescription']}
 						]}
 					]}
 				]}
@@ -765,16 +736,16 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 		deferredResult = new MochiKit.Async.Deferred();
 
 //MochiKit.Logging.logDebug(">>> Main.showRegistrationSplashScreen");
-		alertElement = YAHOO.ext.DomHelper.append(document.body, {tag:'div', id:'registrationSplash', children:[
-			{tag:'div', cls:'ydlg-hd', html:Clipperz.PM.Strings['registrationSplashPanelTitle']},
+		alertElement = Clipperz.YUI.DomHelper.append(document.body, {tag:'div', id:'registrationSplash', children:[
+			{tag:'div', cls:'ydlg-hd', htmlString:Clipperz.PM.Strings['registrationSplashPanelTitle']},
 			{tag:'div', cls:'ydlg-bd', children:[
 				{tag:'div', cls:'alert-message', id:'splashMessage', children:[
-					{tag:'div', html:Clipperz.PM.Strings['registrationSplashPanelDescription']},
+					{tag:'div', htmlString:Clipperz.PM.Strings['registrationSplashPanelDescription']},
 					{tag:'table', border:'0', cellpadding:'5', children:[
 						{tag:'tbody', children:[
 							{tag:'tr', children:[
 								{tag:'td', valign:'top', children:[
-									{tag:'span', cls:'label', html:Clipperz.PM.Strings['registrationSplashPanelUsernameLabel']}
+									{tag:'span', cls:'label', htmlString:Clipperz.PM.Strings['registrationSplashPanelUsernameLabel']}
 								]},
 								{tag:'td', valign:'top', children:[
 									{tag:'span', cls:'value', html:Clipperz.Base.escapeHTML(anUser.username())}
@@ -782,23 +753,23 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 							]},
 							{tag:'tr', children:[
 								{tag:'td', valign:'top', children:[
-									{tag:'span', cls:'label', html:Clipperz.PM.Strings['registrationSplashPanelPassphraseLabel']}
+									{tag:'span', cls:'label', htmlString:Clipperz.PM.Strings['registrationSplashPanelPassphraseLabel']}
 								]},
 								{tag:'td', valign:'top', children:[
 									{tag:'div', id:this.getId('showPassphraseDiv'), children:[
 										{tag:'span', cls:'value', html:Clipperz.Base.escapeHTML(anUser.passphrase())}
 									]},
 									{tag:'div', id:this.getId('hidePassphraseDiv'), cls:'Clipperz_recordFieldData', children:[
-										{tag:'input', id:this.getId('passwordField'), type:'text', cls:'scrambledField', title:Clipperz.PM.Strings['recordDetailPasswordFieldTooltipLabel'], value:anUser.passphrase()}
+										{tag:'input', id:this.getId('passwordField'), type:'text', cls:'scrambledField', title:Clipperz.PM.Strings['recordDetailPasswordFieldTooltipLabel'], value:"anUser.passphrase()"}
 									]}
 								]}
 							]},
 							{tag:'tr', children:[
 								{tag:'td'},
 								{tag:'td', valign:'top', children:[
-//									{tag:'a', href:"#", id:this.getId('togglePassphraseVisibility'), html:Clipperz.PM.Strings['registrationSplashPanelShowPassphraseButtonLabel']} 
+//									{tag:'a', href:"#", id:this.getId('togglePassphraseVisibility'), htmlString:Clipperz.PM.Strings['registrationSplashPanelShowPassphraseButtonLabel']} 
 									{tag:'input', type:'checkbox', id:this.getId('showPassphraseCheckbox')},
-									{tag:'span', cls:'activeText', id:this.getId('showPassphraseText'), html:Clipperz.PM.Strings['registrationSplashPanelShowPassphraseButtonLabel']}
+									{tag:'span', cls:'activeText', id:this.getId('showPassphraseText'), htmlString:Clipperz.PM.Strings['registrationSplashPanelShowPassphraseButtonLabel']}
 								]}
 							]}
 						]}
@@ -809,6 +780,7 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 		]}, true);
 //MochiKit.Logging.logDebug("--- Main.showRegistrationSplashScreen - 1");
 
+		this.getElement('passwordField').dom.value = anUser.passphrase();
 		this.getElement('passwordField').wrap({tag:'div', cls:'passwordBackground'}).setStyle('background-position', "0px -" + Math.min(128, Clipperz.PM.Crypto.passwordEntropy(anUser.passphrase())) + "px").setStyle('width', '71px');
 		MochiKit.Signal.connect(this.getId('showPassphraseCheckbox'), 'onclick', this, 'togglePassphraseVisibility');
 		MochiKit.Signal.connect(this.getId('showPassphraseText'), 'onclick', this, 'togglePassphraseCheckbox');
@@ -989,10 +961,10 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.LoginPanel, Clipperz.PM.Components.P
 			var closeButton;
 			var closeFunction;
 
-			alertElement = YAHOO.ext.DomHelper.append(document.body, {tag:'div', id:'alert', children:[
-				{tag:'div', cls:'ydlg-hd', html:Clipperz.PM.Strings['splashAlertTitle']},
+			alertElement = Clipperz.YUI.DomHelper.append(document.body, {tag:'div', id:'alert', children:[
+				{tag:'div', cls:'ydlg-hd', htmlString:Clipperz.PM.Strings['splashAlertTitle']},
 				{tag:'div', cls:'ydlg-bd', children:[
-					{tag:'div', cls:'alert-message', id:'splashMessage', html:Clipperz.PM.Strings['splashAlertText']}
+					{tag:'div', cls:'alert-message', id:'splashMessage', htmlString:Clipperz.PM.Strings['splashAlertText']}
 				]},
 				{tag:'div', cls:'ydlg-ft'}
 			]}, true);

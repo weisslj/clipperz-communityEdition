@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 
 
@@ -47,7 +18,7 @@ Clipperz.KeePassExportProcessor.prototype = MochiKit.Base.update(null, {
 
 //MochiKit.Logging.logDebug(">>> KeePassExportProcessor.parse");
 		result = [];
-//MochiKit.Logging.logDebug("--- KeePassExportProcessor.parse - result: " + MochiKit.Base.serializeJSON(result));
+//MochiKit.Logging.logDebug("--- KeePassExportProcessor.parse - result: " + Clipperz.Base.serializeJSON(result));
 //MochiKit.Logging.logDebug("<<< KeePassExportProcessor.parse");
 
 		return result;
@@ -60,7 +31,7 @@ Clipperz.KeePassExportProcessor.prototype = MochiKit.Base.update(null, {
 
 //MochiKit.Logging.logDebug(">>> KeePassExportProcessor.deferredParse_core");		
 //MochiKit.Logging.logDebug("--- KeePassExportProcessor.deferredParse_core - (1) aContext.line: " + aContext.line.replace(/\n/g, "\\n").substring(0,50));		
-//MochiKit.Logging.logDebug("--- KeePassExportProcessor.deferredParse_core - aContext: " + MochiKit.Base.serializeJSON(aContext).substring(0,50));		
+//MochiKit.Logging.logDebug("--- KeePassExportProcessor.deferredParse_core - aContext: " + Clipperz.Base.serializeJSON(aContext).substring(0,50));		
 //MochiKit.Logging.logDebug("--- KeePassExportProcessor.deferredParse_core - (2) aContext.line: " + aContext.line.replace(/\n/g, "\\n").substring(0,50));		
 //console.log("deferredParse_core - aContext", aContext);
 //MochiKit.Logging.logDebug("--- KeePassExportProcessor.deferredParse_core - (3) aContext.line: " + aContext.line.replace(/\n/g, "\\n").substring(0,50));		
@@ -110,7 +81,7 @@ Clipperz.KeePassExportProcessor.prototype = MochiKit.Base.update(null, {
 			size: lines.length,
 			result: []
 		}
-//MochiKit.Logging.logDebug("--- KeePassExportProcessor.deferredParse - context: " + MochiKit.Base.serializeJSON(context).substring(0,50));
+//MochiKit.Logging.logDebug("--- KeePassExportProcessor.deferredParse - context: " + Clipperz.Base.serializeJSON(context).substring(0,50));
 //console.log("--- KeePassExportProcessor.deferredParse - context: ", context);
 
 		deferredResult = new MochiKit.Async.Deferred();

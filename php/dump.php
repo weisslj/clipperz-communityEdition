@@ -128,3 +128,4 @@ header('Content-Disposition: attachment; filename=Clipperz_'.date("Ymd").'.html'
 	
 	echo str_replace("/*offline_data_placeholder*/", $data, $htmlContent);
 ?>
+

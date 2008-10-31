@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -75,8 +46,8 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldLabelComponent, Clipperz.
 	'render': function() {
 		var	newTextFormField;
 		this.element().update("");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', cls:'Clipperz_recordFieldLabel', id:this.getId('label')});
-//		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', style:'font-size:8pt;', html:this.recordField().key()});
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', cls:'Clipperz_recordFieldLabel', id:this.getId('label')});
+//		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', style:'font-size:8pt;', html:this.recordField().key()});
 
 //		this.setInputElement(new Clipperz.PM.Components.TextFormField(this.getElement('label'), {editMode:this.editMode(), value:this.value()}));
 		newTextFormField = new Clipperz.PM.Components.TextFormField(this.getElement('label'), {editMode:this.editMode(), value:this.value()});
@@ -101,7 +72,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldLabelComponent, Clipperz.
 
 	'update': function() {
 //MochiKit.Logging.logDebug(">>> FieldLabelComponent.update");
-		this.inputElement().update({value:this.value(), editMode:this.editMode()});
+		this.inputElement().update({editMode:this.editMode(), value:this.value()});
 //MochiKit.Logging.logDebug("<<< FieldLabelComponent.update");
 	},
 	
@@ -113,7 +84,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldLabelComponent, Clipperz.
 		
 		this.element().update("");
 		width = this.element().getWidth();
-		element = YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', html:this.value()}, true);
+		element = Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', html:this.value()}, true);
 		element.setWidth(width-1);
 	},
 
@@ -124,7 +95,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.FieldLabelComponent, Clipperz.
 
 		this.element().update("");
 		width = this.element().getWidth(true);
-		this.setInputElement(YAHOO.ext.DomHelper.append(this.element().dom, {tag:'input', type:'text', value:this.value()}, true));
+		this.setInputElement(Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'input', type:'text', value:this.value()}, true));
 		this.inputElement().setWidth(width-1);
 	},
 */

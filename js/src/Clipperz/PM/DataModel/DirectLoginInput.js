@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.DataModel) == 'undefined') { Clipperz.PM.DataModel = {}; }
@@ -104,6 +75,7 @@ Clipperz.PM.DataModel.DirectLoginInput.prototype = MochiKit.Base.update(null, {
 							var options;
 							
 //MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 2.3");
+//	TODO: remove the value: field and replace it with element.dom.value = <some value>
 							options = {value:anOption['value']};
 //MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 2.4");
 							if (currentValue == anOption['value']) {
@@ -150,6 +122,7 @@ Clipperz.PM.DataModel.DirectLoginInput.prototype = MochiKit.Base.update(null, {
 							var divNode;
 							
 //MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 4.4");
+//	TODO: remove the value: field and replace it with element.dom.value = <some value>
 							options = {type:'radio', name:currentName, value:anOption['value']}
 							isChecked = (currentValue == anOption['value']);
 //MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 4.5");
@@ -158,7 +131,7 @@ Clipperz.PM.DataModel.DirectLoginInput.prototype = MochiKit.Base.update(null, {
 								options.checked = true;
 //MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 4.7");
 							}
-//MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 4.8 - options: " + MochiKit.Base.serializeJSON(options));
+//MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 4.8 - options: " + Clipperz.Base.serializeJSON(options));
 //MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 4.8 - value: " + anOption['value']);
 
 							if (Clipperz_IEisBroken == true) {
@@ -191,6 +164,7 @@ Clipperz.PM.DataModel.DirectLoginInput.prototype = MochiKit.Base.update(null, {
 			binding = this.directLogin().bindings()[this.name()];
 
 //MochiKit.Logging.logDebug("--- DirectLoginInput.formConfiguration - 6");
+//	TODO: remove the value: field and replace it with element.dom.value = <some value>
 			result = MochiKit.DOM.INPUT({
 				type:((this.type() != 'password') ? this.type() : 'text'),
 //				type:(((this.type() != 'password') && (this.type() != 'submit')) ? this.type() : 'text'),
@@ -214,7 +188,7 @@ Clipperz.PM.DataModel.DirectLoginInput.prototype = MochiKit.Base.update(null, {
 		type = this.type();
 		result = ((type == 'checkbox') || (type == 'radio') || (type == 'select'));
 //if (result == true) {
-//	MochiKit.Logging.logDebug("DIRECT LOGIN INPUT need value: " + MochiKit.Base.serializeJSON(this.args()));
+//	MochiKit.Logging.logDebug("DIRECT LOGIN INPUT need value: " + Clipperz.Base.serializeJSON(this.args()));
 //}
 //MochiKit.Logging.logDebug("<<< DirectLoginInput.shouldSetValue");
 		return result;

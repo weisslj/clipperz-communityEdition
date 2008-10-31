@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.DataModel) == 'undefined') { Clipperz.PM.DataModel = {}; }
@@ -41,10 +12,11 @@ Clipperz.PM.DataModel.Record = function(args) {
 	this._reference = args['reference'] || Clipperz.PM.Crypto.randomKey();
 	this._version = args['version'] || Clipperz.PM.Crypto.encryptingFunctions.currentVersion;
 	this._key = args['key'] || Clipperz.PM.Crypto.randomKey();
-	this._label = args['label'] || Clipperz.PM.Strings['newRecordTitleLabel'];
+
+	this.setLabel(args['label'] || Clipperz.PM.Strings['newRecordTitleLabel']);
 	
-	this._headerNotes = args['headerNotes'] || null;
-	this._notes = args['notes'] || args['headerNotes'] || "";
+	this.setHeaderNotes(args['headerNotes'] || null);
+	this.setNotes(args['notes'] || args['headerNotes'] || "");
 //MochiKit.Logging.logDebug("--- new Record ('" + this._label + "')- _headerNotes: '" + this._headerNotes + "'");
 //MochiKit.Logging.logDebug("--- new Record ('" + this._label + "')- _notes: '" + this._notes + "'");
 //	this._notes = args.notes || "";
@@ -186,7 +158,7 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 		result['currentVersion']['reference'] = this.currentVersion().reference();
 //		result['versions'] = MochiKit.Base.map(MochiKit.Base.methodcaller("serializedData"), MochiKit.Base.values(this.versions()));
 		
-		return MochiKit.Base.serializeJSON(result);
+		return Clipperz.Base.serializeJSON(result);
 	},
 	
 	//-------------------------------------------------------------------------
@@ -278,7 +250,7 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 
 	'processData': function(someValues) {
 //MochiKit.Logging.logDebug(">>> [" + (new Date()).valueOf() + "] Record.processData");
-//MochiKit.Logging.logDebug("--- Record.processData: " + MochiKit.Base.serializeJSON(someValues));
+//MochiKit.Logging.logDebug("--- Record.processData: " + Clipperz.Base.serializeJSON(someValues));
 		if (this.shouldProcessData()) {
 			var currentVersionParameters;
 
@@ -342,8 +314,8 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 				reference:Clipperz.Crypto.SHA.sha256(new Clipperz.ByteArray(this.label() +
 																			someValues['loginFormData'] +
 																			someValues['loginBindings'])).toHexString().substring(2),
-				formData:MochiKit.Base.evalJSON(someValues['loginFormData']),
-				legacyBindingData:MochiKit.Base.evalJSON(someValues['loginBindings']),
+				formData:Clipperz.Base.evalJSON(someValues['loginFormData']),
+				legacyBindingData:Clipperz.Base.evalJSON(someValues['loginBindings']),
 				bookmarkletVersion:'0.1'
 			});
 			this.addDirectLogin(directLogin, true);
@@ -482,7 +454,7 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 	
 	'setCachedData': function(aValue) {
 //MochiKit.Logging.logDebug(">>> Record.setCachedData");
-//MochiKit.Logging.logDebug("--- Record.setCachedData - aValue: " + MochiKit.Base.serializeJSON(aValue));
+//MochiKit.Logging.logDebug("--- Record.setCachedData - aValue: " + Clipperz.Base.serializeJSON(aValue));
 		this._cachedData = aValue;
 		this.setShouldProcessData(false);
 //MochiKit.Logging.logDebug("<<< Record.setCachedData");
@@ -497,9 +469,9 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 
 //MochiKit.Logging.logDebug(">>> [" + (new Date()).valueOf() + "] Record.hasPendingChanges");
 //MochiKit.Logging.logDebug(">>> Record.hasPendingChanges - cachedData: " + this.cachedData());
-//MochiKit.Logging.logDebug(">>> Record.hasPendingChanges - cachedData: " + MochiKit.Base.serializeJSON(this.cachedData()));
+//MochiKit.Logging.logDebug(">>> Record.hasPendingChanges - cachedData: " + Clipperz.Base.serializeJSON(this.cachedData()));
 //MochiKit.Logging.logDebug(">>> Record.hasPendingChanges - currentSnapshot: " + this.currentDataSnapshot());
-//MochiKit.Logging.logDebug(">>> Record.hasPendingChanges - currentSnapshot: " + MochiKit.Base.serializeJSON(this.currentDataSnapshot()));
+//MochiKit.Logging.logDebug(">>> Record.hasPendingChanges - currentSnapshot: " + Clipperz.Base.serializeJSON(this.currentDataSnapshot()));
 //console.log(">>> Record.hasPendingChanges - cachedData: %o", this.cachedData());
 //console.log(">>> Record.hasPendingChanges - currentSnapshot: %o", this.currentDataSnapshot());
 		result = (MochiKit.Base.compare(this.cachedData(), this.currentDataSnapshot()) != 0);
@@ -526,7 +498,7 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 		};
 		
 //		result['data']['data'] = this.notes();
-		result = MochiKit.Base.serializeJSON(result);
+		result = Clipperz.Base.serializeJSON(result);
 		
 //MochiKit.Logging.logDebug("<<< [" + (new Date()).valueOf() + "] Record.currentDataSnapshot");
 //MochiKit.Logging.logDebug("<<< Record.currentDataSnapshot");
@@ -709,7 +681,7 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 
 	'cancelChanges': function() {
 //MochiKit.Logging.logDebug(">>> Record.cancelChanges");
-//MochiKit.Logging.logDebug("--- Record.cancelChanges - cachedData: " + MochiKit.Base.serializeJSON(this.cachedData()));
+//MochiKit.Logging.logDebug("--- Record.cancelChanges - cachedData: " + Clipperz.Base.serializeJSON(this.cachedData()));
 		if (this.isBrandNew()) {
 			this.user().removeRecord(this);
 		} else {
@@ -724,13 +696,13 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 		var	snapshotData;
 		
 //MochiKit.Logging.logDebug(">>> [" + (new Date()).valueOf() + "] Record.restoreValuesFromSnapshot");
-		snapshotData = MochiKit.Base.evalJSON(someSnapshotData);
-//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - someSnapshotData (1): " + MochiKit.Base.serializeJSON(someSnapshotData));
+		snapshotData = Clipperz.Base.evalJSON(someSnapshotData);
+//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - someSnapshotData (1): " + Clipperz.Base.serializeJSON(someSnapshotData));
 		this.setLabel(snapshotData['label']);
 		this.resetDirectLogins();
 		this.setShouldProcessData(true);
 		this.processData(snapshotData);
-//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - snapshotData: (2)" + MochiKit.Base.serializeJSON(snapshotData));
+//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - snapshotData: (2)" + Clipperz.Base.serializeJSON(snapshotData));
 		
 		this.resetRemovedDirectLogins();
 		
@@ -742,8 +714,8 @@ Clipperz.PM.DataModel.Record.prototype = MochiKit.Base.update(null, {
 //MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - 1");
 //console.log("snapshot data: %o", someSnapshotData.currentVersion);
 //console.log("current data: %o", currentSnapshot.currentVersion);
-//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - someSnapshotData: " + MochiKit.Base.serializeJSON(someSnapshotData.currentVersion));
-//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - currentSnapshot: " + MochiKit.Base.serializeJSON(currentSnapshot.currentVersion));
+//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - someSnapshotData: " + Clipperz.Base.serializeJSON(someSnapshotData.currentVersion));
+//MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - currentSnapshot: " + Clipperz.Base.serializeJSON(currentSnapshot.currentVersion));
 			comparisonResult = MochiKit.Base.compare(someSnapshotData.currentVersion, currentSnapshot.currentVersion);
 //MochiKit.Logging.logDebug("--- Record.restoreValuesFromSnapshot - " + comparisonResult);
 		}

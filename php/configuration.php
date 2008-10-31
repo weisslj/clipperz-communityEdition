@@ -34,3 +34,4 @@ $configuration['proxy_password'] = false;
 $configuration['plugins_path'] = dirname(__FILE__).'/plugins';
 
 ?>
+

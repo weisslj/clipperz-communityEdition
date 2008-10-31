@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -82,7 +53,7 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.MainPanel, Clipperz.PM.Components.Pa
 
 	'render': function() {
 		this.element().update("");
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'table', id:'mainPanelTABLE', border:'0', cellspacing:'0', cellpadding:'0', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'table', id:'mainPanelTABLE', border:'0', cellspacing:'0', cellpadding:'0', children:[
 			{tag:'tbody', children:[
 				{tag:'tr', children:[
 					{tag:'td', width:'15', children:[
@@ -90,8 +61,8 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.MainPanel, Clipperz.PM.Components.Pa
 					]},
 					{tag:'td', valign:'top', id:'directLoginsTD', width:'200', children:[
 						{tag:'div', id:'directLoginsBlock', children:[
-							{tag:'div', cls:'directLoginsBlockHeaderBox', children:[{tag:'h3', id:'directLoginTitle', html:Clipperz.PM.Strings['mainPanelDirectLoginBlockLabel']}]},
-							{tag:'div', id:'directLoginsDescription', html:Clipperz.PM.Strings['mainPanelDirectLoginBlockDescription']},
+							{tag:'div', cls:'directLoginsBlockHeaderBox', children:[{tag:'h3', id:'directLoginTitle', htmlString:Clipperz.PM.Strings['mainPanelDirectLoginBlockLabel']}]},
+							{tag:'div', id:'directLoginsDescription', htmlString:Clipperz.PM.Strings['mainPanelDirectLoginBlockDescription']},
 							{tag:'ul', id:'directLogins'}
 						]}
 					]},
@@ -626,7 +597,7 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.MainPanel, Clipperz.PM.Components.Pa
 
 	'recordItemTemplate': function() {
 		if (this._recordItemTemplate == null) {
-			this._recordItemTemplate = YAHOO.ext.DomHelper.createTemplate({tag:'li', cls:'{cls}', id:'{recordReference}', children:[
+			this._recordItemTemplate = Clipperz.YUI.DomHelper.createTemplate({tag:'li', cls:'{cls}', id:'{recordReference}', children:[
 				{tag:'span', html:'{recordTitle}'}
 			]});
 			this._recordItemTemplate.compile();
@@ -637,7 +608,7 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.MainPanel, Clipperz.PM.Components.Pa
 	
 	'directLoginItemTemplate': function() {
 		if (this._directLoginItemTemplate == null) {
-			this._directLoginItemTemplate = YAHOO.ext.DomHelper.createTemplate({tag:'li', id:'{directLoginReference}', children:[
+			this._directLoginItemTemplate = Clipperz.YUI.DomHelper.createTemplate({tag:'li', id:'{directLoginReference}', children:[
 				{tag:'table', border:'0', cellpadding:'0', cellspacing:'0', children:[
 					{tag:'tbody', children:[
 						{tag:'tr', children:[
@@ -648,8 +619,8 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.MainPanel, Clipperz.PM.Components.Pa
 								{tag:'a', cls:'directLoginItemTitle', html:'{directLoginTitle}'}
 							]},
 							{tag:'td', valign:'top', align:'right', children:[
-//								{tag:'span', cls:'directLoginItemEditButton', html:Clipperz.PM.Strings['directLinkReferenceShowButtonLabel']}
-								{tag:'a', cls:'directLoginItemEditButton', html:Clipperz.PM.Strings['directLinkReferenceShowButtonLabel']}
+//								{tag:'span', cls:'directLoginItemEditButton', htmlString:Clipperz.PM.Strings['directLinkReferenceShowButtonLabel']}
+								{tag:'a', cls:'directLoginItemEditButton', htmlString:Clipperz.PM.Strings['directLinkReferenceShowButtonLabel']}
 							]}
 						]}
 					]}
@@ -717,12 +688,12 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.MainPanel, Clipperz.PM.Components.Pa
 		
 		recordListBlockHeaderElement = YAHOO.ext.Element.get('recordListBlockHeader');
 		recordListBlockHeaderElement.update("");
-		YAHOO.ext.DomHelper.append(recordListBlockHeaderElement.dom, 		
+		Clipperz.YUI.DomHelper.append(recordListBlockHeaderElement.dom, 		
 			{tag:'table', cls:'recordListBlockHeaderTABLE', border:'0', cellspacing:'0', cellpadding:'0', children:[
 				{tag:'tbody', children:[
 					{tag:'tr', children:[
 						{tag:'td', /*width:'50%',*/ cls:'recordBlockTitleTD', children:[
-							{tag:'h3', id:'recordBlockTitle', html:Clipperz.PM.Strings['mainPanelRecordsBlockLabel']}
+							{tag:'h3', id:'recordBlockTitle', htmlString:Clipperz.PM.Strings['mainPanelRecordsBlockLabel']}
 						]},
 						{tag:'td', align:'right', children:[
 							{tag:'table', id:'recordListButtonsTABLE', border:'0', cellspacing:'0', cellpadding:'0', children:[
@@ -766,15 +737,15 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.MainPanel, Clipperz.PM.Components.Pa
 		
 		recordListFilterHeaderElement = YAHOO.ext.Element.get('recordListFilterHeader');
 		recordListFilterHeaderElement.update("");
-		YAHOO.ext.DomHelper.append(recordListFilterHeaderElement.dom, 		
+		Clipperz.YUI.DomHelper.append(recordListFilterHeaderElement.dom, 		
 			{tag:'div', id:'recordFiltersDIV', children:[
 				{tag:'div', id:'recordFiltersTableWrapper', children:[
 					{tag:'table', id:'recordFiltersTABLE', border:'0', cellspacing:'0', cellpadding:'0', children:[
 						{tag:'tbody', children:[
 							{tag:'tr', children:[
-								{tag:'td', id:'recordFilterAllTD', children:[{tag:'div', children:[{tag:'a', id:'recordFilterAll', html:Clipperz.PM.Strings['mainPanelRecordFilterBlockAllLabel']}]}]},
-								{tag:'td', id:'recordFilterTagsTD', children:[{tag:'div', children:[{tag:'a', id:'recordFilterTags', html:Clipperz.PM.Strings['mainPanelRecordFilterBlockTagsLabel']}]}]},
-								{tag:'td', id:'recordFilterSearchTD', children:[{tag:'div', children:[{tag:'a', id:'recordFilterSearch', html:Clipperz.PM.Strings['mainPanelRecordFilterBlockSearchLabel']}]}]}
+								{tag:'td', id:'recordFilterAllTD', children:[{tag:'div', children:[{tag:'a', id:'recordFilterAll', htmlString:Clipperz.PM.Strings['mainPanelRecordFilterBlockAllLabel']}]}]},
+								{tag:'td', id:'recordFilterTagsTD', children:[{tag:'div', children:[{tag:'a', id:'recordFilterTags', htmlString:Clipperz.PM.Strings['mainPanelRecordFilterBlockTagsLabel']}]}]},
+								{tag:'td', id:'recordFilterSearchTD', children:[{tag:'div', children:[{tag:'a', id:'recordFilterSearch', htmlString:Clipperz.PM.Strings['mainPanelRecordFilterBlockSearchLabel']}]}]}
 							]}
 						]}
 					]}
@@ -883,7 +854,7 @@ MochiKit.Logging.logDebug("<<< filterCardsWithName");
 		YAHOO.ext.Element.get('directLoginTitle').update(Clipperz.PM.Strings['mainPanelDirectLoginBlockLabel']);
 		YAHOO.ext.Element.get('directLoginsDescription').update("");
 		MochiKit.Iter.forEach(Clipperz.PM.Strings['mainPanelDirectLoginBlockDescriptionConfig'], function(aConfigItem) {
-			YAHOO.ext.DomHelper.append(YAHOO.ext.Element.get('directLoginsDescription').dom, aConfigItem);
+			Clipperz.YUI.DomHelper.append(YAHOO.ext.Element.get('directLoginsDescription').dom, aConfigItem);
 		});
 		YAHOO.ext.Element.get('recordBlockTitle').update(Clipperz.PM.Strings['mainPanelRecordsBlockLabel']);
 		this.renderRecordListBlockHeader();
@@ -893,7 +864,7 @@ MochiKit.Logging.logDebug("<<< filterCardsWithName");
 //		YAHOO.ext.Element.get('newRecordPanelTitleLabel').update(Clipperz.PM.Strings['mainPanelNewRecordPanelRecordTitleLabel']);
 //		YAHOO.ext.Element.get('newRecordPanelConfigLabel').update("");
 //		MochiKit.Iter.forEach(Clipperz.PM.Strings['mainPanelNewRecordPanelRecordConfigConfig'], function(aConfigItem) {
-//			YAHOO.ext.DomHelper.append(YAHOO.ext.Element.get('newRecordPanelConfigLabel').dom, aConfigItem);
+//			Clipperz.YUI.DomHelper.append(YAHOO.ext.Element.get('newRecordPanelConfigLabel').dom, aConfigItem);
 //		});
 //		this.newRecordButton().setText(Clipperz.PM.Strings['mainPanelNewRecordPanelCreateButtonLabel']);
 //		this.newRecordCancelButton().setText(Clipperz.PM.Strings['mainPanelNewRecordPanelCancelButtonLabel']);

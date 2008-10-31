@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -69,7 +40,7 @@ YAHOO.extendX(Clipperz.PM.Components.OTP.MainComponent, Clipperz.PM.Components.B
 
 		if (Clipperz.PM.Proxy.defaultProxy.isReadOnly()) {
 			this.element().update("");
-			this.domHelper().append(this.element(), {tag:'div', cls:'oneTimePasswordReadOnlyMessage', html:Clipperz.PM.Strings['oneTimePasswordReadOnlyMessage']});
+			this.domHelper().append(this.element(), {tag:'div', cls:'oneTimePasswordReadOnlyMessage', htmlString:Clipperz.PM.Strings['oneTimePasswordReadOnlyMessage']});
 		} else {
 			var deferredResult;
 
@@ -78,12 +49,12 @@ YAHOO.extendX(Clipperz.PM.Components.OTP.MainComponent, Clipperz.PM.Components.B
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OTP.MainComponent.render - 1: " + res); return res;});
 			deferredResult.addCallback(MochiKit.Base.bind(function() {
 				this.element().update("");
-				YAHOO.ext.DomHelper.append(this.element(), {tag:'div', html:Clipperz.PM.Strings['oneTimePasswordLoadingMessage']});
+				Clipperz.YUI.DomHelper.append(this.element(), {tag:'div', htmlString:Clipperz.PM.Strings['oneTimePasswordLoadingMessage']});
 			}, this));
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OTP.MainComponent.render - 2: " + res); return res;});
 			deferredResult.addCallback(MochiKit.Base.method(this.user(), 'loadOneTimePasswords'));
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OTP.MainComponent.render - 3: " + res); return res;});
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OTP.MainComponent.render - 3.1: " + MochiKit.Base.serializeJSON(res.serializedData())); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OTP.MainComponent.render - 3.1: " + Clipperz.Base.serializeJSON(res.serializedData())); return res;});
 			deferredResult.addCallback(MochiKit.Base.bind(function(aResult) {
 				var	tbodyElement;
 				var	oneTimePasswordReferenceKeys;
@@ -93,7 +64,7 @@ YAHOO.extendX(Clipperz.PM.Components.OTP.MainComponent, Clipperz.PM.Components.B
 				isThereAnyActiveOneTimePassword = false;
 				
 				this.element().update("");
-				YAHOO.ext.DomHelper.append(this.element(), {tag:'div', id:'oneTimePasswordList', children:[
+				Clipperz.YUI.DomHelper.append(this.element(), {tag:'div', id:'oneTimePasswordList', children:[
 					{tag:'div', id:'oneTimePasswords_header', children:[
 						{tag:'table', width:'100%', children:[
 							{tag:'tbody', children:[
@@ -113,19 +84,19 @@ YAHOO.extendX(Clipperz.PM.Components.OTP.MainComponent, Clipperz.PM.Components.B
 						{tag:'div', children:[
 							{tag:'ul', children:[
 								{tag:'li', children:[
-									{tag:'span', html:Clipperz.PM.Strings['oneTimePasswordSelectionLink_selectLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['oneTimePasswordSelectionLink_selectLabel']}
 								]},
 								{tag:'li', children:[
-									{tag:'a', href:'#', id:this.getId('selectAllOneTimePasswords_link'), html:Clipperz.PM.Strings['oneTimePasswordSelectionLink_all']}
+									{tag:'a', href:'#', id:this.getId('selectAllOneTimePasswords_link'), htmlString:Clipperz.PM.Strings['oneTimePasswordSelectionLink_all']}
 								]},
 								{tag:'li', children:[
-									{tag:'a', href:'#', id:this.getId('selectNoneOneTimePasswords_link'), html:Clipperz.PM.Strings['oneTimePasswordSelectionLink_none']}
+									{tag:'a', href:'#', id:this.getId('selectNoneOneTimePasswords_link'), htmlString:Clipperz.PM.Strings['oneTimePasswordSelectionLink_none']}
 								]},
 								{tag:'li', children:[
-									{tag:'a', href:'#', id:this.getId('selectUsedOneTimePasswords_link'), html:Clipperz.PM.Strings['oneTimePasswordSelectionLink_used']}
+									{tag:'a', href:'#', id:this.getId('selectUsedOneTimePasswords_link'), htmlString:Clipperz.PM.Strings['oneTimePasswordSelectionLink_used']}
 								]},
 								{tag:'li', children:[
-									{tag:'a', href:'#', id:this.getId('selectUnusedOneTimePasswords_link'), html:Clipperz.PM.Strings['oneTimePasswordSelectionLink_unused']}
+									{tag:'a', href:'#', id:this.getId('selectUnusedOneTimePasswords_link'), htmlString:Clipperz.PM.Strings['oneTimePasswordSelectionLink_unused']}
 								]}
 							]}
 						]}
@@ -175,7 +146,7 @@ YAHOO.extendX(Clipperz.PM.Components.OTP.MainComponent, Clipperz.PM.Components.B
 										]},
 										{tag:'div', cls:'oneTimePassword_usageDate', html:Clipperz.PM.Date.formatDateWithTemplate(currentOTP.usageDate(), Clipperz.PM.Strings['fullDate_format'])},
 										{tag:'div', cls:'oneTimePassword_IP', children:[
-											{tag:'span', cls:'oneTimePassword_IPLabel', html:Clipperz.PM.Strings['loginHistoryIPLabel']},
+											{tag:'span', cls:'oneTimePassword_IPLabel', htmlString:Clipperz.PM.Strings['loginHistoryIPLabel']},
 											{tag:'span', cls:'oneTimePassword_IPValue', html:ip}
 										]}
 									];
@@ -186,7 +157,7 @@ YAHOO.extendX(Clipperz.PM.Components.OTP.MainComponent, Clipperz.PM.Components.B
 								break;
 							case 'DISABLED':
 								loginSessionInfoConfig = [
-									{tag:'span', cls:'disabledOneTimePassword', html:Clipperz.PM.Strings['disabledOneTimePassword_warning']}
+									{tag:'span', cls:'disabledOneTimePassword', htmlString:Clipperz.PM.Strings['disabledOneTimePassword_warning']}
 								];
 								break;
 							case 'ACTIVE':
@@ -216,7 +187,7 @@ YAHOO.extendX(Clipperz.PM.Components.OTP.MainComponent, Clipperz.PM.Components.B
 				} else {
 					this.domHelper().append(tbodyElement, {tag:'tr', children:[
 						{tag:'td', children:[
-							{tag:'div', cls:'oneTimePassword_noPasswordPresent', html:Clipperz.PM.Strings['oneTimePasswordNoPasswordAvailable']}
+							{tag:'div', cls:'oneTimePassword_noPasswordPresent', htmlString:Clipperz.PM.Strings['oneTimePasswordNoPasswordAvailable']}
 						]}
 					]});
 				}

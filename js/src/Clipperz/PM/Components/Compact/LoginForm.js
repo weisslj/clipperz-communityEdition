@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -57,16 +28,16 @@ YAHOO.extendX(Clipperz.PM.Components.Compact.LoginForm, Clipperz.PM.Components.B
 		MochiKit.Signal.disconnectAllTo(this);
 		this.element().update("");
 		
-		YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', id:this.getId('baseDiv'), cls:'LoginPanel', children:[
+		Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', id:this.getId('baseDiv'), cls:'LoginPanel', children:[
 			{tag:'div', id:'compactHeader'},
 			{tag:'div', id:'compactBody', children:[
 				{tag:'form', id:this.getId('loginForm_form'), children:[
 					{tag:'dl', children:[
-						{tag:'dt', html:Clipperz.PM.Strings['loginFormUsernameLabel']},
+						{tag:'dt', htmlString:Clipperz.PM.Strings['loginFormUsernameLabel']},
 						{tag:'dd', children:[
 							{tag:'input', id:this.getId('login_username'), type:'text', size:'30', name:'username'}
 						]},
-						{tag:'dt', html:Clipperz.PM.Strings['loginFormPassphraseLabel']},
+						{tag:'dt', htmlString:Clipperz.PM.Strings['loginFormPassphraseLabel']},
 						{tag:'dd', children:[
 							{tag:'input', id:this.getId('login_passphrase'), type:'password', size:'30', name:'passphrase'}
 						]}

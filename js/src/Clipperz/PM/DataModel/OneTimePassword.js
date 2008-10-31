@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.DataModel) == 'undefined') { Clipperz.PM.DataModel = {}; }
@@ -162,7 +133,7 @@ Clipperz.PM.DataModel.OneTimePassword.prototype = MochiKit.Base.update(null, {
 			'suffix': suffixPadding
 		};
 		
-//		result = MochiKit.Base.serializeJSON(packedPassphrase);
+//		result = Clipperz.Base.serializeJSON(packedPassphrase);
 		result = packedPassphrase;
 //MochiKit.Logging.logDebug("===== OTP packedPassprase: [" + result.length + "]" + result);
 //MochiKit.Logging.logDebug("<<< OneTimePassword.packedPassphrase");
@@ -191,7 +162,7 @@ Clipperz.PM.DataModel.OneTimePassword.prototype = MochiKit.Base.update(null, {
 			'data': "",
 			'version': Clipperz.PM.Crypto.encryptingFunctions.currentVersion
 		}
-//MochiKit.Logging.logDebug("--- OneTimePassword.encryptedData - 2: " + MochiKit.Base.serializeJSON(result));
+//MochiKit.Logging.logDebug("--- OneTimePassword.encryptedData - 2: " + Clipperz.Base.serializeJSON(result));
 		deferredResult = new MochiKit.Async.Deferred();
 //MochiKit.Logging.logDebug("--- OneTimePassword.encryptedData - 3");
 //deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OneTimePassword.encryptedData - 1: " + res); return res;});
@@ -204,7 +175,7 @@ Clipperz.PM.DataModel.OneTimePassword.prototype = MochiKit.Base.update(null, {
 			return aResult;
 		}, result);
 //MochiKit.Logging.logDebug("--- OneTimePassword.encryptedData - 5");
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OneTimePassword.encryptedData - 3: " + MochiKit.Base.serializeJSON(res)); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OneTimePassword.encryptedData - 3: " + Clipperz.Base.serializeJSON(res)); return res;});
 		deferredResult.callback();
 //MochiKit.Logging.logDebug("--- OneTimePassword.encryptedData - 6");
 		
@@ -236,7 +207,7 @@ Clipperz.PM.DataModel.OneTimePassword.prototype = MochiKit.Base.update(null, {
 		}, result);
 
 		deferredResult.addCallback(Clipperz.NotificationCenter.deferredNotification, this, 'updatedProgressState', 'saveOTP_sendingData');
-//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OneTimePassword.saveChanges - 1: " + MochiKit.Base.serializeJSON(res)); return res;});
+//deferredResult.addBoth(function(res) {MochiKit.Logging.logDebug("OneTimePassword.saveChanges - 1: " + Clipperz.Base.serializeJSON(res)); return res;});
 		deferredResult.addCallback(MochiKit.Base.method(this.user().connection(), 'message'), 'addNewOneTimePassword');
 
 		deferredResult.addCallback(Clipperz.NotificationCenter.deferredNotification, this, 'updatedProgressState', 'saveOTP_updatingInterface');

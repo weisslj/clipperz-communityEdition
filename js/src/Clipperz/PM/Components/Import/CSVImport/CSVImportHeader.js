@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -74,16 +45,17 @@ YAHOO.extendX(Clipperz.PM.Components.Import.CSVImport.CSVImportHeader, Clipperz.
 		c = this.mainComponent().parsedValues()[0].length;
 		for (i=0; i<c; i++) {
 			if (this.mainComponent().isColumnSelected(i)) {
-				thConfigs.push({tag:'th', children:[{tag:'input', type:'text', id:this.getId('headerTextField_' + i), value:this.mainComponent().labelForColumn(i)}]});
+//				thConfigs.push({tag:'th', children:[{tag:'input', type:'text', id:this.getId('headerTextField_' + i), value:this.mainComponent().labelForColumn(i)}]});
+				thConfigs.push({tag:'th', children:[{tag:'input', type:'text', id:this.getId('headerTextField_' + i), value:""}]});
 			}
 		}
 		
 		this.element().update("");
 		this.domHelper().append(this.element(), {tag:'div', children:[
-			{tag:'div', cls:'importStepDescription', html:Clipperz.PM.Strings['CSV_ImportWizard_Header']},
+			{tag:'div', cls:'importStepDescription', htmlString:Clipperz.PM.Strings['CSV_ImportWizard_Header']},
 			{tag:'div', cls:'importStepParameters', children:[
 				{tag:'input', type:'checkbox', name:'isFistRowHeader', id:this.getId('isFirstRowHeader_checkbox')},
-				{tag:'span', id:this.getId('isFirstRowHeader_span'), cls:'clickableSpan', html:Clipperz.PM.Strings['CSV_ImportWizard_Header_Settings_firstRowHeaderLabel']}
+				{tag:'span', id:this.getId('isFirstRowHeader_span'), cls:'clickableSpan', htmlString:Clipperz.PM.Strings['CSV_ImportWizard_Header_Settings_firstRowHeaderLabel']}
 			]},
 			{tag:'div', id:this.getId('dataDiv'), children:[
 				{tag:'div', cls:'csvImportPreview', children:[
@@ -94,6 +66,12 @@ YAHOO.extendX(Clipperz.PM.Components.Import.CSVImport.CSVImportHeader, Clipperz.
 				]}
 			]}
 		]});
+
+		for (i=0; i<c; i++) {
+			if (this.mainComponent().isColumnSelected(i)) {
+				this.getElement('headerTextField_' + i).dom.value = this.mainComponent().labelForColumn(i);
+			}
+		}
 		
 		this.renderData(this.getElement('previewData_tbody'), this.mainComponent().parsedValues());
 
@@ -147,7 +125,7 @@ YAHOO.extendX(Clipperz.PM.Components.Import.CSVImport.CSVImportHeader, Clipperz.
 			return result;
 		}, this), data);
 		
-		MochiKit.Base.map(function(aRowConfig) {YAHOO.ext.DomHelper.append(anElement, aRowConfig);}, trConfigs);
+		MochiKit.Base.map(function(aRowConfig) {Clipperz.YUI.DomHelper.append(anElement, aRowConfig);}, trConfigs);
 
 		Clipperz.Style.applyZebraStylesToTable(this.getId('previewDada'));
 	},

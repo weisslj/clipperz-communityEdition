@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.DataModel) == 'undefined') { Clipperz.PM.DataModel = {}; }
@@ -37,10 +8,10 @@ if (typeof(Clipperz.PM.DataModel) == 'undefined') { Clipperz.PM.DataModel = {}; 
 Clipperz.PM.DataModel.DirectLogin = function(args) {
 //MochiKit.Logging.logDebug(">>> new Clipperz.PM.DataModel.DirectLogin");
 //console.log(">>> new Clipperz.PM.DataModel.DirectLogin - args: %o", args);
-//console.log("--- formData: %s", MochiKit.Base.serializeJSON(args.formData));
+//console.log("--- formData: %s", Clipperz.Base.serializeJSON(args.formData));
 	args = args || {};
 
-//MochiKit.Logging.logDebug("--- new Clipperz.PM.DataModel.DirectLogin - args: " + MochiKit.Base.serializeJSON(MochiKit.Base.keys(args)));
+//MochiKit.Logging.logDebug("--- new Clipperz.PM.DataModel.DirectLogin - args: " + Clipperz.Base.serializeJSON(MochiKit.Base.keys(args)));
 	this._record = args.record || null;
 	this._label = args.label || "unnamed record"
 	this._reference = args.reference || Clipperz.PM.Crypto.randomKey();
@@ -162,7 +133,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 	'setFormData': function(aValue) {
 		var formData;
 		
-//MochiKit.Logging.logDebug(">>> DirectLogin.setFormData - " + MochiKit.Base.serializeJSON(aValue));
+//MochiKit.Logging.logDebug(">>> DirectLogin.setFormData - " + Clipperz.Base.serializeJSON(aValue));
 		switch (this.bookmarkletVersion()) {
 			case "0.2":
 				formData = aValue;
@@ -176,7 +147,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 		this._formData = aValue;
 		this.setBookmarkletVersion("0.2");
 
-//MochiKit.Logging.logDebug("--- DirectLogin.setFormData - formData: " + MochiKit.Base.serializeJSON(formData));
+//MochiKit.Logging.logDebug("--- DirectLogin.setFormData - formData: " + Clipperz.Base.serializeJSON(formData));
 		if (formData != null) {
 			var i,c;
 			
@@ -239,6 +210,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 					updatedRadios[aRadio['name']] = radioConfiguration;
 				}
 				
+//	TODO: remove the value: field and replace it with element.dom.value = <some value>
 				radioConfiguration.options.push({value:aRadio['value'], checked:aRadio['checked']});
 
 				if ((aRadio['checked'] == true) && (this.formValues()[aRadio['name']] == null)) {
@@ -445,8 +417,9 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 //MochiKit.Logging.logDebug("### runDirectLogin - 3.1");
 			MochiKit.DOM.appendChildNodes(MochiKit.DOM.currentDocument().body, MochiKit.DOM.H3(null, "Loading " + this.label() + " ..."));
 //MochiKit.Logging.logDebug("### runDirectLogin - 4");
-			
-			formElement = MochiKit.DOM.FORM(MochiKit.Base.update({id:'directLoginForm'}, this.formData()['attributes']));
+//console.log(this.formData()['attributes']);
+			formElement = MochiKit.DOM.FORM(MochiKit.Base.update({id:'directLoginForm'}, {	'method':this.formData()['attributes']['method'],
+																							'action':this.formData()['attributes']['action']}));
 //MochiKit.Logging.logDebug("### runDirectLogin - 5");
 			formSubmitFunction = MochiKit.Base.method(formElement, 'submit');
 //MochiKit.Logging.logDebug("### runDirectLogin - 6");
@@ -480,6 +453,7 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 //MochiKit.Logging.logDebug("### NEW submit")
 				submitButtons[0].click();
 			}
+
 		}, this));
 	},
 	
@@ -488,7 +462,29 @@ Clipperz.PM.DataModel.DirectLogin.prototype = MochiKit.Base.update(null, {
 	'runDirectLogin': function(aNewWindow) {
 		var	newWindow;
 
-//MochiKit.Logging.logDebug("### runDirectLogin - 1 : " + MochiKit.Base.serializeJSON(this.serializedData()));
+//console.log("formData.attributes", this.formData()['attributes']);
+//		if (/^javascript/.test(this.formData()['attributes']['action'])) {
+		if (/(https?|webdav|ftp)\:/.test(this.formData()['attributes']['action']) == false) {
+			var messageBoxConfiguration;
+
+			if (typeof(aNewWindow) != 'undefined') {
+				aNewWindow.close();
+			}
+
+			messageBoxConfiguration = {};
+			messageBoxConfiguration.title = Clipperz.PM.Strings['VulnerabilityWarning_Panel_title'];
+			messageBoxConfiguration.msg = Clipperz.PM.Strings['VulnerabilityWarning_Panel_message'];
+			messageBoxConfiguration.animEl = YAHOO.ext.Element.get("mainDiv");
+			messageBoxConfiguration.progress = false;
+			messageBoxConfiguration.closable = false;
+			messageBoxConfiguration.buttons = {'cancel': Clipperz.PM.Strings['VulnerabilityWarning_Panel_buttonLabel']};
+
+			Clipperz.YUI.MessageBox.show(messageBoxConfiguration);
+
+			throw Clipperz.Base.exception.VulnerabilityIssue;
+		}
+
+//MochiKit.Logging.logDebug("### runDirectLogin - 1 : " + Clipperz.Base.serializeJSON(this.serializedData()));
 		if (typeof(aNewWindow) == 'undefined') {
 			newWindow = window.open(Clipperz.PM.Strings['directLoginJumpPageUrl'], "");
 		} else {

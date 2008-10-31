@@ -1,32 +1,3 @@
-/*
-
-Copyright 2008 Clipperz Srl
-
-This file is part of Clipperz Community Edition.
-Clipperz Community Edition is a web-based password manager and a
-digital vault for confidential data.
-For further information about its features and functionalities please
-refer to http://www.clipperz.com
-
-* Clipperz Community Edition is free software: you can redistribute
-  it and/or modify it under the terms of the GNU Affero General Public
-  License as published by the Free Software Foundation, either version
-  3 of the License, or (at your option) any later version.
-
-* Clipperz Community Edition is distributed in the hope that it will
-  be useful, but WITHOUT ANY WARRANTY; without even the implied
-  warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-  See the GNU Affero General Public License for more details.
-
-* You should have received a copy of the GNU Affero General Public
-  License along with Clipperz Community Edition.  If not, see
-  <http://www.gnu.org/licenses/>.
-
-
-*/
-
-
-
 if (typeof(Clipperz) == 'undefined') { Clipperz = {}; }
 if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
@@ -48,7 +19,7 @@ Clipperz.PM.Components.TextFormField = function(anElement, args) {
 //	this.editing = true;
 //	this.completeOnBlur = true;
 //	this.autoSizeTask = new YAHOO.ext.util.DelayedTask(this.autoSize, this);
-//	this.textSizeEl = YAHOO.ext.DomHelper.append(document.body, {
+//	this.textSizeEl = Clipperz.YUI.DomHelper.append(document.body, {
 //		tag: 'div',
 //		cls: 'yinline-editor-sizer ' + (this.cls || '')
 //	});
@@ -130,9 +101,9 @@ YAHOO.extendX(Clipperz.PM.Components.TextFormField, Clipperz.PM.Components.BaseC
 
 		editModeConfiguration = {tag:'div', id:this.getId('editComponent'), children:[]};
 		if (this.multiline() == false) {
-			editModeConfiguration.children.push({tag:'input', type:'text', id:this.getId('editComponent_input'), value:this.value()});
+			editModeConfiguration.children.push({tag:'input', type:'text', id:this.getId('editComponent_input'), value:"this.value(1)"});
 		} else {
-			editModeConfiguration.children.push({tag:'textarea', id:this.getId('editComponent_input'), html:this.value()});
+			editModeConfiguration.children.push({tag:'textarea', id:this.getId('editComponent_input'), html:"this.value(2)"});
 		}
 
 		viewModeConfiguration = {tag:'div', id:this.getId('viewComponent'), /*style:'border: 1px solid blue;',*/ children:[
@@ -140,7 +111,7 @@ YAHOO.extendX(Clipperz.PM.Components.TextFormField, Clipperz.PM.Components.BaseC
 		]}
 
 //MochiKit.Logging.logDebug(">>> TextFormField.render");
-		this._wrapper = YAHOO.ext.DomHelper.append(this.element().dom, {tag:'div', id:this.getId('wrapper'), children:[
+		this._wrapper = Clipperz.YUI.DomHelper.append(this.element().dom, {tag:'div', id:this.getId('wrapper'), children:[
 			{tag:'div', id:this.getId('editModeBox'), children:[editModeConfiguration]},
 			{tag:'div', id:this.getId('viewModeBox'), children:[viewModeConfiguration]}
 		]}, true);
@@ -148,6 +119,7 @@ YAHOO.extendX(Clipperz.PM.Components.TextFormField, Clipperz.PM.Components.BaseC
 		this.getElement('editModeBox').setVisibilityMode(YAHOO.ext.Element.DISPLAY);
 		this.getElement('viewModeBox').setVisibilityMode(YAHOO.ext.Element.DISPLAY);
 
+		this.getElement('editComponent_input').dom.value = this.value();
 		this.setInputElement(this.getElement('editComponent_input'));
 		
 		this.update();
@@ -187,7 +159,7 @@ YAHOO.extendX(Clipperz.PM.Components.TextFormField, Clipperz.PM.Components.BaseC
 		if (this.multiline() == false) {
 			this.getElement('editComponent_input').dom.value = this.value();
 		} else {
-			this.getElement('editComponent_input').update(this.value());
+			this.getElement('editComponent_input').update(Clipperz.Base.sanitizeString(this.value()));
 		}
 //MochiKit.Logging.logDebug("<<< TextFormField.updateEditMode");
 	},
@@ -199,7 +171,7 @@ YAHOO.extendX(Clipperz.PM.Components.TextFormField, Clipperz.PM.Components.BaseC
 		this.getElement('editModeBox').hide();
 		this.getElement('viewModeBox').show();
 
-		this.getElement('viewComponent_Content').update(this.value())
+		this.getElement('viewComponent_Content').update(Clipperz.Base.sanitizeString(this.value()));
 //MochiKit.Logging.logDebug("<<< TextFormField.updateViewMode");
 	},
     
