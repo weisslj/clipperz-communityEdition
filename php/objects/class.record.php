@@ -6,7 +6,7 @@
 	`recordid` int(11) NOT NULL auto_increment,
 	`userid` int(11) NOT NULL,
 	`reference` VARCHAR(255) NOT NULL,
-	`data` TEXT NOT NULL,
+	`data` LONGTEXT NOT NULL,
 	`version` VARCHAR(255) NOT NULL,
 	`creation_date` TIMESTAMP NOT NULL,
 	`update_date` TIMESTAMP NOT NULL,
@@ -16,10 +16,10 @@
 /**
 * <b>record</b> class with integrated CRUD methods.
 * @author Php Object Generator
-* @version POG 3.0d / PHP5.1 MYSQL
+* @version POG 3.0e / PHP5.1 MYSQL
 * @see http://www.phpobjectgenerator.com/plog/tutorials/45/pdo-mysql
 * @copyright Free for personal & commercial use. (Offered under the BSD license)
-* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=record&attributeList=array+%28%0A++0+%3D%3E+%27user%27%2C%0A++1+%3D%3E+%27recordversion%27%2C%0A++2+%3D%3E+%27reference%27%2C%0A++3+%3D%3E+%27data%27%2C%0A++4+%3D%3E+%27version%27%2C%0A++5+%3D%3E+%27creation_date%27%2C%0A++6+%3D%3E+%27update_date%27%2C%0A++7+%3D%3E+%27access_date%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527BELONGSTO%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527TEXT%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527TIMESTAMP%2527%252C%250A%2B%2B6%2B%253D%253E%2B%2527TIMESTAMP%2527%252C%250A%2B%2B7%2B%253D%253E%2B%2527TIMESTAMP%2527%252C%250A%2529
+* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=record&attributeList=array+%28%0A++0+%3D%3E+%27user%27%2C%0A++1+%3D%3E+%27recordversion%27%2C%0A++2+%3D%3E+%27reference%27%2C%0A++3+%3D%3E+%27data%27%2C%0A++4+%3D%3E+%27version%27%2C%0A++5+%3D%3E+%27creation_date%27%2C%0A++6+%3D%3E+%27update_date%27%2C%0A++7+%3D%3E+%27access_date%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527BELONGSTO%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527LONGTEXT%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527TIMESTAMP%2527%252C%250A%2B%2B6%2B%253D%253E%2B%2527TIMESTAMP%2527%252C%250A%2B%2B7%2B%253D%253E%2B%2527TIMESTAMP%2527%252C%250A%2529
 */
 include_once('class.pog_base.php');
 class record extends POG_Base
@@ -42,7 +42,7 @@ class record extends POG_Base
 	public $reference;
 	
 	/**
-	 * @var TEXT
+	 * @var LONGTEXT
 	 */
 	public $data;
 	
@@ -71,7 +71,7 @@ class record extends POG_Base
 		"user" => array('db_attributes' => array("OBJECT", "BELONGSTO")),
 		"recordversion" => array('db_attributes' => array("OBJECT", "HASMANY")),
 		"reference" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
-		"data" => array('db_attributes' => array("TEXT", "TEXT")),
+		"data" => array('db_attributes' => array("TEXT", "LONGTEXT")),
 		"version" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"creation_date" => array('db_attributes' => array("NUMERIC", "TIMESTAMP")),
 		"update_date" => array('db_attributes' => array("NUMERIC", "TIMESTAMP")),

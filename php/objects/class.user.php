@@ -7,8 +7,8 @@
 	`username` VARCHAR(255) NOT NULL,
 	`srp_s` VARCHAR(255) NOT NULL,
 	`srp_v` VARCHAR(255) NOT NULL,
-	`header` TEXT NOT NULL,
-	`statistics` TEXT NOT NULL,
+	`header` LONGTEXT NOT NULL,
+	`statistics` LONGTEXT NOT NULL,
 	`auth_version` VARCHAR(255) NOT NULL,
 	`version` VARCHAR(255) NOT NULL,
 	`lock` VARCHAR(255) NOT NULL, PRIMARY KEY  (`userid`)) ENGINE=MyISAM;
@@ -17,10 +17,10 @@
 /**
 * <b>user</b> class with integrated CRUD methods.
 * @author Php Object Generator
-* @version POG 3.0d / PHP5.1 MYSQL
+* @version POG 3.0e / PHP5.1 MYSQL
 * @see http://www.phpobjectgenerator.com/plog/tutorials/45/pdo-mysql
 * @copyright Free for personal & commercial use. (Offered under the BSD license)
-* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=user&attributeList=array+%28%0A++0+%3D%3E+%27username%27%2C%0A++1+%3D%3E+%27srp_s%27%2C%0A++2+%3D%3E+%27srp_v%27%2C%0A++3+%3D%3E+%27header%27%2C%0A++4+%3D%3E+%27statistics%27%2C%0A++5+%3D%3E+%27auth_version%27%2C%0A++6+%3D%3E+%27version%27%2C%0A++7+%3D%3E+%27lock%27%2C%0A++8+%3D%3E+%27record%27%2C%0A++9+%3D%3E+%27onetimepassword%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527TEXT%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527TEXT%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B6%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B7%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B8%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B9%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2529
+* @link http://www.phpobjectgenerator.com/?language=php5.1&wrapper=pdo&pdoDriver=mysql&objectName=user&attributeList=array+%28%0A++0+%3D%3E+%27username%27%2C%0A++1+%3D%3E+%27srp_s%27%2C%0A++2+%3D%3E+%27srp_v%27%2C%0A++3+%3D%3E+%27header%27%2C%0A++4+%3D%3E+%27statistics%27%2C%0A++5+%3D%3E+%27auth_version%27%2C%0A++6+%3D%3E+%27version%27%2C%0A++7+%3D%3E+%27lock%27%2C%0A++8+%3D%3E+%27record%27%2C%0A++9+%3D%3E+%27onetimepassword%27%2C%0A%29&typeList=array%2B%2528%250A%2B%2B0%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B1%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B2%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B3%2B%253D%253E%2B%2527LONGTEXT%2527%252C%250A%2B%2B4%2B%253D%253E%2B%2527LONGTEXT%2527%252C%250A%2B%2B5%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B6%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B7%2B%253D%253E%2B%2527VARCHAR%2528255%2529%2527%252C%250A%2B%2B8%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2B%2B9%2B%253D%253E%2B%2527HASMANY%2527%252C%250A%2529
 */
 include_once('class.pog_base.php');
 class user extends POG_Base
@@ -43,12 +43,12 @@ class user extends POG_Base
 	public $srp_v;
 	
 	/**
-	 * @var TEXT
+	 * @var LONGTEXT
 	 */
 	public $header;
 	
 	/**
-	 * @var TEXT
+	 * @var LONGTEXT
 	 */
 	public $statistics;
 	
@@ -82,8 +82,8 @@ class user extends POG_Base
 		"username" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"srp_s" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"srp_v" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
-		"header" => array('db_attributes' => array("TEXT", "TEXT")),
-		"statistics" => array('db_attributes' => array("TEXT", "TEXT")),
+		"header" => array('db_attributes' => array("TEXT", "LONGTEXT")),
+		"statistics" => array('db_attributes' => array("TEXT", "LONGTEXT")),
 		"auth_version" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"version" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
 		"lock" => array('db_attributes' => array("TEXT", "VARCHAR", "255")),
