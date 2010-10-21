@@ -95,8 +95,8 @@ YAHOO.extendX(Clipperz.PM.Components.PasswordGenerator, Clipperz.PM.Components.B
 		var okFunction;
 		
 //MochiKit.Logging.logDebug(">>> PasswordGenerator.openPasswordPanel");
-		passwordGeneratorElement = YAHOO.ext.DomHelper.append(document.body, {tag:'div', id:'passwordGenerator', children:[
-			{tag:'div', cls:'ydlg-hd', html:Clipperz.PM.Strings['passwordGeneratorPanelTitle']},
+		passwordGeneratorElement = Clipperz.YUI.DomHelper.append(document.body, {tag:'div', id:'passwordGenerator', children:[
+			{tag:'div', cls:'ydlg-hd', htmlString:Clipperz.PM.Strings['passwordGeneratorPanelTitle']},
 			{tag:'div', cls:'ydlg-bd', children:[
 				{tag:'form', id:this.getId('passwordGeneratorForm'), cls:'passwordGenerator', children:[
 					{tag:'input', type:'text', cls:'clipperz_passwordGenerator_password', id:this.getId('passwordField')},
@@ -105,23 +105,23 @@ YAHOO.extendX(Clipperz.PM.Components.PasswordGenerator, Clipperz.PM.Components.B
 							{tag:'tr', children:[
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'lowercase', id:this.getId('lowercase'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorLowercaseLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorLowercaseLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'uppercase', id:this.getId('uppercase'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorUppercaseLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorUppercaseLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'numbers', id:this.getId('numbers'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorNumberLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorNumberLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'input', type:'checkbox', name:'symbols', id:this.getId('symbols'), checked:true},
-									{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorSymbolLabel']}
+									{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorSymbolLabel']}
 								]},
 								{tag:'td', width:'20%', children:[
 									{tag:'span', cls:'passwordGeneratorLength', children:[
-										{tag:'span', html:Clipperz.PM.Strings['passwordGeneratorLengthLabel']},
+										{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorLengthLabel']},
 										{tag:'span', id:this.getId('passwordLength'), cls:'passwordGeneratorLengthValue', html:'0'}
 									]}
 								]}
