@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<project name="Clipperz" default="build.public.code.project">
+
+	<property file="properties/build.properties"/>
+	
+	<condition property="csstidy.bin" value="${tools.bin}/csstidy_osx-1.2">
+		<os name="Mac OS X"/>
+	</condition>
+	<condition property="csstidy.bin" value="${tools.bin}/csstidy_linux_i386-1.2">
+		<os name="Linux"/>
+	</condition>
+
+	<target name="compress.css" description="">
+		<apply executable="${csstidy.bin}" failonerror="yes" verbose="yes" parallel="false">
+            <srcfile/>
+			<arg value="- -silent=true" />
+			<arg value="- -template=low" />
+			<arg value="${build.scratch}/compressed.css" />
+			<fileset file="${build.scratch}/scratch.css" />
+		</apply>
+	</target>
+
+	<target name="build.css" description="">
+		<concat destfile="${build.scratch}/scratch.css">
+			<filelist dir="${source.css}" files="${css.source.files}"/> 
+		</concat>
+		
+		<!--	Remove single line comments	(after the rhino-compress step this could be redundant)		-->
+		<replaceregexp	match="\(\.\.\/images\/"	replace="(./images/"	file="${build.scratch}/scratch.css" flags="g" byline="false" />
+		
+		<antcall target="compress.css" />
+	</target>
+
+	<target name="build.ie.css" description="">
+		<copy file="${source.css}/ie.css" tofile="${build.scratch}/scratch.ie.css" overwrite="yes" preservelastmodified="true" />
+		<replaceregexp	match="\(\.\.\/images\/"	replace="(./images/"	file="${build.scratch}/scratch.ie.css" flags="g" byline="false" />
+	</target>
+	
+	<target name="build.directLogin.bookmarklet" description="Build the Clipperz direct login bookmarklet">
+		<mkdir dir="${build.scratch}"/>
+		<antcall target="build.bookmarklet">
+			<param name="srcFile" value="${source.js}/Bookmarklet.js" />
+			<param name="dstFile" value="${build.scratch}/bookmarklet.js" />
+			<param name="variableName" value="bookmarklet" />
+		</antcall>
+		<antcall target="build.bookmarklet">
+			<param name="srcFile" value="${source.js}/Bookmarklet_IE.js" />
+			<param name="dstFile" value="${build.scratch}/bookmarklet_ie.js" />
+			<param name="variableName" value="bookmarklet_ie" />
+		</antcall>
+		
+		<copy todir="${build.context}/js" preservelastmodified="true">
+			<fileset file="${source.js}/Bookmarklet.js" />
+		</copy>
+	</target>
+
+
+	<target name="build.bookmarklet" description="Build the Clipperz bookmarklet">
+		<antcall target="rhino-compress">
+			<param name="srcFile" value="${srcFile}" />
+			<param name="dstFile" value="${dstFile}" />
+		</antcall>
+
+<!--
+		<!- -	Remove single line comments	(after the rhino-compress step this could be redundant)		- ->
+		<replaceregexp	match="//.*\n"					replace=""		file="${dstFile}" flags="g" byline="false" />
+-->
+		<!--	Fit all in a single line		-->
+		<replaceregexp	match="\n"						replace=" "		file="${dstFile}" flags="g" byline="false" />
+
+		<!--	Collapse "redundant" spaces. WARNING: this could have some evil side effects on constant strings used inside to code!! 	-->
+		<replaceregexp	match="\s+"						replace=" "		file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match=" ?([,\+=\(\)\{\};]) ?"	replace="\1"	file="${dstFile}" flags="g" byline="false" />
+
+
+		<!--	replace the original name of the functions with some shorter ones 									-->
+		<replaceregexp	match="isLoginForm"				replace="ilf"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="findLoginForm"			replace="flf"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="inputElementValues"		replace="iev"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="formParameters"			replace="fp"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="pageParameters"			replace="pp"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="serializeJSON"			replace="sj"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="reprString"				replace="rs"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="logFormParameters"		replace="lfp"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="loadClipperzBookmarklet"	replace="lcb"	file="${dstFile}" flags="g" byline="false" />
+
+
+		<!--	Replace the name of the global variables (not modified by rhino-compress), with some shorter ones	-->
+		<replaceregexp	match="loginForm"				replace="lf"	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="parameters"				replace="p"		file="${dstFile}" flags="g" byline="false" />
+
+		<!--	add the trailing 'javascript:' definition			-->
+		<replaceregexp	match="^(.*)"		replace="javascript:\1"		file="${dstFile}" flags="g" byline="false" />
+
+		<!--	escaping required to handle the bookmarklet code within the javascript code		-->
+		<replaceregexp	match="\:&#47;&#47;"	replace="%3a%2f%2f"			file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="&quot;"			replace="%22"				file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="&#47;"			replace="%2f"				file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="\\"				replace="%5c"				file="${dstFile}" flags="g" byline="false" />
+<!-- commented to test the bookmarklet straight into the browser. To be restored for real code -->
+		<replaceregexp	match="^|$"				replace="&#34;"				file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="^"				replace="${variableName}="	file="${dstFile}" flags="g" byline="false" />
+		<replaceregexp	match="$"				replace=";"					file="${dstFile}" flags="g" byline="false" />
+<!-- -->
+	</target>
+
+
+	<target name="rhino-compress">
+		<echo message="rhino-compress - srcFile ${srcFile}" />
+		<java jar="${custom_rhino.jar}" fork="true" failonerror="yes" logError="yes" output="${dstFile}">
+			<jvmarg value="-Dfile.encoding=UTF-8" />
+			<arg value="-strict" />
+			<arg value="-opt"/>
+			<arg value="-1" />
+			<arg value="-c" />
+			<arg value="${srcFile}" />
+		</java>
+	</target>
+
+
+	<target name="build.js.framework" description="Builds a javascript framework">
+		<delete file="${build.scratch}/${framework_name}.scratch.js" />
+		<delete file="${build.scratch}/${framework_name}.compressed.js" />
+
+		<concat destfile="${build.scratch}/${framework_name}.scratch.js">
+			<filelist dir="${source.js}" files="${framework_files}"/> 
+		</concat>
+
+		<antcall target="rhino-compress">
+			<param name="srcFile" value="${build.scratch}/${framework_name}.scratch.js" />
+			<param name="dstFile" value="${build.scratch}/${framework_name}.compressed.js" />
+		</antcall>
+	</target>
+	
+	
+	<target name="build.js" depends="build.directLogin.bookmarklet" description="Build the js packages">
+		<antcall target="build.js.framework">
+			<param name="framework_name" value="mochikit" />
+			<param name="framework_files" value="${mochikit.source.files}" />
+		</antcall>
+
+		<antcall target="build.js.framework">
+			<param name="framework_name" value="dwr" />
+			<param name="framework_files" value="${dwr.source.files}" />
+		</antcall>
+
+		<antcall target="build.js.framework">
+			<param name="framework_name" value="yui" />
+			<param name="framework_files" value="${yui.source.files}" />
+		</antcall>
+
+		<antcall target="build.js.framework">
+			<param name="framework_name" value="yui-extensions" />
+			<param name="framework_files" value="${yui-extensions.source.files}" />
+		</antcall>
+
+		<antcall target="build.js.framework">
+			<param name="framework_name" value="json" />
+			<param name="framework_files" value="${json.source.files}" />
+		</antcall>
+
+		<antcall target="build.js.framework">
+			<param name="framework_name" value="clipperz" />
+			<param name="framework_files" value="${clipperz.source.files}" />
+		</antcall>
+
+		<concat destfile="${build.scratch}/compressed.js">
+			<filelist dir="${build.scratch}" files="bookmarklet.js,bookmarklet_ie.js,mochikit.compressed.js,dwr.compressed.js,yui.compressed.js,yui-extensions.compressed.js,json.compressed.js,clipperz.compressed.js" />
+		</concat>
+	</target>
+
+
+	<target name="checksums" description="Compute the file checksums">
+		<length file="${target.file.name}" property="size.echo.value"/>
+		<echo>Size for file ${target.file.name} = ${size.echo.value}</echo>
+		<checksum file="${target.file.name}" property="md5.echo.value"/>
+		<echo>MD5 checksum for file ${target.file.name} = ${md5.echo.value}</echo>
+		<checksum file="${target.file.name}" algorithm="SHA" property="sha1.echo.value"/>
+		<echo>SHA1 checksum for file ${target.file.name} = ${sha1.echo.value}</echo>
+	</target>
+	
+
+	<target name="build.index.html" depends="build.js, build.css, build.ie.css" description="Build the main index.html file">
+		<loadfile property="compressed.js"	srcFile="${build.scratch}/compressed.js">
+			<filterchain>
+			    <replacetokens>
+					<token key="repository.version"	value="${repository.version}"/>
+				</replacetokens>
+			</filterchain>
+		</loadfile>
+		<loadfile property="compressed.css"	srcFile="${build.scratch}/compressed.css"/>
+		<loadfile property="ie.css"			srcFile="${build.scratch}/scratch.ie.css"/>
+		<loadfile property="copyright.txt"	srcFile="./properties/creditsAndCopyrights.txt">
+			<filterchain><expandproperties/></filterchain>
+		</loadfile>
+
+		<copy file="${source.html}/index_template.html" tofile="${build.context}/index.html" overwrite="yes" preservelastmodified="true" >
+			<filterchain>
+			    <replacetokens>
+					<token key="CLIPPERZ_INSTALLED_VERSION"	value="${clipperz.version.block}"/>
+					<token key="CLIPPERZ_DEBUG_VERSION"		value=""/>
+				</replacetokens>
+				<replacetokens>
+					<token key="feedback.subject"			value="${feedback.subject}"/>
+					<token key="feedback.body"				value="${feedback.body}"/>
+					<token key="repository.version"			value="${repository.version}"/>
+					<token key="application.version.type"	value="${application.version.type}"/>
+					<token key="page.title"					value="${title}"/>
+					<token key="copyright"					value="${copyright.txt}"/>
+					<token key="bookmarklet.js"				value=""/>
+					<token key="extra.prefix"				value=""/>
+					<token key="css"						value="${css.opentag}${clipperz.debug.newline}${compressed.css}${clipperz.debug.newline}${css.closetag}"/>
+					<token key="ie_css"						value="${ie.css}"/>
+					<token key="javascript"					value="${script.opentag}${clipperz.debug.newline}${compressed.js}${clipperz.debug.newline}${script.closetag}"/>
+					<token key="extra.postfix"				value=""/>
+			    </replacetokens>
+			</filterchain>
+		</copy>
+	</target>
+
+	<target name="build.public.code.project" depends="build.index.html" description="Building the public reference code">
+		<antcall target="checksums">
+			<param name="target.file.name" value="${build.context}/index.html" />
+		</antcall>
+	</target>
+
+
+<!--  -->
+
+</project>
