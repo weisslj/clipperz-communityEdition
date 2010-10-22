@@ -2,13 +2,30 @@
 <project name="Clipperz" default="build.public.code.project">
 
 	<property file="properties/build.properties"/>
-	
+
 	<condition property="csstidy.bin" value="${tools.bin}/csstidy_osx-1.2">
 		<os name="Mac OS X"/>
 	</condition>
 	<condition property="csstidy.bin" value="${tools.bin}/csstidy_linux_i386-1.2">
 		<os name="Linux"/>
 	</condition>
+
+	<available file=".git" type="dir" property="git.present"/>
+
+	<target name="git.revision" description="Store git revision in ${repository.version}" if="git.present">
+		<exec executable="git" outputproperty="git.revision" failifexecutionfails="false" errorproperty="">
+			<arg value="describe"/>
+			<arg value="--tags"/>
+			<arg value="--always"/>
+			<arg value="HEAD"/>
+		</exec>
+		<condition property="repository.version" value="${git.revision}" else="unknown">
+			<and>
+				<isset property="git.revision"/>
+				<length string="${git.revision}" trim="yes" length="0" when="greater"/>
+			</and>
+		</condition>
+	</target>
 
 	<target name="compress.css" description="">
 		<apply executable="${csstidy.bin}" failonerror="yes" verbose="yes" parallel="false">
@@ -180,7 +197,7 @@
 	</target>
 	
 
-	<target name="build.index.html" depends="build.js, build.css, build.ie.css" description="Build the main index.html file">
+	<target name="build.index.html" depends="git.revision, build.js, build.css, build.ie.css" description="Build the main index.html file">
 		<loadfile property="compressed.js"	srcFile="${build.scratch}/compressed.js">
 			<filterchain>
 			    <replacetokens>
