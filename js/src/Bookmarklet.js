@@ -178,11 +178,60 @@ formParameters = function(aLoginForm) {
 
 //-----------------------------------------------------------------------------
 
+getImageData = function (url) {
+	try {
+		var canvas = document.createElement("canvas");
+
+		var img = document.createElement("img"); // works better than new Image()?
+		img.src = url;
+
+		canvas.width = img.width;
+		canvas.height = img.height;
+
+		var ctx = canvas.getContext("2d");
+		ctx.drawImage(img, 0, 0);
+		return canvas.toDataURL("image/png");
+	} catch (e) {
+		return null;
+	}
+}
+
+getFaviconData = function() {
+	// default location
+	var favicon_href = location.protocol + "//" + location.hostname + "/favicon.ico";
+
+	var data = getImageData(favicon_href);
+	if (data != null)
+		return data;
+
+	var linktags = document.getElementsByTagName("link");
+
+	// browsers seem to take last favicon specified
+	for (var i = linktags.length-1; i >= 0; i--)
+	{
+		if (linktags.item(i).rel == "icon" || linktags.item(i).rel == "shortcut icon") {
+			if (linktags.item(i).href) {
+				favicon_href = linktags.item(i).href;
+				data = getImageData(favicon_href);
+				if (data != null)
+					return data;
+			}
+		}
+	}
+
+	return null;
+}
+
 pageParameters = function() {
 	var result;
 	
 	result = {};
 	result['title'] = document.title;
+	var favicon = getFaviconData();
+	if (favicon != null) {
+		result['favicon'] = favicon;
+	}
+
 //<link rel="icon" href="http://example.com/favicon.ico" type="image/x-icon">
 
 	return result;

@@ -154,7 +154,11 @@ Clipperz.PM.BookmarkletProcessor.prototype = MochiKit.Base.update(null, {
 	
 	'favicon': function() {
 		if (this._favicon == null) {
-			this._favicon = "http://" + this.hostname() + "/favicon.ico";
+			if (this.configuration().page.favicon) {
+				this._favicon = this.configuration().page.favicon;
+			} else {
+				this._favicon = "http://" + this.hostname() + "/favicon.ico";
+			}
 //MochiKit.Logging.logDebug("+++ favicon: " + this._favicon);
 		}
 		

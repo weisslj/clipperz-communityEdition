@@ -164,6 +164,7 @@ YAHOO.extendX(Clipperz.PM.Components.RecordDetail.DirectLoginsComponent, Clipper
 		newDirectLogin = new Clipperz.PM.DataModel.DirectLogin({record:this.record(),
 																label:configuration['page']['title'],
 																bookmarkletVersion:'0.2',
+																favicon:configuration['page']['favicon'],
 //																bookmarkletVersion:configuration['version'],
 																formData:configuration['form']});
 		this.record().addDirectLogin(newDirectLogin);
