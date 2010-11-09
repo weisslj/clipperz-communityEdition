@@ -19,7 +19,7 @@
 			<arg value="--always"/>
 			<arg value="HEAD"/>
 		</exec>
-		<condition property="repository.version" value="${git.revision}" else="unknown">
+		<condition property="repository.version" value="git${git.revision}" else="unknown">
 			<and>
 				<isset property="git.revision"/>
 				<length string="${git.revision}" trim="yes" length="0" when="greater"/>
@@ -239,6 +239,20 @@
 		<antcall target="checksums">
 			<param name="target.file.name" value="${build.context}/index.html" />
 		</antcall>
+	</target>
+
+	<target name="dist" depends="build.public.code.project">
+		<property name="dist.tmpdir" value="clipperz-communityEdition-${repository.version}"/>
+		<property name="dist.file" value="${dist.tmpdir}.zip"/>
+		<delete dir="${dist.tmpdir}" quiet="true"/>
+		<delete file="${dist.file}" quiet="true"/>
+		<copy todir="${dist.tmpdir}">
+			<fileset dir="." excludes="_build/**, .git/**, build.xml, html/**, jar/**, properties/**, tools/**"/>
+		</copy>
+		<copy file="${build.context}/index.html" tofile="${dist.tmpdir}/index.html" overwrite="yes" preservelastmodified="true"/>
+		<copy file="${build.context}/js/Bookmarklet.js" tofile="${dist.tmpdir}/js/Bookmarklet.js" overwrite="yes" preservelastmodified="true"/>
+		<zip destfile="${dist.file}" basedir="." includes="${dist.tmpdir}/**"/>
+		<delete dir="${dist.tmpdir}"/>
 	</target>
 
 
