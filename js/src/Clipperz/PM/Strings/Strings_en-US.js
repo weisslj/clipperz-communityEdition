@@ -777,6 +777,8 @@ Clipperz.PM.Strings.Languages['en-us'] = {
 'passwordGeneratorSymbolLabel':									"@#$",
 
 'passwordGeneratorLengthLabel':									"length:",
+'passwordGeneratorOverrideLengthLabel':							"override length:",
+'passwordGeneratorForceAllSymbols':								"include all",
 
 
 //Miscellaneous strings	

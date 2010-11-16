@@ -32,6 +32,18 @@ if (typeof(Clipperz.PM) == 'undefined') { Clipperz.PM = {}; }
 if (typeof(Clipperz.PM.Components) == 'undefined') { Clipperz.PM.Components = {}; }
 if (typeof(Clipperz.PM.Components.Panels) == 'undefined') { Clipperz.PM.Components.Panels = {}; }
 
+
+// return true if a character of the string "letters" is in "string"
+stringContains = function(letters, string) {
+	var i;
+	for (i = 0; i < letters.length; i++) {
+		if (string.indexOf(letters.charAt(i)) >= 0) {
+			return true;
+		}
+	}
+	return false;
+}
+
 //#############################################################################
 
 Clipperz.PM.Components.Panels.ToolsPanel = function(anElement, args) {
@@ -118,6 +130,16 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.ToolsPanel, Clipperz.PM.Components.P
 																{tag:'span', id:this.getId('passwordLength'), cls:'passwordGeneratorLengthValue', html:'0'}
 															]}
 														]}
+													]},
+													{tag:'tr', children:[
+														{tag:'td', colspan:'3', children:[
+															{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorOverrideLengthLabel']},
+															{tag:'input', type:'text', name:'overrideLength', id:this.getId('overrideLength'), size:'2'}
+														]},
+														{tag:'td', colspan:'2', children:[
+															{tag:'span', htmlString:Clipperz.PM.Strings['passwordGeneratorForceAllSymbols']},
+															{tag:'input', type:'checkbox', name:'forceAllSymbols', id:this.getId('forceAllSymbols')}
+														]}
 													]}
 												]}
 											]}
@@ -161,6 +183,8 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.ToolsPanel, Clipperz.PM.Components.P
 		MochiKit.Signal.connect(this.getId('uppercase'), 'onclick', this, 'updatePasswordValue');
 		MochiKit.Signal.connect(this.getId('numbers'),   'onclick', this, 'updatePasswordValue');
 		MochiKit.Signal.connect(this.getId('symbols'),   'onclick', this, 'updatePasswordValue');
+		MochiKit.Signal.connect(this.getId('overrideLength'),   'onclick', this, 'updatePasswordValue');
+		MochiKit.Signal.connect(this.getId('forceAllSymbols'),  'onclick', this, 'updatePasswordValue');
 
 		MochiKit.Signal.connect(this.getDom('passwordField'), 'onkeyup',  this, 'updatePasswordLengthLabel');
 		MochiKit.Signal.connect(this.getDom('passwordField'), 'onchange', this, 'updatePasswordLengthLabel');
@@ -225,34 +249,75 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.ToolsPanel, Clipperz.PM.Components.P
 	'setGenerateButtonElement': function(aValue) {
 		this._generateButtonElement = aValue;
 	},
-	
+
+	//-------------------------------------------------------------------------
+
+	'passwordContainsAllSymbols': function(password) {
+		if (this.getDom('lowercase').checked) {
+			if (!stringContains(password, Clipperz.PM.Strings['passwordGeneratorLowercaseCharset'])) {
+				return false;
+			}
+		}
+		if (this.getDom('uppercase').checked) {
+			if (!stringContains(password, Clipperz.PM.Strings['passwordGeneratorUppercaseCharset'])) {
+				return false;
+			}
+		}
+		if (this.getDom('numbers').checked) {
+			if (!stringContains(password, Clipperz.PM.Strings['passwordGeneratorNumberCharset'])) {
+				return false;
+			}
+		}
+		if (this.getDom('symbols').checked) {
+			if (!stringContains(password, Clipperz.PM.Strings['passwordGeneratorSymbolCharset'])) {
+				return false;
+			}
+		}
+		return true;
+	},
+
 	//-------------------------------------------------------------------------
 
 	'updatePasswordValue': function(anEvent) {
 		var	randomBytes;
 		var	randomValue;
 		var charset;
+		var charsetCount;
 		var charsetBitSize;
 		var stringValue;
 		var	blockIndex;
+		var overrideLength;
+		var forceAllSymbols;
 
 //MochiKit.Logging.logDebug(">>> updatePasswordValue");
-		randomBytes = Clipperz.Crypto.PRNG.defaultRandomGenerator().getRandomBytes(50);
-		stringValue = "";
-		blockIndex = 0;
-
 		charset = "";
+		charsetCount = 0;
 		if (this.getDom('lowercase').checked) {
 			charset += Clipperz.PM.Strings['passwordGeneratorLowercaseCharset'];
+			charsetCount++;
 		}
 		if (this.getDom('uppercase').checked) {
 			charset += Clipperz.PM.Strings['passwordGeneratorUppercaseCharset'];
+			charsetCount++;
 		}
 		if (this.getDom('numbers').checked) {
 			charset += Clipperz.PM.Strings['passwordGeneratorNumberCharset'];
+			charsetCount++;
 		}
 		if (this.getDom('symbols').checked) {
 			charset += Clipperz.PM.Strings['passwordGeneratorSymbolCharset'];
+			charsetCount++;
+		}
+
+		overrideLength = parseInt(this.getDom('overrideLength').value);
+		if (isNaN(overrideLength)) {
+			overrideLength = 0;
+		}
+
+		if (charsetCount > overrideLength) {
+			forceAllSymbols = false;
+		} else {
+			forceAllSymbols = this.getDom('forceAllSymbols').checked;
 		}
 
 		charsetBitSize = 0;
@@ -261,18 +326,24 @@ YAHOO.extendX(Clipperz.PM.Components.Panels.ToolsPanel, Clipperz.PM.Components.P
 		}
 
 		if (charsetBitSize > 0) {
-			while (Clipperz.PM.Crypto.passwordEntropy(stringValue) < 128) {
-				if (((blockIndex + 1)*charsetBitSize) > (randomBytes.length() * 8)) {
-					randomBytes = Clipperz.Crypto.PRNG.defaultRandomGenerator().getRandomBytes(50);
-					blockIndex = 0;
-				}
-				randomValue = randomBytes.bitBlockAtIndexWithSize(blockIndex*charsetBitSize, charsetBitSize);
-				if (randomValue < charset.length) {
-					stringValue += charset.charAt(randomValue);
-				}
+			do {
+				randomBytes = Clipperz.Crypto.PRNG.defaultRandomGenerator().getRandomBytes(50);
+				stringValue = "";
+				blockIndex = 0;
+
+				while ((overrideLength > 0 && stringValue.length < overrideLength) || (overrideLength <= 0 && Clipperz.PM.Crypto.passwordEntropy(stringValue) < 128)) {
+					if (((blockIndex + 1)*charsetBitSize) > (randomBytes.length() * 8)) {
+						randomBytes = Clipperz.Crypto.PRNG.defaultRandomGenerator().getRandomBytes(50);
+						blockIndex = 0;
+					}
+					randomValue = randomBytes.bitBlockAtIndexWithSize(blockIndex*charsetBitSize, charsetBitSize);
+					if (randomValue < charset.length) {
+						stringValue += charset.charAt(randomValue);
+					}
 			
-				blockIndex ++;
-			}
+					blockIndex ++;
+				}
+			} while (forceAllSymbols && !this.passwordContainsAllSymbols(stringValue));
 		} else {
 			stringValue = "";
 		}
