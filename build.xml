@@ -247,7 +247,7 @@
 		<delete dir="${dist.tmpdir}" quiet="true"/>
 		<delete file="${dist.file}" quiet="true"/>
 		<copy todir="${dist.tmpdir}">
-			<fileset dir="." excludes="_build/**, .git/**, build.xml, html/**, jar/**, properties/**, tools/**"/>
+			<fileset dir="." excludes="_build/**, .git/**, .gitignore, build.xml, html/**, jar/**, properties/**, tools/**"/>
 		</copy>
 		<copy file="${build.context}/index.html" tofile="${dist.tmpdir}/index.html" overwrite="yes" preservelastmodified="true"/>
 		<copy file="${build.context}/js/Bookmarklet.js" tofile="${dist.tmpdir}/js/Bookmarklet.js" overwrite="yes" preservelastmodified="true"/>
