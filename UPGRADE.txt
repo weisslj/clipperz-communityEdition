@@ -1,0 +1,17 @@
+These instructions are for migrating from svn-003 to svn-009.
+
+You should perform a backup of your database prior to running these commands.
+
+Log in to the mysql database as a user who has ALTER privileges on the
+clipperz database.
+
+start transaction;
+ALTER TABLE record MODIFY COLUMN data LONGTEXT NOT NULL;
+ALTER TABLE user MODIFY COLUMN header LONGTEXT NOT NULL;
+ALTER TABLE user MODIFY COLUMN statistics LONGTEXT NOT NULL;
+ALTER TABLE recordversion MODIFY COLUMN header LONGTEXT NOT NULL;
+ALTER TABLE recordversion MODIFY COLUMN data LONGTEXT NOT NULL;
+commit;
+
+After running those commands the mysql tables should be updated to the new
+database schema.
