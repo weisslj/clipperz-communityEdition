@@ -19,7 +19,7 @@
 			<arg value="--always"/>
 			<arg value="HEAD"/>
 		</exec>
-		<condition property="repository.version" value="git${git.revision}" else="unknown">
+		<condition property="repository.version" value="${git.revision}" else="unknown">
 			<and>
 				<isset property="git.revision"/>
 				<length string="${git.revision}" trim="yes" length="0" when="greater"/>
